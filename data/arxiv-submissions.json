@@ -16,7 +16,7 @@
  "annotations": true,
  "line_shape": "linear",
  "notes": "Counted by submission date and primary-or-cross-listed category, so a paper in both cs.LG and cs.CL appears in both lines. The most recent months keep rising for a few weeks as cross-lists land.",
- "updated": "2026-08-06T07:41:38Z",
+ "updated": "2026-08-06T07:47:06Z",
  "lines": [
   {
    "name": "cs.AI (Artificial Intelligence)",
