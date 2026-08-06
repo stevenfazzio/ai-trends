@@ -1,0 +1,66 @@
+name: Update data and deploy
+
+on:
+  schedule:
+    # 06:20 UTC daily. Late enough that the previous US trading day's filings
+    # and Indeed's overnight push have landed.
+    - cron: "20 6 * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+    # Without this, the commit made by this workflow would retrigger it.
+    paths-ignore:
+      - "data/**"
+      - "cache/**"
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+
+      - name: Install dependencies
+        run: uv sync --frozen
+
+      - name: Fetch data and assemble site
+        run: uv run python -m ai_trends.build
+
+      - name: Commit today's snapshot
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data cache
+          if git diff --staged --quiet; then
+            echo "no data changes"
+          else
+            git commit -m "data: refresh $(date -u +%Y-%m-%d) [skip ci]"
+            git push
+          fi
+
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

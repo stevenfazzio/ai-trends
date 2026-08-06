@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Trends</title>
+<meta name="description" content="Time-series charts tracking AI compute, economics, research and adoption, rebuilt daily from public data.">
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='26'>📈</text></svg>">
+<script src="https://cdn.plot.ly/plotly-basic-2.35.2.min.js" charset="utf-8"></script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <h1>AI&nbsp;Trends</h1>
+    <p class="tagline">Time series on AI compute, economics, research and adoption &mdash; rebuilt daily from public sources.</p>
+    <div class="controls">
+      <nav id="nav" aria-label="Sections"></nav>
+      <label class="toggle">
+        <input type="checkbox" id="events-toggle" checked>
+        <span>Model release markers</span>
+      </label>
+    </div>
+  </div>
+</header>
+
+<main id="charts" class="wrap">
+  <p class="loading">Loading charts&hellip;</p>
+</main>
+
+<footer class="wrap">
+  <p id="generated"></p>
+  <p>
+    Each chart names its own source. Data is fetched by
+    <a href="https://github.com/stevenfazzio/ai-trends">this repository</a>, which rebuilds
+    the page every day. Nothing here is an original estimate &mdash; it is other
+    people's published numbers, plotted.
+  </p>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
