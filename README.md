@@ -3,7 +3,7 @@
 Time-series charts on AI compute, economics, research and adoption, rebuilt
 daily from public sources and published to GitHub Pages.
 
-**→ https://stevenfazzio.github.io/ai-trends/**
+**→ https://stevenfazzio.com/ai-trends/**
 
 Nothing here is an original estimate. Every chart plots someone else's published
 numbers and links back to them.
