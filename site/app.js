@@ -177,14 +177,17 @@ function renderChart(chart) {
 function provenance(meta, series) {
   const row = el('div', 'provenance');
 
-  const source = el('span');
-  source.append('Source: ');
-  const link = el('a', null, meta.source.name);
-  link.href = meta.source.url;
-  link.rel = 'noopener';
-  source.append(link);
-  if (meta.source.license) source.append(` (${meta.source.license})`);
-  row.append(source);
+  const sources = meta.sources || [];
+  sources.forEach((source, i) => {
+    const span = el('span');
+    if (i === 0) span.append(sources.length > 1 ? 'Sources: ' : 'Source: ');
+    const link = el('a', null, source.name);
+    link.href = source.url;
+    link.rel = 'noopener';
+    span.append(link);
+    if (source.license) span.append(` (${source.license})`);
+    row.append(span);
+  });
 
   const updated = (series && series.updated) || meta.updated;
   if (updated) row.append(el('span', null, `Updated ${updated.slice(0, 10)}`));

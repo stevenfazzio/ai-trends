@@ -1,0 +1,74 @@
+{
+ "id": "chip-energy-efficiency",
+ "title": "Compute per watt of the best AI accelerator",
+ "description": "Peak tensor FP16/BF16 throughput divided by rated power, for the most efficient accelerator released to date.",
+ "group": "environment",
+ "sources": [
+  {
+   "name": "Epoch AI \u2014 Machine Learning Hardware",
+   "url": "https://epoch.ai/data/machine-learning-hardware",
+   "license": "CC BY 4.0"
+  }
+ ],
+ "y": {
+  "title": "FLOP/s per watt",
+  "log": true,
+  "tickformat": ".0e"
+ },
+ "mode": "recompute",
+ "annotations": true,
+ "line_shape": "hv",
+ "notes": "Vendor-quoted peak throughput over rated TDP, so it is a spec-sheet ceiling rather than efficiency on a real workload. Restricted to tensor FP16/BF16 figures to keep the comparison like for like \u2014 quoting FP8 or FP4 numbers instead would make the curve an artefact of precision choices.",
+ "updated": "2026-08-06T08:04:08Z",
+ "lines": [
+  {
+   "name": "Best accelerator at release",
+   "points": [
+    [
+     "2017-05-01",
+     164285714285.7143
+    ],
+    [
+     "2017-06-21",
+     416666666666.6667
+    ],
+    [
+     "2017-06-21",
+     448000000000.0
+    ],
+    [
+     "2018-03-27",
+     500000000000.0
+    ],
+    [
+     "2019-11-26",
+     520000000000.0
+    ],
+    [
+     "2020-01-01",
+     788571428571.4286
+    ],
+    [
+     "2020-06-22",
+     1040000000000.0
+    ],
+    [
+     "2022-08-22",
+     1861818181818.182
+    ],
+    [
+     "2022-09-20",
+     2160000000000.0
+    ],
+    [
+     "2024-05-14",
+     2415789473684.2104
+    ],
+    [
+     "2026-08-06",
+     2415789473684.2104
+    ]
+   ]
+  }
+ ]
+}

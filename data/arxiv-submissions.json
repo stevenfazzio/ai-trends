@@ -3,10 +3,12 @@
  "title": "arXiv submissions per month, by category",
  "description": "New submissions to the main AI-adjacent arXiv categories each month.",
  "group": "research",
- "source": {
-  "name": "arXiv API",
-  "url": "https://info.arxiv.org/help/api/index.html"
- },
+ "sources": [
+  {
+   "name": "arXiv API",
+   "url": "https://info.arxiv.org/help/api/index.html"
+  }
+ ],
  "y": {
   "title": "Submissions per month",
   "tickformat": ".2s",
@@ -15,8 +17,8 @@
  "mode": "recompute",
  "annotations": true,
  "line_shape": "linear",
- "notes": "Counted by submission date and primary-or-cross-listed category, so a paper in both cs.LG and cs.CL appears in both lines. The most recent months keep rising for a few weeks as cross-lists land.",
- "updated": "2026-08-06T07:47:06Z",
+ "notes": "Counted by submission date and primary-or-cross-listed category, so a paper in both cs.LG and cs.CL appears in both lines. The newest month is dropped because cross-lists keep landing for weeks after a month closes.",
+ "updated": "2026-08-06T08:04:29Z",
  "lines": [
   {
    "name": "cs.AI (Artificial Intelligence)",

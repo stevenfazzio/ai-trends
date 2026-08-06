@@ -60,7 +60,9 @@ class SeriesSpec:
     title: str
     description: str
     group: str
-    source: Source
+    # Usually one, but a hand-assembled series can cite several pollsters or
+    # publications, each of which deserves its own link.
+    sources: list[Source]
     fetch: Callable[[], list[Line]]
     y: Axis = field(default_factory=Axis)
 
@@ -87,7 +89,7 @@ class SeriesSpec:
             "title": self.title,
             "description": self.description,
             "group": self.group,
-            "source": self.source.to_dict(),
+            "sources": [source.to_dict() for source in self.sources],
             "y": self.y.to_dict(),
             "mode": self.mode,
             "annotations": self.annotations,

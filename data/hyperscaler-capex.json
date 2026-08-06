@@ -3,10 +3,12 @@
  "title": "Quarterly capital expenditure at the big four cloud buyers",
  "description": "Cash spent on property, plant and equipment each quarter by Microsoft, Alphabet, Amazon and Meta \u2014 the closest public proxy for AI datacentre buildout.",
  "group": "compute",
- "source": {
-  "name": "SEC EDGAR XBRL company facts",
-  "url": "https://www.sec.gov/edgar/sec-api-documentation"
- },
+ "sources": [
+  {
+   "name": "SEC EDGAR XBRL company facts",
+   "url": "https://www.sec.gov/edgar/sec-api-documentation"
+  }
+ ],
  "y": {
   "title": "Capex per quarter (USD)",
   "tickformat": "$.2s",
@@ -16,7 +18,7 @@
  "annotations": true,
  "line_shape": "linear",
  "notes": "Capex covers all property and equipment, not only AI hardware. Companies that file year-to-date cumulatives have their quarters recovered by differencing, and fiscal quarters do not align across companies.",
- "updated": "2026-08-06T07:46:43Z",
+ "updated": "2026-08-06T08:04:08Z",
  "lines": [
   {
    "name": "Microsoft",

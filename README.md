@@ -22,6 +22,7 @@ src/ai_trends/
   sources/        one module per upstream provider
 data/             committed output, one JSON per series
 cache/            committed intermediate counts (arXiv), so CI stays cheap
+manual/           hand-entered observations, one CSV per series, with citations
 site/             index.html, app.js, style.css -- rendered with Plotly
 events.toml       model-release markers drawn across the charts
 ```
@@ -38,6 +39,16 @@ differently:
   Each run records one observation. These series have no history before
   collection started and can never be backfilled, which is why the job runs
   daily rather than on demand.
+
+### Hand-entered series
+
+Some numbers have no feed at all. Public opinion polling is the case in point:
+Pew, Gallup and Ipsos publish their AI trend questions as prose and images,
+behind no API, and the figures move once or twice a year. Scraping that would be
+brittle for data this slow, so those observations live in `manual/*.csv`, one row
+per figure, each carrying the source and URL it came from. The loader refuses a
+row without a URL. If a number can't be traced to a published release, it
+doesn't belong in the file.
 
 ## Running it locally
 
@@ -71,12 +82,16 @@ needed.
 
 | Series | Source | Licence |
 |---|---|---|
-| Largest known training run | [Epoch AI](https://epoch.ai/data/ai-models) | CC BY 4.0 |
+| Largest known training run, training power draw | [Epoch AI — models](https://epoch.ai/data/ai-models) | CC BY 4.0 |
+| Datacentre power capacity | [Epoch AI — data centers](https://epoch.ai/data/ai-data-centers) | CC BY 4.0 |
+| Compute per watt | [Epoch AI — hardware](https://epoch.ai/data/machine-learning-hardware) | CC BY 4.0 |
+| Cumulative equity raised | [Epoch AI — companies](https://epoch.ai/data/ai-companies) | CC BY 4.0 |
 | Hyperscaler capex, NVIDIA revenue | [SEC EDGAR XBRL](https://www.sec.gov/edgar/sec-api-documentation) | public domain |
 | Token price index | [OpenRouter](https://openrouter.ai/docs/api-reference/list-available-models) | — |
 | AI papers by country | [OpenAlex](https://openalex.org) | CC0 |
 | arXiv submissions | [arXiv API](https://info.arxiv.org/help/api/index.html) | — |
 | AI share of job postings | [Indeed Hiring Lab](https://github.com/hiring-lab/ai-tracker) | Hiring Lab terms |
+| American public opinion | [Pew](https://www.pewresearch.org/topic/internet-technology/emerging-technology/artificial-intelligence/), [Gallup](https://www.gallup.com/topic/artificial-intelligence.aspx) | hand-entered, cited per row |
 
 ## Not here yet
 
@@ -91,3 +106,12 @@ no JSON endpoint — the leaderboard is embedded in the page payload.
 Epoch (organisation country), OpenAlex (author institutions), Indeed (per
 country, no China). Benchmarks, prices and arXiv have no usable country
 dimension, so those charts are single-region by necessity rather than choice.
+Epoch's datacentre coverage nominally has a country column, but 68 of the ~80
+tracked sites are American, so splitting it would imply a comparison the data
+can't support.
+
+**Datacentre water use** is in Epoch's schema but populated for 10 of 441
+timeline rows — too sparse to plot honestly.
+
+**Non-US polling** would need Ipsos' AI Monitor, which covers ~30 countries
+annually but publishes as PDF only.

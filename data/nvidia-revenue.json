@@ -3,10 +3,12 @@
  "title": "NVIDIA quarterly revenue",
  "description": "Total revenue per fiscal quarter, as filed.",
  "group": "economics",
- "source": {
-  "name": "SEC EDGAR XBRL company facts",
-  "url": "https://www.sec.gov/edgar/sec-api-documentation"
- },
+ "sources": [
+  {
+   "name": "SEC EDGAR XBRL company facts",
+   "url": "https://www.sec.gov/edgar/sec-api-documentation"
+  }
+ ],
  "y": {
   "title": "Revenue per quarter (USD)",
   "tickformat": "$.2s",
@@ -16,7 +18,7 @@
  "annotations": true,
  "line_shape": "linear",
  "notes": "Total company revenue; NVIDIA's datacentre segment is not broken out in XBRL.",
- "updated": "2026-08-06T07:46:43Z",
+ "updated": "2026-08-06T08:04:08Z",
  "lines": [
   {
    "name": "NVIDIA total revenue",

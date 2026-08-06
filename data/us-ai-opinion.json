@@ -1,0 +1,91 @@
+{
+ "id": "us-ai-opinion",
+ "title": "American public opinion on AI",
+ "description": "Long-running poll questions on how the US public feels about AI, from the two organisations that have asked the same thing repeatedly.",
+ "group": "opinion",
+ "sources": [
+  {
+   "name": "Pew Research Center",
+   "url": "https://www.pewresearch.org/topic/internet-technology/emerging-technology/artificial-intelligence/"
+  },
+  {
+   "name": "Gallup",
+   "url": "https://www.gallup.com/topic/artificial-intelligence.aspx"
+  }
+ ],
+ "y": {
+  "title": "% of US adults",
+  "tickformat": ".0f",
+  "rangemode": "tozero"
+ },
+ "mode": "recompute",
+ "annotations": true,
+ "line_shape": "linear",
+ "notes": "Hand-entered from published releases \u2014 no pollster offers a machine-readable feed \u2014 with every figure's citation recorded alongside it in manual/us-ai-opinion.csv. The lines come from different surveys with different question wording and sampling, so read the movement within a line and not the gaps between them. Each question is asked about once a year.",
+ "updated": "2026-08-06T08:04:29Z",
+ "lines": [
+  {
+   "name": "More concerned than excited about AI (Pew)",
+   "points": [
+    [
+     "2021-11-01",
+     37.0
+    ],
+    [
+     "2022-12-01",
+     38.0
+    ],
+    [
+     "2023-08-01",
+     52.0
+    ],
+    [
+     "2025-06-01",
+     50.0
+    ]
+   ]
+  },
+  {
+   "name": "AI does more harm than good (Gallup)",
+   "points": [
+    [
+     "2023-05-01",
+     40.0
+    ],
+    [
+     "2024-05-01",
+     31.0
+    ],
+    [
+     "2025-05-01",
+     31.0
+    ],
+    [
+     "2026-05-01",
+     39.0
+    ]
+   ]
+  },
+  {
+   "name": "AI will reduce US jobs over 10 years (Gallup)",
+   "points": [
+    [
+     "2023-05-01",
+     75.0
+    ],
+    [
+     "2024-05-01",
+     75.0
+    ],
+    [
+     "2025-05-01",
+     73.0
+    ],
+    [
+     "2026-05-01",
+     79.0
+    ]
+   ]
+  }
+ ]
+}

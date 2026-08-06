@@ -1,0 +1,78 @@
+{
+ "id": "training-power-draw",
+ "title": "Power drawn by the largest training runs",
+ "description": "Estimated power pulled by the hardware running the largest training run published to date.",
+ "group": "environment",
+ "sources": [
+  {
+   "name": "Epoch AI \u2014 Notable AI Models",
+   "url": "https://epoch.ai/data/ai-models",
+   "license": "CC BY 4.0"
+  }
+ ],
+ "y": {
+  "title": "Training power draw (W)",
+  "log": true,
+  "tickformat": ".0e"
+ },
+ "mode": "recompute",
+ "annotations": true,
+ "line_shape": "hv",
+ "notes": "A running maximum over the models Epoch has power estimates for, which is roughly a fifth of the catalogue. This is instantaneous draw during training, not total energy consumed, and says nothing about inference \u2014 which is now the larger share of the industry's electricity use.",
+ "updated": "2026-08-06T08:04:08Z",
+ "lines": [
+  {
+   "name": "Largest known training run",
+   "points": [
+    [
+     "2011-04-29",
+     246.22598104391827
+    ],
+    [
+     "2012-12-03",
+     2116.2977934480996
+    ],
+    [
+     "2014-09-04",
+     2137.653074766455
+    ],
+    [
+     "2016-10-07",
+     37828.64014138488
+    ],
+    [
+     "2018-05-02",
+     209159.05867416784
+    ],
+    [
+     "2019-07-01",
+     526193.8152119832
+    ],
+    [
+     "2019-11-11",
+     944347.7271739373
+    ],
+    [
+     "2020-05-28",
+     5100759.605963441
+    ],
+    [
+     "2023-03-15",
+     19944368.12599428
+    ],
+    [
+     "2023-12-06",
+     38423900.11232233
+    ],
+    [
+     "2025-02-17",
+     109948656.20196915
+    ],
+    [
+     "2026-08-06",
+     109948656.20196915
+    ]
+   ]
+  }
+ ]
+}

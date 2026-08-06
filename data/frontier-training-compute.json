@@ -3,11 +3,13 @@
  "title": "Largest known training run, by country",
  "description": "Training compute of the largest model published to date, in floating-point operations. A running maximum, so the line steps up only when a bigger training run appears.",
  "group": "compute",
- "source": {
-  "name": "Epoch AI \u2014 Notable AI Models",
-  "url": "https://epoch.ai/data/ai-models",
-  "license": "CC BY 4.0"
- },
+ "sources": [
+  {
+   "name": "Epoch AI \u2014 Notable AI Models",
+   "url": "https://epoch.ai/data/ai-models",
+   "license": "CC BY 4.0"
+  }
+ ],
  "y": {
   "title": "Training compute (FLOP)",
   "log": true,
@@ -16,8 +18,8 @@
  "mode": "recompute",
  "annotations": true,
  "line_shape": "hv",
- "notes": "Models are attributed to the country of the first-listed organisation. Compute figures are Epoch's estimates and are frequently revised; only a few hundred of the 8,000+ catalogued models have a compute estimate at all.",
- "updated": "2026-08-06T07:46:43Z",
+ "notes": "Models are attributed to the country of the first-listed organisation. Compute figures are Epoch's estimates and are frequently revised; only about half of the catalogued models carry a compute estimate at all.",
+ "updated": "2026-08-06T08:04:08Z",
  "lines": [
   {
    "name": "United States",

@@ -1,5 +1,5 @@
 {
- "generated": "2026-08-06T07:47:06Z",
+ "generated": "2026-08-06T08:04:29Z",
  "groups": [
   {
    "id": "compute",
@@ -11,11 +11,13 @@
      "title": "Largest known training run, by country",
      "description": "Training compute of the largest model published to date, in floating-point operations. A running maximum, so the line steps up only when a bigger training run appears.",
      "group": "compute",
-     "source": {
-      "name": "Epoch AI \u2014 Notable AI Models",
-      "url": "https://epoch.ai/data/ai-models",
-      "license": "CC BY 4.0"
-     },
+     "sources": [
+      {
+       "name": "Epoch AI \u2014 Notable AI Models",
+       "url": "https://epoch.ai/data/ai-models",
+       "license": "CC BY 4.0"
+      }
+     ],
      "y": {
       "title": "Training compute (FLOP)",
       "log": true,
@@ -24,9 +26,9 @@
      "mode": "recompute",
      "annotations": true,
      "line_shape": "hv",
-     "notes": "Models are attributed to the country of the first-listed organisation. Compute figures are Epoch's estimates and are frequently revised; only a few hundred of the 8,000+ catalogued models have a compute estimate at all.",
+     "notes": "Models are attributed to the country of the first-listed organisation. Compute figures are Epoch's estimates and are frequently revised; only about half of the catalogued models carry a compute estimate at all.",
      "ok": true,
-     "updated": "2026-08-06T07:46:43Z",
+     "updated": "2026-08-06T08:04:08Z",
      "lines": 3,
      "points": 57
     },
@@ -35,10 +37,12 @@
      "title": "Quarterly capital expenditure at the big four cloud buyers",
      "description": "Cash spent on property, plant and equipment each quarter by Microsoft, Alphabet, Amazon and Meta \u2014 the closest public proxy for AI datacentre buildout.",
      "group": "compute",
-     "source": {
-      "name": "SEC EDGAR XBRL company facts",
-      "url": "https://www.sec.gov/edgar/sec-api-documentation"
-     },
+     "sources": [
+      {
+       "name": "SEC EDGAR XBRL company facts",
+       "url": "https://www.sec.gov/edgar/sec-api-documentation"
+      }
+     ],
      "y": {
       "title": "Capex per quarter (USD)",
       "tickformat": "$.2s",
@@ -49,9 +53,94 @@
      "line_shape": "linear",
      "notes": "Capex covers all property and equipment, not only AI hardware. Companies that file year-to-date cumulatives have their quarters recovered by differencing, and fiscal quarters do not align across companies.",
      "ok": true,
-     "updated": "2026-08-06T07:46:43Z",
+     "updated": "2026-08-06T08:04:08Z",
      "lines": 4,
      "points": 195
+    }
+   ]
+  },
+  {
+   "id": "environment",
+   "title": "Environment",
+   "blurb": "The physical footprint: power drawn, capacity built, and efficiency gained.",
+   "series": [
+    {
+     "id": "datacenter-power",
+     "title": "Power capacity of tracked AI datacentres",
+     "description": "Combined nameplate power of the AI datacentres Epoch tracks, taking each site's most recent recorded capacity.",
+     "group": "environment",
+     "sources": [
+      {
+       "name": "Epoch AI \u2014 AI Data Centers",
+       "url": "https://epoch.ai/data/ai-data-centers",
+       "license": "CC BY 4.0"
+      }
+     ],
+     "y": {
+      "title": "Power capacity (MW)",
+      "tickformat": ".2s",
+      "rangemode": "tozero"
+     },
+     "mode": "recompute",
+     "annotations": true,
+     "line_shape": "linear",
+     "notes": "Capacity the sites can draw, not the electricity they actually consume. Epoch tracks roughly eighty sites and the coverage is overwhelmingly American, so this is a floor on the global total rather than a measurement of it. Their timelines extend to 2030 because they include announced build schedules; everything after today is excluded here. As Epoch adds sites, earlier totals rise too.",
+     "ok": true,
+     "updated": "2026-08-06T08:04:08Z",
+     "lines": 1,
+     "points": 255
+    },
+    {
+     "id": "training-power-draw",
+     "title": "Power drawn by the largest training runs",
+     "description": "Estimated power pulled by the hardware running the largest training run published to date.",
+     "group": "environment",
+     "sources": [
+      {
+       "name": "Epoch AI \u2014 Notable AI Models",
+       "url": "https://epoch.ai/data/ai-models",
+       "license": "CC BY 4.0"
+      }
+     ],
+     "y": {
+      "title": "Training power draw (W)",
+      "log": true,
+      "tickformat": ".0e"
+     },
+     "mode": "recompute",
+     "annotations": true,
+     "line_shape": "hv",
+     "notes": "A running maximum over the models Epoch has power estimates for, which is roughly a fifth of the catalogue. This is instantaneous draw during training, not total energy consumed, and says nothing about inference \u2014 which is now the larger share of the industry's electricity use.",
+     "ok": true,
+     "updated": "2026-08-06T08:04:08Z",
+     "lines": 1,
+     "points": 12
+    },
+    {
+     "id": "chip-energy-efficiency",
+     "title": "Compute per watt of the best AI accelerator",
+     "description": "Peak tensor FP16/BF16 throughput divided by rated power, for the most efficient accelerator released to date.",
+     "group": "environment",
+     "sources": [
+      {
+       "name": "Epoch AI \u2014 Machine Learning Hardware",
+       "url": "https://epoch.ai/data/machine-learning-hardware",
+       "license": "CC BY 4.0"
+      }
+     ],
+     "y": {
+      "title": "FLOP/s per watt",
+      "log": true,
+      "tickformat": ".0e"
+     },
+     "mode": "recompute",
+     "annotations": true,
+     "line_shape": "hv",
+     "notes": "Vendor-quoted peak throughput over rated TDP, so it is a spec-sheet ceiling rather than efficiency on a real workload. Restricted to tensor FP16/BF16 figures to keep the comparison like for like \u2014 quoting FP8 or FP4 numbers instead would make the curve an artefact of precision choices.",
+     "ok": true,
+     "updated": "2026-08-06T08:04:08Z",
+     "lines": 1,
+     "points": 11
     }
    ]
   },
@@ -65,10 +154,12 @@
      "title": "NVIDIA quarterly revenue",
      "description": "Total revenue per fiscal quarter, as filed.",
      "group": "economics",
-     "source": {
-      "name": "SEC EDGAR XBRL company facts",
-      "url": "https://www.sec.gov/edgar/sec-api-documentation"
-     },
+     "sources": [
+      {
+       "name": "SEC EDGAR XBRL company facts",
+       "url": "https://www.sec.gov/edgar/sec-api-documentation"
+      }
+     ],
      "y": {
       "title": "Revenue per quarter (USD)",
       "tickformat": "$.2s",
@@ -79,19 +170,47 @@
      "line_shape": "linear",
      "notes": "Total company revenue; NVIDIA's datacentre segment is not broken out in XBRL.",
      "ok": true,
-     "updated": "2026-08-06T07:46:43Z",
+     "updated": "2026-08-06T08:04:08Z",
      "lines": 1,
      "points": 67
+    },
+    {
+     "id": "ai-funding",
+     "title": "Cumulative equity raised by the largest AI companies",
+     "description": "Running total of disclosed equity funding, by company.",
+     "group": "economics",
+     "sources": [
+      {
+       "name": "Epoch AI \u2014 AI Companies",
+       "url": "https://epoch.ai/data/ai-companies",
+       "license": "CC BY 4.0"
+      }
+     ],
+     "y": {
+      "title": "Equity raised to date (USD)",
+      "tickformat": "$.2s",
+      "rangemode": "tozero"
+     },
+     "mode": "recompute",
+     "annotations": true,
+     "line_shape": "hv",
+     "notes": "Equity only \u2014 debt financing, which has become a large part of how datacentre buildout is paid for, is excluded. Epoch tracks disclosed rounds at major companies rather than the whole market, and rounds are dated to close.",
+     "ok": true,
+     "updated": "2026-08-06T08:04:08Z",
+     "lines": 5,
+     "points": 40
     },
     {
      "id": "token-price-index",
      "title": "Price of a million input tokens",
      "description": "Percentiles of prompt pricing across every text model listed on OpenRouter, tracking the market rather than any single model.",
      "group": "economics",
-     "source": {
-      "name": "OpenRouter model catalogue",
-      "url": "https://openrouter.ai/docs/api-reference/list-available-models"
-     },
+     "sources": [
+      {
+       "name": "OpenRouter model catalogue",
+       "url": "https://openrouter.ai/docs/api-reference/list-available-models"
+      }
+     ],
      "y": {
       "title": "USD per million input tokens",
       "log": true,
@@ -102,7 +221,7 @@
      "line_shape": "linear",
      "notes": "OpenRouter publishes current prices only, so this series starts the day collection began and gains one observation per day. It has no history before then.",
      "ok": true,
-     "updated": "2026-08-06T07:46:43Z",
+     "updated": "2026-08-06T08:04:08Z",
      "lines": 3,
      "points": 3
     }
@@ -118,11 +237,13 @@
      "title": "AI papers published per year, by country",
      "description": "Works whose primary topic falls in the Artificial Intelligence subfield, counted by the countries of their authors' institutions.",
      "group": "research",
-     "source": {
-      "name": "OpenAlex",
-      "url": "https://openalex.org",
-      "license": "CC0"
-     },
+     "sources": [
+      {
+       "name": "OpenAlex",
+       "url": "https://openalex.org",
+       "license": "CC0"
+      }
+     ],
      "y": {
       "title": "Papers per year",
       "tickformat": ".2s",
@@ -133,7 +254,7 @@
      "line_shape": "linear",
      "notes": "A paper with authors in several countries counts once for each, so the lines are not a partition. 'Rest of world' excludes any paper with a US or Chinese author. Recent years keep growing as indexing catches up.",
      "ok": true,
-     "updated": "2026-08-06T07:46:44Z",
+     "updated": "2026-08-06T08:04:08Z",
      "lines": 3,
      "points": 48
     },
@@ -142,10 +263,12 @@
      "title": "arXiv submissions per month, by category",
      "description": "New submissions to the main AI-adjacent arXiv categories each month.",
      "group": "research",
-     "source": {
-      "name": "arXiv API",
-      "url": "https://info.arxiv.org/help/api/index.html"
-     },
+     "sources": [
+      {
+       "name": "arXiv API",
+       "url": "https://info.arxiv.org/help/api/index.html"
+      }
+     ],
      "y": {
       "title": "Submissions per month",
       "tickformat": ".2s",
@@ -154,9 +277,9 @@
      "mode": "recompute",
      "annotations": true,
      "line_shape": "linear",
-     "notes": "Counted by submission date and primary-or-cross-listed category, so a paper in both cs.LG and cs.CL appears in both lines. The most recent months keep rising for a few weeks as cross-lists land.",
+     "notes": "Counted by submission date and primary-or-cross-listed category, so a paper in both cs.LG and cs.CL appears in both lines. The newest month is dropped because cross-lists keep landing for weeks after a month closes.",
      "ok": true,
-     "updated": "2026-08-06T07:47:06Z",
+     "updated": "2026-08-06T08:04:29Z",
      "lines": 4,
      "points": 552
     }
@@ -172,11 +295,13 @@
      "title": "Share of job postings mentioning AI",
      "description": "Percentage of postings on Indeed containing AI or generative-AI terms, averaged by month.",
      "group": "adoption",
-     "source": {
-      "name": "Indeed Hiring Lab \u2014 AI tracker",
-      "url": "https://github.com/hiring-lab/ai-tracker",
-      "license": "Indeed Hiring Lab terms"
-     },
+     "sources": [
+      {
+       "name": "Indeed Hiring Lab \u2014 AI tracker",
+       "url": "https://github.com/hiring-lab/ai-tracker",
+       "license": "Indeed Hiring Lab terms"
+      }
+     ],
      "y": {
       "title": "Share of postings (%)",
       "tickformat": ".2f",
@@ -187,9 +312,45 @@
      "line_shape": "linear",
      "notes": "Indeed's country coverage does not include China. The measure is keyword based, so it tracks how often employers mention AI, not how many jobs actually involve it.",
      "ok": true,
-     "updated": "2026-08-06T07:47:06Z",
+     "updated": "2026-08-06T08:04:29Z",
      "lines": 6,
      "points": 540
+    }
+   ]
+  },
+  {
+   "id": "opinion",
+   "title": "Opinion",
+   "blurb": "What the public makes of it.",
+   "series": [
+    {
+     "id": "us-ai-opinion",
+     "title": "American public opinion on AI",
+     "description": "Long-running poll questions on how the US public feels about AI, from the two organisations that have asked the same thing repeatedly.",
+     "group": "opinion",
+     "sources": [
+      {
+       "name": "Pew Research Center",
+       "url": "https://www.pewresearch.org/topic/internet-technology/emerging-technology/artificial-intelligence/"
+      },
+      {
+       "name": "Gallup",
+       "url": "https://www.gallup.com/topic/artificial-intelligence.aspx"
+      }
+     ],
+     "y": {
+      "title": "% of US adults",
+      "tickformat": ".0f",
+      "rangemode": "tozero"
+     },
+     "mode": "recompute",
+     "annotations": true,
+     "line_shape": "linear",
+     "notes": "Hand-entered from published releases \u2014 no pollster offers a machine-readable feed \u2014 with every figure's citation recorded alongside it in manual/us-ai-opinion.csv. The lines come from different surveys with different question wording and sampling, so read the movement within a line and not the gaps between them. Each question is asked about once a year.",
+     "ok": true,
+     "updated": "2026-08-06T08:04:29Z",
+     "lines": 3,
+     "points": 12
     }
    ]
   }

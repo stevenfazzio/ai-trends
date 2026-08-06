@@ -3,11 +3,13 @@
  "title": "Share of job postings mentioning AI",
  "description": "Percentage of postings on Indeed containing AI or generative-AI terms, averaged by month.",
  "group": "adoption",
- "source": {
-  "name": "Indeed Hiring Lab \u2014 AI tracker",
-  "url": "https://github.com/hiring-lab/ai-tracker",
-  "license": "Indeed Hiring Lab terms"
- },
+ "sources": [
+  {
+   "name": "Indeed Hiring Lab \u2014 AI tracker",
+   "url": "https://github.com/hiring-lab/ai-tracker",
+   "license": "Indeed Hiring Lab terms"
+  }
+ ],
  "y": {
   "title": "Share of postings (%)",
   "tickformat": ".2f",
@@ -17,7 +19,7 @@
  "annotations": true,
  "line_shape": "linear",
  "notes": "Indeed's country coverage does not include China. The measure is keyword based, so it tracks how often employers mention AI, not how many jobs actually involve it.",
- "updated": "2026-08-06T07:47:06Z",
+ "updated": "2026-08-06T08:04:29Z",
  "lines": [
   {
    "name": "United States",

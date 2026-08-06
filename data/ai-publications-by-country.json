@@ -3,11 +3,13 @@
  "title": "AI papers published per year, by country",
  "description": "Works whose primary topic falls in the Artificial Intelligence subfield, counted by the countries of their authors' institutions.",
  "group": "research",
- "source": {
-  "name": "OpenAlex",
-  "url": "https://openalex.org",
-  "license": "CC0"
- },
+ "sources": [
+  {
+   "name": "OpenAlex",
+   "url": "https://openalex.org",
+   "license": "CC0"
+  }
+ ],
  "y": {
   "title": "Papers per year",
   "tickformat": ".2s",
@@ -17,7 +19,7 @@
  "annotations": true,
  "line_shape": "linear",
  "notes": "A paper with authors in several countries counts once for each, so the lines are not a partition. 'Rest of world' excludes any paper with a US or Chinese author. Recent years keep growing as indexing catches up.",
- "updated": "2026-08-06T07:46:44Z",
+ "updated": "2026-08-06T08:04:08Z",
  "lines": [
   {
    "name": "United States",
