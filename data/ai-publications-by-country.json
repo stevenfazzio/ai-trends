@@ -19,7 +19,7 @@
  "annotations": true,
  "line_shape": "linear",
  "notes": "A paper with authors in several countries counts once for each, so the lines are not a partition. 'Rest of world' excludes any paper with a US or Chinese author. Recent years keep growing as indexing catches up.",
- "updated": "2026-08-06T18:52:29Z",
+ "updated": "2026-08-06T19:13:45Z",
  "lines": [
   {
    "name": "United States",
