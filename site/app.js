@@ -46,6 +46,7 @@ function el(tag, className, text) {
 
 function traces(series) {
   const dense = series.lines.some((line) => line.points.length > MARKER_THRESHOLD);
+  const format = (series.y || {}).tickformat;
   return series.lines.map((line, i) => ({
     type: 'scatter',
     mode: dense ? 'lines' : 'lines+markers',
@@ -55,6 +56,8 @@ function traces(series) {
     line: { color: colourFor(line.name, i), width: 2, shape: series.line_shape || 'linear' },
     marker: { size: 5 },
     connectgaps: false,
+    /* Match the axis formatting, or the tooltip shows raw 35802000000. */
+    yhoverformat: format,
     hovertemplate: '%{y}<extra>%{fullData.name}</extra>',
   }));
 }
@@ -106,7 +109,6 @@ function layoutFor(series, logScale) {
 
   return {
     margin: { l: 68, r: 18, t: 26, b: 40 },
-    height: undefined,
     paper_bgcolor: 'rgba(0,0,0,0)',
     plot_bgcolor: 'rgba(0,0,0,0)',
     font: { color: palette.soft, size: 12 },
@@ -176,10 +178,13 @@ function buildCard(meta, series) {
   const chart = { node: null, series, log: !!(meta.y && meta.y.log) };
 
   if (series) {
-    const button = el('button', 'scale-btn', chart.log ? 'Log scale' : 'Linear scale');
+    /* Labelled with what the click does, not with the current state -- a button
+     * reading "Log scale" on an already-logarithmic chart is a coin flip. */
+    const label = () => (chart.log ? 'Switch to linear' : 'Switch to log');
+    const button = el('button', 'scale-btn', label());
     button.addEventListener('click', () => {
       chart.log = !chart.log;
-      button.textContent = chart.log ? 'Log scale' : 'Linear scale';
+      button.textContent = label();
       renderChart(chart);
     });
     head.append(button);

@@ -162,7 +162,3 @@ SERIES = [
         ),
     ),
 ]
-
-
-def series_by_id() -> dict[str, SeriesSpec]:
-    return {spec.id: spec for spec in SERIES}
