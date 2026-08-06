@@ -29,3 +29,7 @@ label = "o1"
 [[event]]
 date = "2025-01-20"
 label = "DeepSeek-R1"
+
+[[event]]
+date = "2026-07-16"
+label = "Kimi K3"
