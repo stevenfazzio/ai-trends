@@ -19,7 +19,7 @@
  "annotations": true,
  "line_shape": "hv",
  "notes": "A running maximum over the models Epoch has power estimates for, which is roughly a fifth of the catalogue. This is instantaneous draw during training, not total energy consumed, and says nothing about inference \u2014 which is now the larger share of the industry's electricity use.",
- "updated": "2026-08-06T19:13:42Z",
+ "updated": "2026-08-06T19:15:40Z",
  "lines": [
   {
    "name": "Largest known training run",
