@@ -1,5 +1,5 @@
 {
- "generated": "2026-08-06T07:06:41Z",
+ "generated": "2026-08-06T07:40:46Z",
  "groups": [
   {
    "id": "compute",
@@ -26,9 +26,8 @@
      "line_shape": "hv",
      "notes": "Models are attributed to the country of the first-listed organisation. Compute figures are Epoch's estimates and are frequently revised; only a few hundred of the 8,000+ catalogued models have a compute estimate at all.",
      "ok": true,
-     "updated": "2026-08-06T07:06:41Z",
-     "lines": 3,
-     "points": 57
+     "updated": "2026-08-06T07:33:32Z",
+     "lines": 3
     },
     {
      "id": "hyperscaler-capex",
@@ -49,7 +48,7 @@
      "line_shape": "linear",
      "notes": "Capex covers all property and equipment, not only AI hardware. Companies that file year-to-date cumulatives have their quarters recovered by differencing, and fiscal quarters do not align across companies.",
      "ok": true,
-     "updated": "2026-08-06T07:03:50Z",
+     "updated": "2026-08-06T07:33:32Z",
      "lines": 4
     }
    ]
@@ -78,7 +77,7 @@
      "line_shape": "linear",
      "notes": "Total company revenue; NVIDIA's datacentre segment is not broken out in XBRL.",
      "ok": true,
-     "updated": "2026-08-06T07:03:50Z",
+     "updated": "2026-08-06T07:33:32Z",
      "lines": 1
     },
     {
@@ -100,7 +99,7 @@
      "line_shape": "linear",
      "notes": "OpenRouter publishes current prices only, so this series starts the day collection began and gains one observation per day. It has no history before then.",
      "ok": true,
-     "updated": "2026-08-06T07:03:50Z",
+     "updated": "2026-08-06T07:33:32Z",
      "lines": 3
     }
    ]
@@ -130,7 +129,7 @@
      "line_shape": "linear",
      "notes": "A paper with authors in several countries counts once for each, so the lines are not a partition. 'Rest of world' excludes any paper with a US or Chinese author. Recent years keep growing as indexing catches up.",
      "ok": true,
-     "updated": "2026-08-06T07:03:51Z",
+     "updated": "2026-08-06T07:33:33Z",
      "lines": 3
     },
     {
@@ -151,9 +150,10 @@
      "annotations": true,
      "line_shape": "linear",
      "notes": "Counted by submission date and primary-or-cross-listed category, so a paper in both cs.LG and cs.CL appears in both lines. The most recent months keep rising for a few weeks as cross-lists land.",
-     "ok": false,
-     "updated": null,
-     "lines": 0
+     "ok": true,
+     "updated": "2026-08-06T07:40:46Z",
+     "lines": 4,
+     "points": 552
     }
    ]
   },
@@ -182,7 +182,7 @@
      "line_shape": "linear",
      "notes": "Indeed's country coverage does not include China. The measure is keyword based, so it tracks how often employers mention AI, not how many jobs actually involve it.",
      "ok": true,
-     "updated": "2026-08-06T07:03:51Z",
+     "updated": "2026-08-06T07:33:54Z",
      "lines": 6
     }
    ]

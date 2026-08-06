@@ -62,15 +62,40 @@ function traces(series) {
   }));
 }
 
+const DAY_MS = 86400000;
+
+/* An append-mode series starts life with a single observation. Left to
+ * autorange, Plotly fits the axis to that one instant and labels it down to
+ * fractions of a second; this keeps a minimum window either side. */
+const MIN_SPAN_DAYS = 14;
+
+function dateExtent(series) {
+  const dates = series.lines.flatMap((line) => line.points.map((p) => p[0]));
+  if (!dates.length) return null;
+  return {
+    first: dates.reduce((a, b) => (a < b ? a : b)),
+    last: dates.reduce((a, b) => (a > b ? a : b)),
+  };
+}
+
+function paddedRange(extent) {
+  const first = Date.parse(extent.first);
+  const last = Date.parse(extent.last);
+  const spanDays = (last - first) / DAY_MS;
+  if (spanDays >= MIN_SPAN_DAYS) return undefined; // autorange is fine
+
+  const pad = ((MIN_SPAN_DAYS - spanDays) / 2) * DAY_MS;
+  const iso = (ms) => new Date(ms).toISOString().slice(0, 10);
+  return [iso(first - pad), iso(last + pad)];
+}
+
 /* Event markers are clipped to the data's own date range -- a release that
  * predates the series would otherwise stretch the axis to fit it. */
-function eventDecorations(series, palette) {
-  if (!state.showEvents || !series.annotations) return { shapes: [], annotations: [] };
-
-  const dates = series.lines.flatMap((line) => line.points.map((p) => p[0]));
-  if (!dates.length) return { shapes: [], annotations: [] };
-  const first = dates.reduce((a, b) => (a < b ? a : b));
-  const last = dates.reduce((a, b) => (a > b ? a : b));
+function eventDecorations(series, palette, extent) {
+  if (!state.showEvents || !series.annotations || !extent) {
+    return { shapes: [], annotations: [] };
+  }
+  const { first, last } = extent;
 
   const shapes = [];
   const annotations = [];
@@ -105,7 +130,8 @@ function eventDecorations(series, palette) {
 function layoutFor(series, logScale) {
   const palette = theme();
   const y = series.y || {};
-  const decorations = eventDecorations(series, palette);
+  const extent = dateExtent(series);
+  const decorations = eventDecorations(series, palette, extent);
 
   return {
     margin: { l: 68, r: 18, t: 26, b: 40 },
@@ -118,6 +144,7 @@ function layoutFor(series, logScale) {
     legend: { orientation: 'h', y: -0.14, x: 0, font: { size: 12 } },
     xaxis: {
       type: 'date',
+      range: extent ? paddedRange(extent) : undefined,
       gridcolor: palette.rule,
       zeroline: false,
       linecolor: palette.rule,

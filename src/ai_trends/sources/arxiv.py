@@ -114,6 +114,8 @@ def monthly_submissions() -> list[Line]:
             for key, count in cache.items()
             if key.startswith(prefix)
         )
-        if points:
-            lines.append(Line(label, list(points)))
+        # Drop the newest month. Cross-lists keep landing for weeks after a
+        # month ends, so it always plots as a sharp drop that isn't real.
+        if len(points) > 1:
+            lines.append(Line(label, list(points[:-1])))
     return lines
