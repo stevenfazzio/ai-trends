@@ -8,7 +8,9 @@ on:
   workflow_dispatch:
   push:
     branches: [main]
-    # Without this, the commit made by this workflow would retrigger it.
+    # Belt and braces against a self-retrigger. The primary guard is that a
+    # push made with GITHUB_TOKEN never starts a workflow run at all; this
+    # covers the case where the job is ever given a different credential.
     paths-ignore:
       - "data/**"
       - "cache/**"
@@ -46,7 +48,10 @@ jobs:
           if git diff --staged --quiet; then
             echo "no data changes"
           else
-            git commit -m "data: refresh $(date -u +%Y-%m-%d) [skip ci]"
+            # No [skip ci] marker: it is redundant given the guards above, and
+            # leaving it on main appeared to suppress the workflow run for the
+            # *next* push, which meant same-day changes never deployed.
+            git commit -m "data: refresh $(date -u +%Y-%m-%d)"
             git push
           fi
 
