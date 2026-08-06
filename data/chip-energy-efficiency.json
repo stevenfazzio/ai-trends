@@ -19,7 +19,7 @@
  "annotations": true,
  "line_shape": "hv",
  "notes": "Vendor-quoted peak throughput over rated TDP, so it is a spec-sheet ceiling rather than efficiency on a real workload. Restricted to tensor FP16/BF16 figures to keep the comparison like for like \u2014 quoting FP8 or FP4 numbers instead would make the curve an artefact of precision choices.",
- "updated": "2026-08-06T08:06:54Z",
+ "updated": "2026-08-06T18:52:28Z",
  "lines": [
   {
    "name": "Best accelerator at release",
