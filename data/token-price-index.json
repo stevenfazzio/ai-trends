@@ -18,7 +18,7 @@
  "annotations": true,
  "line_shape": "linear",
  "notes": "OpenRouter publishes current prices only, so this series starts the day collection began and gains one observation per day. It has no history before then.",
- "updated": "2026-08-07T07:46:21Z",
+ "updated": "2026-08-08T07:18:31Z",
  "lines": [
   {
    "name": "Cheapest decile",
@@ -29,6 +29,10 @@
     ],
     [
      "2026-08-07",
+     0.075
+    ],
+    [
+     "2026-08-08",
      0.075
     ]
    ]
@@ -43,6 +47,10 @@
     [
      "2026-08-07",
      0.55
+    ],
+    [
+     "2026-08-08",
+     0.55
     ]
    ]
   },
@@ -55,6 +63,10 @@
     ],
     [
      "2026-08-07",
+     5.0
+    ],
+    [
+     "2026-08-08",
      5.0
     ]
    ]
