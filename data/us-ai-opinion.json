@@ -22,7 +22,7 @@
  "annotations": true,
  "line_shape": "linear",
  "notes": "Hand-entered from published releases \u2014 no pollster offers a machine-readable feed \u2014 with every figure's citation recorded alongside it in manual/us-ai-opinion.csv. The lines come from different surveys with different question wording and sampling, so read the movement within a line and not the gaps between them. Each question is asked about once a year.",
- "updated": "2026-08-08T07:18:53Z",
+ "updated": "2026-08-09T07:26:33Z",
  "lines": [
   {
    "name": "More concerned than excited about AI (Pew)",
