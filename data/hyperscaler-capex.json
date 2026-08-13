@@ -18,7 +18,7 @@
  "annotations": true,
  "line_shape": "linear",
  "notes": "Capex covers all property and equipment, not only AI hardware. Companies that file year-to-date cumulatives have their quarters recovered by differencing, and fiscal quarters do not align across companies.",
- "updated": "2026-08-12T07:56:10Z",
+ "updated": "2026-08-13T07:56:56Z",
  "lines": [
   {
    "name": "Microsoft",
@@ -817,6 +817,10 @@
     [
      "2026-03-31",
      18997000000.0
+    ],
+    [
+     "2026-06-30",
+     30116000000.0
     ]
    ]
   }
