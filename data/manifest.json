@@ -1,5 +1,5 @@
 {
- "generated": "2026-08-25T07:12:32Z",
+ "generated": "2026-08-26T07:13:15Z",
  "groups": [
   {
    "id": "compute",
@@ -28,7 +28,7 @@
      "line_shape": "hv",
      "notes": "Models are attributed to the country of the first-listed organisation. Compute figures are Epoch's estimates and are frequently revised; only about half of the catalogued models carry a compute estimate at all.",
      "ok": true,
-     "updated": "2026-08-25T07:12:06Z",
+     "updated": "2026-08-26T07:12:01Z",
      "lines": 3,
      "points": 57
     },
@@ -53,7 +53,7 @@
      "line_shape": "linear",
      "notes": "Capex covers all property and equipment, not only AI hardware. Companies that file year-to-date cumulatives have their quarters recovered by differencing, and fiscal quarters do not align across companies.",
      "ok": true,
-     "updated": "2026-08-25T07:12:07Z",
+     "updated": "2026-08-26T07:12:02Z",
      "lines": 4,
      "points": 196
     }
@@ -86,9 +86,9 @@
      "line_shape": "linear",
      "notes": "Capacity the sites can draw, not the electricity they actually consume. Epoch tracks roughly eighty sites and the coverage is overwhelmingly American, so this is a floor on the global total rather than a measurement of it. Their timelines extend to 2030 because they include announced build schedules; everything after today is excluded here. As Epoch adds sites, earlier totals rise too.",
      "ok": true,
-     "updated": "2026-08-25T07:12:07Z",
+     "updated": "2026-08-26T07:12:02Z",
      "lines": 1,
-     "points": 282
+     "points": 284
     },
     {
      "id": "training-power-draw",
@@ -112,7 +112,7 @@
      "line_shape": "hv",
      "notes": "A running maximum over the models Epoch has power estimates for, which is roughly a fifth of the catalogue. This is instantaneous draw during training, not total energy consumed, and says nothing about inference \u2014 which is now the larger share of the industry's electricity use.",
      "ok": true,
-     "updated": "2026-08-25T07:12:07Z",
+     "updated": "2026-08-26T07:12:02Z",
      "lines": 1,
      "points": 12
     },
@@ -138,7 +138,7 @@
      "line_shape": "hv",
      "notes": "Vendor-quoted peak throughput over rated TDP, so it is a spec-sheet ceiling rather than efficiency on a real workload. Restricted to tensor FP16/BF16 figures to keep the comparison like for like \u2014 quoting FP8 or FP4 numbers instead would make the curve an artefact of precision choices.",
      "ok": true,
-     "updated": "2026-08-25T07:12:07Z",
+     "updated": "2026-08-26T07:12:02Z",
      "lines": 1,
      "points": 11
     }
@@ -170,7 +170,7 @@
      "line_shape": "linear",
      "notes": "Total company revenue; NVIDIA's datacentre segment is not broken out in XBRL.",
      "ok": true,
-     "updated": "2026-08-25T07:12:07Z",
+     "updated": "2026-08-26T07:12:02Z",
      "lines": 1,
      "points": 67
     },
@@ -196,7 +196,7 @@
      "line_shape": "hv",
      "notes": "Equity only \u2014 debt financing, which has become a large part of how datacentre buildout is paid for, is excluded. Epoch tracks disclosed rounds at major companies rather than the whole market, and rounds are dated to close.",
      "ok": true,
-     "updated": "2026-08-25T07:12:08Z",
+     "updated": "2026-08-26T07:12:02Z",
      "lines": 5,
      "points": 40
     },
@@ -221,9 +221,9 @@
      "line_shape": "linear",
      "notes": "OpenRouter publishes current prices only, so this series starts the day collection began and gains one observation per day. It has no history before then.",
      "ok": true,
-     "updated": "2026-08-25T07:12:08Z",
+     "updated": "2026-08-26T07:12:02Z",
      "lines": 3,
-     "points": 60
+     "points": 63
     }
    ]
   },
@@ -254,7 +254,7 @@
      "line_shape": "linear",
      "notes": "A paper with authors in several countries counts once for each, so the lines are not a partition. 'Rest of world' excludes any paper with a US or Chinese author. Recent years keep growing as indexing catches up.",
      "ok": true,
-     "updated": "2026-08-25T07:12:08Z",
+     "updated": "2026-08-26T07:12:03Z",
      "lines": 3,
      "points": 48
     },
@@ -279,7 +279,7 @@
      "line_shape": "linear",
      "notes": "Counted by submission date and primary-or-cross-listed category, so a paper in both cs.LG and cs.CL appears in both lines. The newest month is dropped because cross-lists keep landing for weeks after a month closes.",
      "ok": true,
-     "updated": "2026-08-25T07:12:31Z",
+     "updated": "2026-08-26T07:13:14Z",
      "lines": 4,
      "points": 552
     }
@@ -312,7 +312,7 @@
      "line_shape": "linear",
      "notes": "Indeed's country coverage does not include China. The measure is keyword based, so it tracks how often employers mention AI, not how many jobs actually involve it.",
      "ok": true,
-     "updated": "2026-08-25T07:12:32Z",
+     "updated": "2026-08-26T07:13:15Z",
      "lines": 6,
      "points": 540
     }
@@ -348,7 +348,7 @@
      "line_shape": "linear",
      "notes": "Hand-entered from published releases \u2014 no pollster offers a machine-readable feed \u2014 with every figure's citation recorded alongside it in manual/us-ai-opinion.csv. The lines come from different surveys with different question wording and sampling, so read the movement within a line and not the gaps between them. Each question is asked about once a year.",
      "ok": true,
-     "updated": "2026-08-25T07:12:32Z",
+     "updated": "2026-08-26T07:13:15Z",
      "lines": 3,
      "points": 12
     }

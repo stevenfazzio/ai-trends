@@ -18,7 +18,7 @@
  "annotations": true,
  "line_shape": "linear",
  "notes": "Counted by submission date and primary-or-cross-listed category, so a paper in both cs.LG and cs.CL appears in both lines. The newest month is dropped because cross-lists keep landing for weeks after a month closes.",
- "updated": "2026-08-25T07:12:31Z",
+ "updated": "2026-08-26T07:13:14Z",
  "lines": [
   {
    "name": "cs.AI (Artificial Intelligence)",
@@ -573,7 +573,7 @@
     ],
     [
      "2026-06-01",
-     5576.0
+     5579.0
     ]
    ]
   },
@@ -1130,7 +1130,7 @@
     ],
     [
      "2026-06-01",
-     4938.0
+     4940.0
     ]
    ]
   },
@@ -1687,7 +1687,7 @@
     ],
     [
      "2026-06-01",
-     2600.0
+     2601.0
     ]
    ]
   },
@@ -2244,7 +2244,7 @@
     ],
     [
      "2026-06-01",
-     3329.0
+     3330.0
     ]
    ]
   }
