@@ -18,7 +18,7 @@
  "annotations": true,
  "line_shape": "linear",
  "notes": "Total company revenue; NVIDIA's datacentre segment is not broken out in XBRL.",
- "updated": "2026-09-05T10:42:50Z",
+ "updated": "2026-09-06T11:04:22Z",
  "lines": [
   {
    "name": "NVIDIA total revenue",
