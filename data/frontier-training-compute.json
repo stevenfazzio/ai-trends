@@ -19,7 +19,7 @@
  "annotations": true,
  "line_shape": "hv",
  "notes": "Models are attributed to the country of the first-listed organisation. Compute figures are Epoch's estimates and are frequently revised; only about half of the catalogued models carry a compute estimate at all.",
- "updated": "2026-09-23T11:47:39Z",
+ "updated": "2026-09-24T11:55:31Z",
  "lines": [
   {
    "name": "United States",
@@ -109,8 +109,12 @@
      5.0000000000001e+26
     ],
     [
+     "2026-09-03",
+     1.0001e+27
+    ],
+    [
      "2026-09-09",
-     5.0000000000001e+26
+     1.0001e+27
     ]
    ]
   },
