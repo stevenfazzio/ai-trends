@@ -19,7 +19,7 @@
  "annotations": true,
  "line_shape": "linear",
  "notes": "Capacity the sites can draw, not the electricity they actually consume. Epoch tracks roughly eighty sites and the coverage is overwhelmingly American, so this is a floor on the global total rather than a measurement of it. Their timelines extend to 2030 because they include announced build schedules; everything after today is excluded here. As Epoch adds sites, earlier totals rise too.",
- "updated": "2026-10-05T14:53:40Z",
+ "updated": "2026-10-06T13:24:40Z",
  "lines": [
   {
    "name": "Tracked AI datacentres",
@@ -1257,40 +1257,44 @@
      16276.9879392
     ],
     [
+     "2026-08-24",
+     16390.9879392
+    ],
+    [
      "2026-08-30",
-     16476.9879392
+     16590.9879392
     ],
     [
      "2026-08-31",
-     16610.9879392
+     16724.9879392
     ],
     [
      "2026-09-01",
-     16749.8981344
+     16863.8981344
     ],
     [
      "2026-09-04",
-     16749.8981344
+     16863.8981344
     ],
     [
      "2026-09-06",
-     17128.8981344
+     17242.8981344
     ],
     [
      "2026-09-30",
-     17161.8981344
+     17275.8981344
     ],
     [
      "2026-10-01",
-     17300.8083296
+     17414.8083296
     ],
     [
      "2026-10-02",
-     17626.8083296
+     17740.8083296
     ],
     [
-     "2026-10-05",
-     17626.8083296
+     "2026-10-06",
+     17740.8083296
     ]
    ]
   }
