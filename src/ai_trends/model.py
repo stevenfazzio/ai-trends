@@ -41,6 +41,21 @@ def running_max(
     return points
 
 
+def running_min(
+    entries: list[tuple[str, float]], carry_to: str | None = None
+) -> list[tuple[str, float]]:
+    """Step the line down only when a new record low appears."""
+    points: list[tuple[str, float]] = []
+    best = float("inf")
+    for when, value in sorted(entries):
+        if value < best:
+            best = value
+            points.append((when, best))
+    if points and carry_to and points[-1][0] != carry_to:
+        points.append((carry_to, points[-1][1]))
+    return points
+
+
 @dataclass
 class Axis:
     title: str = ""

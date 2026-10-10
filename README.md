@@ -89,6 +89,7 @@ needed.
 | Cumulative equity raised, annualised revenue | [Epoch AI — companies](https://epoch.ai/data/ai-companies) | CC BY 4.0 |
 | Hyperscaler capex, NVIDIA revenue | [SEC EDGAR XBRL](https://www.sec.gov/edgar/sec-api-documentation) | public domain |
 | Token price index | [OpenRouter](https://openrouter.ai/docs/api-reference/list-available-models) | — |
+| Cheapest model at a fixed ARC-AGI score | [Epoch AI — benchmarks](https://epoch.ai/benchmarks), from the [ARC Prize leaderboard](https://arcprize.org/leaderboard) | CC BY 4.0 |
 | AI papers by country | [OpenAlex](https://openalex.org) | CC0 |
 | arXiv submissions | [arXiv API](https://info.arxiv.org/help/api/index.html) | — |
 | AI share of job postings | [Indeed Hiring Lab](https://github.com/hiring-lab/ai-tracker) | Hiring Lab terms |

@@ -23,6 +23,9 @@ EPOCH_DATACENTERS = Source(
 EPOCH_COMPANIES = Source(
     "Epoch AI — AI Companies", "https://epoch.ai/data/ai-companies", "CC BY 4.0"
 )
+EPOCH_BENCHMARKS = Source(
+    "Epoch AI — Capabilities & benchmarking", "https://epoch.ai/benchmarks", "CC BY 4.0"
+)
 SEC_EDGAR = Source(
     "SEC EDGAR XBRL company facts", "https://www.sec.gov/edgar/sec-api-documentation"
 )
@@ -169,19 +172,25 @@ SERIES = [
         id="chip-energy-efficiency",
         title="Compute per watt of the best AI accelerator",
         description=(
-            "Peak tensor FP16/BF16 throughput divided by rated power, for the most "
-            "efficient accelerator released to date."
+            "Peak throughput divided by rated power, for the most efficient accelerator "
+            "released to date: once counting only tensor FP16/BF16 arithmetic, and once "
+            "at whichever precision each chip is fastest."
         ),
         group="environment",
         sources=[EPOCH_HARDWARE],
         fetch=epoch.chip_energy_efficiency,
-        y=Axis(title="FLOP/s per watt", log=True, tickformat=".0e"),
+        y=Axis(title="Operations per second per watt", log=True, tickformat=".0e"),
         line_shape="hv",
         notes=(
-            "Vendor-quoted peak throughput over rated TDP, so it is a spec-sheet ceiling "
-            "rather than efficiency on a real workload. Restricted to tensor FP16/BF16 "
-            "figures to keep the comparison like for like — quoting FP8 or FP4 numbers "
-            "instead would make the curve an artefact of precision choices."
+            "Vendor-quoted peak throughput over rated TDP, so both lines are spec-sheet "
+            "ceilings rather than efficiency on a real workload. The FP16 line holds "
+            "precision fixed to keep the comparison like for like, which leaves out "
+            "whatever newer chips gain by computing at 8 or 4 bits. The any-precision "
+            "line is Epoch's own efficiency figure: each chip's highest quoted throughput "
+            "in any number format, counting a 4-bit operation the same as a 16-bit one. "
+            "Several of its records were set by small, low-power inference chips rather "
+            "than training hardware. The gap between the lines is what lower precision "
+            "buys, and only a workload that tolerates it gets that gain."
         ),
     ),
     SeriesSpec(
@@ -250,6 +259,33 @@ SERIES = [
             "OpenRouter publishes current prices only, so this series starts the day "
             "collection began and gains one observation per day. It has no history "
             "before then."
+        ),
+    ),
+    SeriesSpec(
+        id="arc-agi-cost-at-score",
+        title="Cheapest model to reach a fixed ARC-AGI score",
+        description=(
+            "Lowest cost per task among models released to date that solve at least a "
+            "given share of ARC-AGI-1. A running minimum, so each line steps down only "
+            "when something cheaper clears the bar."
+        ),
+        group="economics",
+        sources=[
+            EPOCH_BENCHMARKS,
+            Source("ARC Prize leaderboard", "https://arcprize.org/leaderboard"),
+        ],
+        fetch=epoch.arc_agi_cost_at_score,
+        y=Axis(title="Cost per task (USD)", log=True, tickformat="$,.3~r"),
+        line_shape="hv",
+        notes=(
+            "The costs are those ARC Prize reports for each model and reasoning setting "
+            "it tests, republished by Epoch with release dates; entries with no reported "
+            "cost are left out. A price is not a cost of production: it carries margins "
+            "and pricing decisions as well as hardware and electricity, so this is what "
+            "the work costs to buy. Models sit at their release date rather than the date "
+            "they were tested, and the lines end at the newest model with a reported cost "
+            "rather than today. ARC-AGI-1 is a set of abstract visual puzzles, so this "
+            "says little about other kinds of work."
         ),
     ),
     SeriesSpec(

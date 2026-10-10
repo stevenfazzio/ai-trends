@@ -13,6 +13,7 @@ import io
 import json
 import os
 import time
+import zipfile
 from pathlib import Path
 from typing import Any
 
@@ -105,6 +106,13 @@ def get_csv(
     url: str, params: dict | None = None, *, use_cache: bool = True
 ) -> list[dict[str, str]]:
     return list(csv.DictReader(io.StringIO(get_text(url, params, use_cache=use_cache))))
+
+
+def get_zipped_csv(url: str, member: str, *, use_cache: bool = True) -> list[dict[str, str]]:
+    """Read one CSV out of a zip archive."""
+    with zipfile.ZipFile(io.BytesIO(get_bytes(url, use_cache=use_cache))) as archive:
+        text = archive.read(member).decode("utf-8-sig")
+    return list(csv.DictReader(io.StringIO(text)))
 
 
 def parse_float(value: str | None) -> float | None:
