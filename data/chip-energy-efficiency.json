@@ -1,7 +1,7 @@
 {
  "id": "chip-energy-efficiency",
  "title": "Compute per watt of the best AI accelerator",
- "description": "Peak tensor FP16/BF16 throughput divided by rated power, for the most efficient accelerator released to date.",
+ "description": "Peak throughput divided by rated power, for the most efficient accelerator released to date: once counting only tensor FP16/BF16 arithmetic, and once at whichever precision each chip is fastest.",
  "group": "environment",
  "sources": [
   {
@@ -11,18 +11,18 @@
   }
  ],
  "y": {
-  "title": "FLOP/s per watt",
+  "title": "Operations per second per watt",
   "log": true,
   "tickformat": ".0e"
  },
  "mode": "recompute",
  "annotations": true,
  "line_shape": "hv",
- "notes": "Vendor-quoted peak throughput over rated TDP, so it is a spec-sheet ceiling rather than efficiency on a real workload. Restricted to tensor FP16/BF16 figures to keep the comparison like for like \u2014 quoting FP8 or FP4 numbers instead would make the curve an artefact of precision choices.",
- "updated": "2026-10-10T20:54:17Z",
+ "notes": "Vendor-quoted peak throughput over rated TDP, so both lines are spec-sheet ceilings rather than efficiency on a real workload. The FP16 line holds precision fixed to keep the comparison like for like, which leaves out whatever newer chips gain by computing at 8 or 4 bits. The any-precision line is Epoch's own efficiency figure: each chip's highest quoted throughput in any number format, counting a 4-bit operation the same as a 16-bit one. Several of its records were set by small, low-power inference chips rather than training hardware. The gap between the lines is what lower precision buys, and only a workload that tolerates it gets that gain.",
+ "updated": "2026-10-10T21:15:57Z",
  "lines": [
   {
-   "name": "Best accelerator at release",
+   "name": "FP16 only",
    "points": [
     [
      "2017-05-01",
@@ -67,6 +67,55 @@
     [
      "2026-10-10",
      2415789473684.2104
+    ]
+   ]
+  },
+  {
+   "name": "Any precision",
+   "points": [
+    [
+     "2017-05-01",
+     1226666666666.6667
+    ],
+    [
+     "2018-10-10",
+     2000000000000.0
+    ],
+    [
+     "2019-06-20",
+     3657142857142.857
+    ],
+    [
+     "2022-08-22",
+     3723636363636.364
+    ],
+    [
+     "2023-03-21",
+     6722222222222.223
+    ],
+    [
+     "2024-11-15",
+     9000000000000.0
+    ],
+    [
+     "2025-06-12",
+     9227500000000.0
+    ],
+    [
+     "2025-08-22",
+     10714285714285.715
+    ],
+    [
+     "2025-08-22",
+     12727272727272.727
+    ],
+    [
+     "2026-01-26",
+     13526666666666.666
+    ],
+    [
+     "2026-10-10",
+     13526666666666.666
     ]
    ]
   }

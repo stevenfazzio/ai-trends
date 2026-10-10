@@ -1,0 +1,133 @@
+{
+ "id": "arc-agi-cost-at-score",
+ "title": "Cheapest model to reach a fixed ARC-AGI score",
+ "description": "Lowest cost per task among models released to date that solve at least a given share of ARC-AGI-1. A running minimum, so each line steps down only when something cheaper clears the bar.",
+ "group": "economics",
+ "sources": [
+  {
+   "name": "Epoch AI \u2014 Capabilities & benchmarking",
+   "url": "https://epoch.ai/benchmarks",
+   "license": "CC BY 4.0"
+  },
+  {
+   "name": "ARC Prize leaderboard",
+   "url": "https://arcprize.org/leaderboard"
+  }
+ ],
+ "y": {
+  "title": "Cost per task (USD)",
+  "log": true,
+  "tickformat": "$,.3~r"
+ },
+ "mode": "recompute",
+ "annotations": true,
+ "line_shape": "hv",
+ "notes": "The costs are those ARC Prize reports for each model and reasoning setting it tests, republished by Epoch with release dates; entries with no reported cost are left out. A price is not a cost of production: it carries margins and pricing decisions as well as hardware and electricity, so this is what the work costs to buy. Models sit at their release date rather than the date they were tested, and the lines end at the newest model with a reported cost rather than today. ARC-AGI-1 is a set of abstract visual puzzles, so this says little about other kinds of work.",
+ "updated": "2026-10-10T21:15:57Z",
+ "lines": [
+  {
+   "name": "At least 25% solved",
+   "points": [
+    [
+     "2025-01-31",
+     0.3989
+    ],
+    [
+     "2025-02-24",
+     0.33
+    ],
+    [
+     "2025-04-16",
+     0.15
+    ],
+    [
+     "2025-05-20",
+     0.0371
+    ],
+    [
+     "2025-08-07",
+     0.0135
+    ],
+    [
+     "2026-07-16",
+     0.0135
+    ]
+   ]
+  },
+  {
+   "name": "At least 50% solved",
+   "points": [
+    [
+     "2025-04-16",
+     0.2882
+    ],
+    [
+     "2025-08-07",
+     0.116
+    ],
+    [
+     "2025-12-01",
+     0.08
+    ],
+    [
+     "2025-12-17",
+     0.0612
+    ],
+    [
+     "2026-07-09",
+     0.06
+    ],
+    [
+     "2026-07-16",
+     0.06
+    ]
+   ]
+  },
+  {
+   "name": "At least 75% solved",
+   "points": [
+    [
+     "2025-11-18",
+     0.4926
+    ],
+    [
+     "2025-12-17",
+     0.1743
+    ],
+    [
+     "2026-07-09",
+     0.13
+    ],
+    [
+     "2026-07-16",
+     0.13
+    ]
+   ]
+  },
+  {
+   "name": "At least 90% solved",
+   "points": [
+    [
+     "2025-12-11",
+     11.6542
+    ],
+    [
+     "2026-02-19",
+     0.5223
+    ],
+    [
+     "2026-03-05",
+     0.37
+    ],
+    [
+     "2026-07-09",
+     0.19
+    ],
+    [
+     "2026-07-16",
+     0.19
+    ]
+   ]
+  }
+ ]
+}
