@@ -18,7 +18,7 @@
  "annotations": true,
  "line_shape": "hv",
  "notes": "A thousand minutes is about seventeen hours. The tasks are mostly software engineering, machine-learning and cybersecurity problems, so this says little about other kinds of work. Each estimate is fitted from a model's pass rate across tasks of different lengths and is loose: the top of METR's confidence interval is typically three or four times the bottom, and more for the latest record-holders. METR measures a selection of models, so the lines end at the last one measured rather than today.",
- "updated": "2026-10-10T20:54:16Z",
+ "updated": "2026-10-10T21:16:18Z",
  "lines": [
   {
    "name": "50% success rate",
