@@ -47,6 +47,11 @@ class Axis:
     log: bool = False
     # Plotly d3-format string, e.g. ".2s" for SI prefixes, "$,.0f", ".1%"
     tickformat: str | None = None
+    # Text put in front of every tick and hover value. For large dollar amounts
+    # use tickprefix="$" and no tickformat: d3's SI format writes a billion as
+    # "G", whereas Plotly's own abbreviation, used when tickformat is unset,
+    # writes "B".
+    tickprefix: str | None = None
     # "tozero" pins a linear axis at 0 so growth isn't visually exaggerated.
     rangemode: str | None = None
 

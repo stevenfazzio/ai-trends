@@ -119,7 +119,7 @@ SERIES = [
         group="compute",
         sources=[SEC_EDGAR],
         fetch=sec.hyperscaler_capex,
-        y=Axis(title="Capex per quarter (USD)", tickformat="$.2s", rangemode="tozero"),
+        y=Axis(title="Capex per quarter (USD)", tickprefix="$", rangemode="tozero"),
         notes=(
             "Capex covers all property and equipment, not only AI hardware. Companies "
             "that file year-to-date cumulatives have their quarters recovered by "
@@ -191,7 +191,7 @@ SERIES = [
         group="economics",
         sources=[SEC_EDGAR],
         fetch=sec.nvidia_revenue,
-        y=Axis(title="Revenue per quarter (USD)", tickformat="$.2s", rangemode="tozero"),
+        y=Axis(title="Revenue per quarter (USD)", tickprefix="$", rangemode="tozero"),
         notes="Total company revenue; NVIDIA's datacentre segment is not broken out in XBRL.",
     ),
     SeriesSpec(
@@ -201,7 +201,7 @@ SERIES = [
         group="economics",
         sources=[EPOCH_COMPANIES],
         fetch=epoch.cumulative_ai_funding,
-        y=Axis(title="Equity raised to date (USD)", tickformat="$.2s", rangemode="tozero"),
+        y=Axis(title="Equity raised to date (USD)", tickprefix="$", rangemode="tozero"),
         line_shape="hv",
         notes=(
             "Equity only — debt financing, which has become a large part of how datacentre "
@@ -219,7 +219,7 @@ SERIES = [
         group="economics",
         sources=[EPOCH_COMPANIES],
         fetch=epoch.annualized_revenue,
-        y=Axis(title="Annualised revenue (USD)", log=True, tickformat="$.2s"),
+        y=Axis(title="Annualised revenue (USD)", log=True, tickprefix="$"),
         notes=(
             "Run rates, not booked revenue: a company growing fast will have earned far "
             "less over the past year than its run rate suggests. Most figures come from "

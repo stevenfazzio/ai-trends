@@ -153,6 +153,7 @@ function layoutFor(series, logScale) {
       type: logScale ? 'log' : 'linear',
       title: { text: y.title || '', font: { size: 12 } },
       tickformat: y.tickformat,
+      tickprefix: y.tickprefix,
       /* One label per decade; Plotly's default log ticks label every minor
        * gridline and the axis turns into a wall of numbers. */
       dtick: logScale ? 1 : undefined,
