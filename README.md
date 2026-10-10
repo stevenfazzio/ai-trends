@@ -32,8 +32,8 @@ events.toml       model-release markers drawn across the charts
 Sources differ in whether they hand you history, and the pipeline treats them
 differently:
 
-- **`recompute`** — the upstream holds the full history (Epoch, SEC, OpenAlex,
-  arXiv, Indeed). Every run rebuilds the series from scratch, so upstream
+- **`recompute`** — the upstream holds the full history (Epoch, METR, SEC,
+  Census, OpenAlex, arXiv, Indeed). Every run rebuilds the series from scratch, so upstream
   revisions flow through.
 - **`append`** — the upstream only exposes a current value (OpenRouter pricing).
   Each run records one observation. These series have no history before
@@ -82,23 +82,25 @@ needed.
 
 | Series | Source | Licence |
 |---|---|---|
+| Task time horizon | [METR](https://metr.org/time-horizons/) | — |
 | Largest known training run, training power draw | [Epoch AI — models](https://epoch.ai/data/ai-models) | CC BY 4.0 |
 | Datacentre power capacity | [Epoch AI — data centers](https://epoch.ai/data/ai-data-centers) | CC BY 4.0 |
 | Compute per watt | [Epoch AI — hardware](https://epoch.ai/data/machine-learning-hardware) | CC BY 4.0 |
-| Cumulative equity raised | [Epoch AI — companies](https://epoch.ai/data/ai-companies) | CC BY 4.0 |
+| Cumulative equity raised, annualised revenue | [Epoch AI — companies](https://epoch.ai/data/ai-companies) | CC BY 4.0 |
 | Hyperscaler capex, NVIDIA revenue | [SEC EDGAR XBRL](https://www.sec.gov/edgar/sec-api-documentation) | public domain |
 | Token price index | [OpenRouter](https://openrouter.ai/docs/api-reference/list-available-models) | — |
 | AI papers by country | [OpenAlex](https://openalex.org) | CC0 |
 | arXiv submissions | [arXiv API](https://info.arxiv.org/help/api/index.html) | — |
 | AI share of job postings | [Indeed Hiring Lab](https://github.com/hiring-lab/ai-tracker) | Hiring Lab terms |
+| Share of US businesses using AI | [Census Bureau — BTOS](https://www.census.gov/hfp/btos/data_downloads) | public domain |
 | American public opinion | [Pew](https://www.pewresearch.org/topic/internet-technology/emerging-technology/artificial-intelligence/), [Gallup](https://www.gallup.com/topic/artificial-intelligence.aspx) | hand-entered, cited per row |
 
 ## Not here yet
 
-**Capability benchmarks.** The obvious missing group. LMArena's HuggingFace
-mirror carries dated leaderboard CSVs from May 2023 but stopped updating in
-August 2025, so Elo history is available but stale, and the live source needs
-work. SWE-bench Verified is reconstructable from per-submission metadata in
+**More capability benchmarks.** The group holds one chart, METR's time
+horizons. LMArena's HuggingFace mirror carries dated leaderboard CSVs from May
+2023 but stopped updating in August 2025, so Elo history is available but
+stale, and the live source needs work. SWE-bench Verified is reconstructable from per-submission metadata in
 [SWE-bench/experiments](https://github.com/SWE-bench/experiments). ARC-AGI has
 no JSON endpoint — the leaderboard is embedded in the page payload.
 

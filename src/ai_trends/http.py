@@ -76,6 +76,21 @@ def get_text(
     return text
 
 
+def get_bytes(url: str, params: dict | None = None, *, use_cache: bool = True) -> bytes:
+    """GET a binary payload (a spreadsheet, say), with the same on-disk cache."""
+    path = _cache_path(url, params)
+    if use_cache and path.exists() and time.time() - path.stat().st_mtime < CACHE_TTL_SECONDS:
+        return path.read_bytes()
+
+    resp = session().get(url, params=params, timeout=60)
+    resp.raise_for_status()
+
+    if use_cache:
+        CACHE_DIR.mkdir(parents=True, exist_ok=True)
+        path.write_bytes(resp.content)
+    return resp.content
+
+
 def get_json(
     url: str,
     params: dict | None = None,

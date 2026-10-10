@@ -2,7 +2,7 @@
 
 Epoch publishes plain CSVs with no key required. Several of the charts here come
 from different files in that collection: notable models, ML hardware, datacentre
-build timelines, and company funding rounds.
+build timelines, and company funding rounds and revenue reports.
 """
 
 from __future__ import annotations
@@ -11,12 +11,13 @@ from collections import defaultdict
 from datetime import date
 
 from ..http import get_csv, parse_float
-from ..model import Line
+from ..model import Line, running_max
 
 NOTABLE_MODELS_CSV = "https://epoch.ai/data/notable_ai_models.csv"
 ML_HARDWARE_CSV = "https://epoch.ai/data/ml_hardware.csv"
 DATA_CENTER_TIMELINES_CSV = "https://epoch.ai/data/data_centers/data_center_timelines.csv"
 FUNDING_ROUNDS_CSV = "https://epoch.ai/data/ai_companies_funding_rounds.csv"
+REVENUE_REPORTS_CSV = "https://epoch.ai/data/ai_companies_revenue_reports.csv"
 
 # Epoch uses ISO long-form country names.
 _REGIONS = {
@@ -33,21 +34,6 @@ def _iso_date(raw: str) -> str | None:
     if len(raw) == 7:
         return f"{raw}-01"
     return raw if len(raw) == 10 else None
-
-
-def _running_max(
-    entries: list[tuple[str, float]], carry_to: str | None = None
-) -> list[tuple[str, float]]:
-    """Step the line up only when a new record appears."""
-    points: list[tuple[str, float]] = []
-    best = 0.0
-    for when, value in sorted(entries):
-        if value > best:
-            best = value
-            points.append((when, best))
-    if points and carry_to and points[-1][0] != carry_to:
-        points.append((carry_to, points[-1][1]))
-    return points
 
 
 def _region(raw: str) -> str | None:
@@ -94,7 +80,7 @@ def frontier_training_compute() -> list[Line]:
         entries = by_region.get(region, [])
         if not entries:
             continue
-        records = _running_max(entries)
+        records = running_max(entries)
 
         # Clip to the display window, opening at whatever the record already
         # was when the window starts.
@@ -123,7 +109,7 @@ def frontier_training_power() -> list[Line]:
             entries.append((published, watts))
     if not entries:
         return []
-    return [Line("Largest known training run", _running_max(entries, date.today().isoformat()))]
+    return [Line("Largest known training run", running_max(entries, date.today().isoformat()))]
 
 
 def chip_energy_efficiency() -> list[Line]:
@@ -142,7 +128,7 @@ def chip_energy_efficiency() -> list[Line]:
             entries.append((released, flops / tdp))
     if not entries:
         return []
-    return [Line("Best accelerator at release", _running_max(entries, date.today().isoformat()))]
+    return [Line("Best accelerator at release", running_max(entries, date.today().isoformat()))]
 
 
 def datacenter_power_capacity() -> list[Line]:
@@ -210,3 +196,34 @@ def cumulative_ai_funding() -> list[Line]:
             points.append((today, running))
         lines.append(Line(company, points))
     return lines
+
+
+# A company needs a few reports before joining them up says anything.
+_MIN_REVENUE_REPORTS = 3
+
+
+def annualized_revenue() -> list[Line]:
+    """Reported annualised revenue of AI companies, one line per company.
+
+    Each row is one report of a run rate at a date. Product-level figures and
+    rows that only give a period total are left out, so every point on a line
+    is a whole-company annualised number.
+    """
+    by_company: dict[str, dict[str, float]] = defaultdict(dict)
+    rows = get_csv(REVENUE_REPORTS_CSV)
+    # Two reports can share a date; the later-published one wins.
+    for row in sorted(rows, key=lambda r: r.get("Report date") or ""):
+        when = _iso_date(row.get("Date"))
+        revenue = parse_float(row.get("Annualized revenue (USD)"))
+        company = (row.get("Company") or "").strip()
+        if (row.get("Scope") or "").strip() != "Full company":
+            continue
+        if when and company and revenue and revenue > 0:
+            by_company[company][when] = revenue
+
+    lines = [
+        Line(company, sorted(points.items()))
+        for company, points in by_company.items()
+        if len(points) >= _MIN_REVENUE_REPORTS
+    ]
+    return sorted(lines, key=lambda line: -line.points[-1][1])

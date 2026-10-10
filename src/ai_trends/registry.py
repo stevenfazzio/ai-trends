@@ -7,7 +7,7 @@ render it. Order within a group is the order on the page.
 from __future__ import annotations
 
 from .model import Axis, Group, SeriesSpec, Source
-from .sources import arxiv, epoch, indeed, manual, openalex, openrouter, sec
+from .sources import arxiv, census, epoch, indeed, manual, metr, openalex, openrouter, sec
 
 EPOCH_MODELS = Source(
     "Epoch AI — Notable AI Models", "https://epoch.ai/data/ai-models", "CC BY 4.0"
@@ -28,6 +28,11 @@ SEC_EDGAR = Source(
 )
 
 GROUPS = [
+    Group(
+        "capability",
+        "Capability",
+        "What the models can do, as measured by people other than their makers.",
+    ),
     Group(
         "compute",
         "Compute",
@@ -60,11 +65,30 @@ GROUPS = [
     ),
 ]
 
-# A "capability" group belongs here too -- benchmark scores and Arena Elo -- but
-# LMArena stopped publishing to its HuggingFace mirror in August 2025 and the
-# live source needs more work. See README.
-
 SERIES = [
+    SeriesSpec(
+        id="task-time-horizon",
+        title="Longest task a frontier model can complete",
+        description=(
+            "Length of software task, measured by how long it takes a skilled human, that "
+            "the best model to date completes at a given success rate. A running maximum "
+            "over the models METR has evaluated."
+        ),
+        group="capability",
+        sources=[Source("METR — Task-Completion Time Horizons", metr.PAGE_URL)],
+        fetch=metr.frontier_time_horizon,
+        y=Axis(title="Time horizon (minutes of human work)", log=True, tickformat=",.3~r"),
+        line_shape="hv",
+        notes=(
+            "A thousand minutes is about seventeen hours. The tasks are mostly software "
+            "engineering, machine-learning and cybersecurity problems, so this says little "
+            "about other kinds of work. Each estimate is fitted from a model's pass rate "
+            "across tasks of different lengths and is loose: the top of METR's confidence "
+            "interval is typically three or four times the bottom, and more for the "
+            "latest record-holders. METR measures a selection of models, so the lines end "
+            "at the last one measured rather than today."
+        ),
+    ),
     SeriesSpec(
         id="frontier-training-compute",
         title="Largest known training run, by country",
@@ -186,6 +210,26 @@ SERIES = [
         ),
     ),
     SeriesSpec(
+        id="ai-company-revenue",
+        title="Annualised revenue of AI companies",
+        description=(
+            "Reported revenue run rate, by company: a recent month or quarter scaled up "
+            "to a full year."
+        ),
+        group="economics",
+        sources=[EPOCH_COMPANIES],
+        fetch=epoch.annualized_revenue,
+        y=Axis(title="Annualised revenue (USD)", log=True, tickformat="$.2s"),
+        notes=(
+            "Run rates, not booked revenue: a company growing fast will have earned far "
+            "less over the past year than its run rate suggests. Most figures come from "
+            "press reports rather than company disclosures, and companies do not define "
+            "run rate or ARR the same way. Each marker is one report and the lines "
+            "between them are interpolation. Companies with fewer than three reports are "
+            "left out, as are figures covering a single product."
+        ),
+    ),
+    SeriesSpec(
         id="token-price-index",
         title="Price of a million input tokens",
         description=(
@@ -256,6 +300,27 @@ SERIES = [
             "Indeed's country coverage does not include China. The measure is keyword "
             "based, so it tracks how often employers mention AI, not how many jobs "
             "actually involve it."
+        ),
+    ),
+    SeriesSpec(
+        id="business-ai-use",
+        title="Share of US businesses using AI",
+        description=(
+            "Percentage of firms telling the Census Bureau they used AI in the last two "
+            "weeks, and the percentage expecting to within six months."
+        ),
+        group="adoption",
+        sources=[
+            Source("US Census Bureau — Business Trends and Outlook Survey", census.DOWNLOADS_URL)
+        ],
+        fetch=census.business_ai_use,
+        y=Axis(title="Share of businesses (%)", tickformat=".1f", rangemode="tozero"),
+        notes=(
+            "The jump in late 2025 is a change of question, not of behaviour. Until "
+            "October 2025 the survey asked about AI used in producing goods or services; "
+            "from November it asks about AI used in any business function, and the "
+            "broader wording draws many more yeses. Read each pair of lines on its own. "
+            "The gap between them is the federal shutdown, when nothing was collected."
         ),
     ),
     SeriesSpec(
