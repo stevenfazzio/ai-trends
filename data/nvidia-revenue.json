@@ -11,14 +11,14 @@
  ],
  "y": {
   "title": "Revenue per quarter (USD)",
-  "tickformat": "$.2s",
+  "tickprefix": "$",
   "rangemode": "tozero"
  },
  "mode": "recompute",
  "annotations": true,
  "line_shape": "linear",
  "notes": "Total company revenue; NVIDIA's datacentre segment is not broken out in XBRL.",
- "updated": "2026-10-10T12:41:35Z",
+ "updated": "2026-10-10T20:53:48Z",
  "lines": [
   {
    "name": "NVIDIA total revenue",

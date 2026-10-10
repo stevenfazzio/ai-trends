@@ -1,6 +1,38 @@
 {
- "generated": "2026-10-10T12:42:00Z",
+ "generated": "2026-10-10T20:53:49Z",
  "groups": [
+  {
+   "id": "capability",
+   "title": "Capability",
+   "blurb": "What the models can do, as measured by people other than their makers.",
+   "series": [
+    {
+     "id": "task-time-horizon",
+     "title": "Longest task a frontier model can complete",
+     "description": "Length of software task, measured by how long it takes a skilled human, that the best model to date completes at a given success rate. A running maximum over the models METR has evaluated.",
+     "group": "capability",
+     "sources": [
+      {
+       "name": "METR \u2014 Task-Completion Time Horizons",
+       "url": "https://metr.org/time-horizons/"
+      }
+     ],
+     "y": {
+      "title": "Time horizon (minutes of human work)",
+      "log": true,
+      "tickformat": ",.3~r"
+     },
+     "mode": "recompute",
+     "annotations": true,
+     "line_shape": "hv",
+     "notes": "A thousand minutes is about seventeen hours. The tasks are mostly software engineering, machine-learning and cybersecurity problems, so this says little about other kinds of work. Each estimate is fitted from a model's pass rate across tasks of different lengths and is loose: the top of METR's confidence interval is typically three or four times the bottom, and more for the latest record-holders. METR measures a selection of models, so the lines end at the last one measured rather than today.",
+     "ok": true,
+     "updated": "2026-10-10T20:53:47Z",
+     "lines": 2,
+     "points": 35
+    }
+   ]
+  },
   {
    "id": "compute",
    "title": "Compute",
@@ -29,8 +61,7 @@
      "notes": "Models are attributed to the country of the first-listed organisation. Compute figures are Epoch's estimates and are frequently revised; only about half of the catalogued models carry a compute estimate at all.",
      "ok": true,
      "updated": "2026-10-10T12:41:34Z",
-     "lines": 3,
-     "points": 58
+     "lines": 3
     },
     {
      "id": "hyperscaler-capex",
@@ -45,7 +76,7 @@
      ],
      "y": {
       "title": "Capex per quarter (USD)",
-      "tickformat": "$.2s",
+      "tickprefix": "$",
       "rangemode": "tozero"
      },
      "mode": "recompute",
@@ -53,7 +84,7 @@
      "line_shape": "linear",
      "notes": "Capex covers all property and equipment, not only AI hardware. Companies that file year-to-date cumulatives have their quarters recovered by differencing, and fiscal quarters do not align across companies.",
      "ok": true,
-     "updated": "2026-10-10T12:41:35Z",
+     "updated": "2026-10-10T20:53:48Z",
      "lines": 4,
      "points": 196
     }
@@ -87,8 +118,7 @@
      "notes": "Capacity the sites can draw, not the electricity they actually consume. Epoch tracks roughly eighty sites and the coverage is overwhelmingly American, so this is a floor on the global total rather than a measurement of it. Their timelines extend to 2030 because they include announced build schedules; everything after today is excluded here. As Epoch adds sites, earlier totals rise too.",
      "ok": true,
      "updated": "2026-10-10T12:41:35Z",
-     "lines": 1,
-     "points": 318
+     "lines": 1
     },
     {
      "id": "training-power-draw",
@@ -113,8 +143,7 @@
      "notes": "A running maximum over the models Epoch has power estimates for, which is roughly a fifth of the catalogue. This is instantaneous draw during training, not total energy consumed, and says nothing about inference \u2014 which is now the larger share of the industry's electricity use.",
      "ok": true,
      "updated": "2026-10-10T12:41:35Z",
-     "lines": 1,
-     "points": 13
+     "lines": 1
     },
     {
      "id": "chip-energy-efficiency",
@@ -139,8 +168,7 @@
      "notes": "Vendor-quoted peak throughput over rated TDP, so it is a spec-sheet ceiling rather than efficiency on a real workload. Restricted to tensor FP16/BF16 figures to keep the comparison like for like \u2014 quoting FP8 or FP4 numbers instead would make the curve an artefact of precision choices.",
      "ok": true,
      "updated": "2026-10-10T12:41:35Z",
-     "lines": 1,
-     "points": 11
+     "lines": 1
     }
    ]
   },
@@ -162,7 +190,7 @@
      ],
      "y": {
       "title": "Revenue per quarter (USD)",
-      "tickformat": "$.2s",
+      "tickprefix": "$",
       "rangemode": "tozero"
      },
      "mode": "recompute",
@@ -170,7 +198,7 @@
      "line_shape": "linear",
      "notes": "Total company revenue; NVIDIA's datacentre segment is not broken out in XBRL.",
      "ok": true,
-     "updated": "2026-10-10T12:41:35Z",
+     "updated": "2026-10-10T20:53:48Z",
      "lines": 1,
      "points": 68
     },
@@ -188,7 +216,7 @@
      ],
      "y": {
       "title": "Equity raised to date (USD)",
-      "tickformat": "$.2s",
+      "tickprefix": "$",
       "rangemode": "tozero"
      },
      "mode": "recompute",
@@ -196,9 +224,35 @@
      "line_shape": "hv",
      "notes": "Equity only \u2014 debt financing, which has become a large part of how datacentre buildout is paid for, is excluded. Epoch tracks disclosed rounds at major companies rather than the whole market, and rounds are dated to close.",
      "ok": true,
-     "updated": "2026-10-10T12:41:35Z",
+     "updated": "2026-10-10T20:53:48Z",
      "lines": 5,
      "points": 41
+    },
+    {
+     "id": "ai-company-revenue",
+     "title": "Annualised revenue of AI companies",
+     "description": "Reported revenue run rate, by company: a recent month or quarter scaled up to a full year.",
+     "group": "economics",
+     "sources": [
+      {
+       "name": "Epoch AI \u2014 AI Companies",
+       "url": "https://epoch.ai/data/ai-companies",
+       "license": "CC BY 4.0"
+      }
+     ],
+     "y": {
+      "title": "Annualised revenue (USD)",
+      "log": true,
+      "tickprefix": "$"
+     },
+     "mode": "recompute",
+     "annotations": true,
+     "line_shape": "linear",
+     "notes": "Run rates, not booked revenue: a company growing fast will have earned far less over the past year than its run rate suggests. Most figures come from press reports rather than company disclosures, and companies do not define run rate or ARR the same way. Each marker is one report and the lines between them are interpolation. Companies with fewer than three reports are left out, as are figures covering a single product.",
+     "ok": true,
+     "updated": "2026-10-10T20:53:48Z",
+     "lines": 7,
+     "points": 56
     },
     {
      "id": "token-price-index",
@@ -222,8 +276,7 @@
      "notes": "OpenRouter publishes current prices only, so this series starts the day collection began and gains one observation per day. It has no history before then.",
      "ok": true,
      "updated": "2026-10-10T12:41:35Z",
-     "lines": 3,
-     "points": 198
+     "lines": 3
     }
    ]
   },
@@ -255,8 +308,7 @@
      "notes": "A paper with authors in several countries counts once for each, so the lines are not a partition. 'Rest of world' excludes any paper with a US or Chinese author. Recent years keep growing as indexing catches up.",
      "ok": true,
      "updated": "2026-10-10T12:41:36Z",
-     "lines": 3,
-     "points": 48
+     "lines": 3
     },
     {
      "id": "arxiv-submissions",
@@ -280,8 +332,7 @@
      "notes": "Counted by submission date and primary-or-cross-listed category, so a paper in both cs.LG and cs.CL appears in both lines. The newest month is dropped because cross-lists keep landing for weeks after a month closes.",
      "ok": true,
      "updated": "2026-10-10T12:42:00Z",
-     "lines": 4,
-     "points": 560
+     "lines": 4
     }
    ]
   },
@@ -313,8 +364,32 @@
      "notes": "Indeed's country coverage does not include China. The measure is keyword based, so it tracks how often employers mention AI, not how many jobs actually involve it.",
      "ok": true,
      "updated": "2026-10-10T12:42:00Z",
-     "lines": 6,
-     "points": 552
+     "lines": 6
+    },
+    {
+     "id": "business-ai-use",
+     "title": "Share of US businesses using AI",
+     "description": "Percentage of firms telling the Census Bureau they used AI in the last two weeks, and the percentage expecting to within six months.",
+     "group": "adoption",
+     "sources": [
+      {
+       "name": "US Census Bureau \u2014 Business Trends and Outlook Survey",
+       "url": "https://www.census.gov/hfp/btos/data_downloads"
+      }
+     ],
+     "y": {
+      "title": "Share of businesses (%)",
+      "tickformat": ".1f",
+      "rangemode": "tozero"
+     },
+     "mode": "recompute",
+     "annotations": true,
+     "line_shape": "linear",
+     "notes": "The jump in late 2025 is a change of question, not of behaviour. Until October 2025 the survey asked about AI used in producing goods or services; from November it asks about AI used in any business function, and the broader wording draws many more yeses. Read each pair of lines on its own. The gap between them is the federal shutdown, when nothing was collected.",
+     "ok": true,
+     "updated": "2026-10-10T20:53:49Z",
+     "lines": 4,
+     "points": 154
     }
    ]
   },
@@ -349,8 +424,7 @@
      "notes": "Hand-entered from published releases \u2014 no pollster offers a machine-readable feed \u2014 with every figure's citation recorded alongside it in manual/us-ai-opinion.csv. The lines come from different surveys with different question wording and sampling, so read the movement within a line and not the gaps between them. Each question is asked about once a year.",
      "ok": true,
      "updated": "2026-10-10T12:42:00Z",
-     "lines": 3,
-     "points": 12
+     "lines": 3
     }
    ]
   }

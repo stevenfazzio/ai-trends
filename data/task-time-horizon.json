@@ -1,0 +1,174 @@
+{
+ "id": "task-time-horizon",
+ "title": "Longest task a frontier model can complete",
+ "description": "Length of software task, measured by how long it takes a skilled human, that the best model to date completes at a given success rate. A running maximum over the models METR has evaluated.",
+ "group": "capability",
+ "sources": [
+  {
+   "name": "METR \u2014 Task-Completion Time Horizons",
+   "url": "https://metr.org/time-horizons/"
+  }
+ ],
+ "y": {
+  "title": "Time horizon (minutes of human work)",
+  "log": true,
+  "tickformat": ",.3~r"
+ },
+ "mode": "recompute",
+ "annotations": true,
+ "line_shape": "hv",
+ "notes": "A thousand minutes is about seventeen hours. The tasks are mostly software engineering, machine-learning and cybersecurity problems, so this says little about other kinds of work. Each estimate is fitted from a model's pass rate across tasks of different lengths and is loose: the top of METR's confidence interval is typically three or four times the bottom, and more for the latest record-holders. METR measures a selection of models, so the lines end at the last one measured rather than today.",
+ "updated": "2026-10-10T20:53:47Z",
+ "lines": [
+  {
+   "name": "50% success rate",
+   "points": [
+    [
+     "2019-02-14",
+     0.053778
+    ],
+    [
+     "2020-05-28",
+     0.144057
+    ],
+    [
+     "2022-03-15",
+     0.599247
+    ],
+    [
+     "2023-03-14",
+     3.987428
+    ],
+    [
+     "2023-11-06",
+     4.044959
+    ],
+    [
+     "2024-05-13",
+     6.991195
+    ],
+    [
+     "2024-06-20",
+     11.395377
+    ],
+    [
+     "2024-09-12",
+     20.326586
+    ],
+    [
+     "2024-10-22",
+     20.522872
+    ],
+    [
+     "2024-12-05",
+     38.831588
+    ],
+    [
+     "2025-02-24",
+     60.388937
+    ],
+    [
+     "2025-04-16",
+     119.732634
+    ],
+    [
+     "2025-08-07",
+     203.012577
+    ],
+    [
+     "2025-11-18",
+     224.325884
+    ],
+    [
+     "2025-11-24",
+     292.994594
+    ],
+    [
+     "2025-12-11",
+     352.249302
+    ],
+    [
+     "2026-02-05",
+     718.80683
+    ],
+    [
+     "2026-04-07",
+     1044.780145
+    ]
+   ]
+  },
+  {
+   "name": "80% success rate",
+   "points": [
+    [
+     "2019-02-14",
+     0.0128
+    ],
+    [
+     "2020-05-28",
+     0.056238
+    ],
+    [
+     "2022-03-15",
+     0.25538
+    ],
+    [
+     "2023-03-14",
+     0.889561
+    ],
+    [
+     "2024-04-09",
+     0.927933
+    ],
+    [
+     "2024-05-13",
+     1.267009
+    ],
+    [
+     "2024-06-20",
+     1.671757
+    ],
+    [
+     "2024-09-12",
+     4.420545
+    ],
+    [
+     "2024-12-05",
+     7.090121
+    ],
+    [
+     "2025-02-24",
+     12.09179
+    ],
+    [
+     "2025-04-16",
+     29.981603
+    ],
+    [
+     "2025-08-07",
+     38.312431
+    ],
+    [
+     "2025-11-18",
+     54.142849
+    ],
+    [
+     "2025-12-11",
+     66.002649
+    ],
+    [
+     "2026-02-05",
+     69.874587
+    ],
+    [
+     "2026-02-19",
+     89.801503
+    ],
+    [
+     "2026-04-07",
+     185.911829
+    ]
+   ]
+  }
+ ]
+}

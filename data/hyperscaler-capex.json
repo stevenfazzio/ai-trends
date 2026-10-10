@@ -11,14 +11,14 @@
  ],
  "y": {
   "title": "Capex per quarter (USD)",
-  "tickformat": "$.2s",
+  "tickprefix": "$",
   "rangemode": "tozero"
  },
  "mode": "recompute",
  "annotations": true,
  "line_shape": "linear",
  "notes": "Capex covers all property and equipment, not only AI hardware. Companies that file year-to-date cumulatives have their quarters recovered by differencing, and fiscal quarters do not align across companies.",
- "updated": "2026-10-10T12:41:35Z",
+ "updated": "2026-10-10T20:53:48Z",
  "lines": [
   {
    "name": "Microsoft",

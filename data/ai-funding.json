@@ -12,14 +12,14 @@
  ],
  "y": {
   "title": "Equity raised to date (USD)",
-  "tickformat": "$.2s",
+  "tickprefix": "$",
   "rangemode": "tozero"
  },
  "mode": "recompute",
  "annotations": true,
  "line_shape": "hv",
  "notes": "Equity only \u2014 debt financing, which has become a large part of how datacentre buildout is paid for, is excluded. Epoch tracks disclosed rounds at major companies rather than the whole market, and rounds are dated to close.",
- "updated": "2026-10-10T12:41:35Z",
+ "updated": "2026-10-10T20:53:48Z",
  "lines": [
   {
    "name": "OpenAI",
