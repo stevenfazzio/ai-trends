@@ -23,7 +23,7 @@
  "annotations": true,
  "line_shape": "hv",
  "notes": "The costs are those ARC Prize reports for each model and reasoning setting it tests, republished by Epoch with release dates; entries with no reported cost are left out. A price is not a cost of production: it carries margins and pricing decisions as well as hardware and electricity, so this is what the work costs to buy. Models sit at their release date rather than the date they were tested, and the lines end at the newest model with a reported cost rather than today. ARC-AGI-1 is a set of abstract visual puzzles, so this says little about other kinds of work.",
- "updated": "2026-10-10T21:16:20Z",
+ "updated": "2026-10-11T01:08:45Z",
  "lines": [
   {
    "name": "At least 25% solved",
