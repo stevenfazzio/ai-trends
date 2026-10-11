@@ -21,10 +21,16 @@ FIRST_YEAR = 2010
 # "Rest of world" is defined by exclusion rather than subtraction: a paper with
 # both US and Chinese authors counts once for each of those, so US + China +
 # (world - US - China) would not reconcile.
+#
+# Exclusion on its own also matches every work with no country recorded for any
+# author -- a fifth to two-fifths of the subfield, depending on the year -- so
+# the filter has to ask for at least one known country as well.
 _QUERIES = {
     "United States": "authorships.countries:US",
     "China": "authorships.countries:CN",
-    "Rest of world": "authorships.countries:!US,authorships.countries:!CN",
+    "Rest of world": (
+        "authorships.countries:!US,authorships.countries:!CN,countries_distinct_count:>0"
+    ),
 }
 
 

@@ -302,7 +302,12 @@ SERIES = [
         notes=(
             "A paper with authors in several countries counts once for each, so the "
             "lines are not a partition. 'Rest of world' excludes any paper with a US or "
-            "Chinese author. Recent years keep growing as indexing catches up."
+            "Chinese author. Papers with no country recorded for any author appear in "
+            "none of the lines; they are a fifth to two-fifths of the subfield, "
+            "depending on the year. Recent years keep growing as indexing catches up. "
+            "OpenAlex's Artificial Intelligence subfield is broader than its name: it "
+            "takes in cryptography, quantum information, and logic and type systems "
+            "alongside machine learning."
         ),
     ),
     SeriesSpec(
