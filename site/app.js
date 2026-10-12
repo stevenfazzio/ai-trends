@@ -18,7 +18,7 @@ const NAMED_COLOURS = {
 /* Charts with few points get visible markers; dense ones would be a smear. */
 const MARKER_THRESHOLD = 60;
 
-const state = { charts: [], showEvents: true, events: [] };
+const state = { charts: [], showEvents: false, events: [] };
 
 const css = (name) => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
 
@@ -350,6 +350,9 @@ async function fetchSeries(id, version) {
 async function main() {
   const manifest = await (await fetch(`data/manifest.json?t=${Date.now()}`)).json();
   state.events = manifest.events || [];
+  /* The markers start off, but a browser may restore the box as it was left on
+   * a reload, so the box is asked rather than assumed. */
+  state.showEvents = document.getElementById('events-toggle').checked;
 
   const charts = document.getElementById('charts');
   charts.innerHTML = '';

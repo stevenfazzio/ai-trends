@@ -217,7 +217,6 @@ SERIES = [
         sources=[ENERGY_PER_TASK],
         fetch=energy_per_task.least_energy_at_fixed_score,
         y=Axis(title="GPU energy per item", log=True, tickformat=".3~r", ticksuffix=" J"),
-        annotations=False,
         line_shape="hv",
         notes=(
             "Measured for this site, unlike everything else on it: nearly 80 open-weight "
