@@ -25,6 +25,7 @@ const css = (name) => getComputedStyle(document.documentElement).getPropertyValu
 function theme() {
   return {
     ink: css('--ink'),
+    panel: css('--panel'),
     soft: css('--ink-soft'),
     faint: css('--ink-faint'),
     rule: css('--rule'),
@@ -44,22 +45,81 @@ function el(tag, className, text) {
 
 /* ---- chart construction ------------------------------------------------ */
 
+/* A point with an empty label is the line being carried forward, not an
+ * observation, so it gets no marker. */
+function pointMarkers(line) {
+  if (!line.labels) return { size: 5 };
+  /* Given sizes per point, Plotly assumes a bubble chart and fades the markers
+   * and rings them in white. */
+  return { size: line.labels.map((label) => (label ? 7 : 0)), opacity: 1, line: { width: 0 } };
+}
+
+/* Hollow points are drawn as a second layer over the line's own markers,
+ * filled with the card's colour so the line does not show through. Styling
+ * them on the line itself would hand the legend whatever its first point is. */
+function hollowOverlay(line, colour, palette) {
+  const at = (line.hollow || []).flatMap((flag, i) => (flag ? [i] : []));
+  if (!at.length) return [];
+  return [{
+    type: 'scatter',
+    mode: 'markers',
+    x: at.map((i) => line.points[i][0]),
+    y: at.map((i) => line.points[i][1]),
+    marker: { size: 7, color: palette.panel, line: { color: colour, width: 1.5 } },
+    showlegend: false,
+    hoverinfo: 'skip',
+  }];
+}
+
 function traces(series) {
   const dense = series.lines.some((line) => line.points.length > MARKER_THRESHOLD);
   const format = (series.y || {}).tickformat;
-  return series.lines.map((line, i) => ({
-    type: 'scatter',
-    mode: dense ? 'lines' : 'lines+markers',
-    name: line.name,
-    x: line.points.map((p) => p[0]),
-    y: line.points.map((p) => p[1]),
-    line: { color: colourFor(line.name, i), width: 2, shape: series.line_shape || 'linear' },
-    marker: { size: 5 },
-    connectgaps: false,
-    /* Match the axis formatting, or the tooltip shows raw 35802000000. */
-    yhoverformat: format,
-    hovertemplate: '%{y}<extra>%{fullData.name}</extra>',
-  }));
+  const palette = theme();
+
+  return series.lines.flatMap((line, i) => {
+    const colour = colourFor(line.name, i);
+    const trace = {
+      type: 'scatter',
+      mode: dense ? 'lines' : 'lines+markers',
+      name: line.name,
+      x: line.points.map((p) => p[0]),
+      y: line.points.map((p) => p[1]),
+      text: line.labels && line.labels.map((label) => (label ? ` \u00b7 ${label}` : '')),
+      line: { color: colour, width: 2, shape: series.line_shape || 'linear' },
+      marker: pointMarkers(line),
+      connectgaps: false,
+      /* Match the axis formatting, or the tooltip shows raw 35802000000. */
+      yhoverformat: format,
+      hovertemplate: `%{y}${line.labels ? '%{text}' : ''}<extra>%{fullData.name}</extra>`,
+    };
+    return [trace, ...hollowOverlay(line, colour, palette)];
+  });
+}
+
+/* One label per decade suits a series spanning many of them, and leaves one
+ * spanning barely one with a single label. A narrow series gets ticks at 1, 2
+ * and 5 instead. Plotly cannot be left to label them: its own 1-2-5 mode
+ * writes only the leading digit, so that 20 reads "2", and given the values it
+ * drops the axis prefix and suffix. So the labels are written here. */
+const NARROW_LOG_DECADES = 1.5;
+const TICK_NUMBER = new Intl.NumberFormat('en', { notation: 'compact', maximumSignificantDigits: 3 });
+
+function logTicks(series) {
+  const values = series.lines.flatMap((line) => line.points.map((p) => p[1])).filter((v) => v > 0);
+  if (!values.length) return { dtick: 1 };
+  const low = Math.log10(Math.min(...values));
+  const high = Math.log10(Math.max(...values));
+  if (high - low >= NARROW_LOG_DECADES) return { dtick: 1 };
+
+  const y = series.y || {};
+  const tickvals = [];
+  for (let decade = Math.floor(low) - 1; decade <= Math.ceil(high); decade += 1) {
+    [1, 2, 5].forEach((digit) => tickvals.push(digit * 10 ** decade));
+  }
+  const ticktext = tickvals.map(
+    (value) => `${y.tickprefix || ''}${TICK_NUMBER.format(value)}${y.ticksuffix || ''}`
+  );
+  return { tickmode: 'array', tickvals, ticktext };
 }
 
 const DAY_MS = 86400000;
@@ -154,9 +214,10 @@ function layoutFor(series, logScale) {
       title: { text: y.title || '', font: { size: 12 } },
       tickformat: y.tickformat,
       tickprefix: y.tickprefix,
-      /* One label per decade; Plotly's default log ticks label every minor
-       * gridline and the axis turns into a wall of numbers. */
-      dtick: logScale ? 1 : undefined,
+      ticksuffix: y.ticksuffix,
+      /* Plotly's default log ticks label every minor gridline and the axis
+       * turns into a wall of numbers. */
+      ...(logScale ? logTicks(series) : {}),
       /* rangemode is meaningless on a log axis and Plotly warns about it. */
       rangemode: !logScale && y.rangemode ? y.rangemode : 'normal',
       gridcolor: palette.rule,

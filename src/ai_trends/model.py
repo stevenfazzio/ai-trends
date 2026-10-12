@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from collections.abc import Callable
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 
 # A point is (ISO date, value). Values may be None to represent a genuine gap in
 # the series -- Plotly renders those as a break in the line rather than
@@ -14,16 +14,43 @@ Point = tuple[str, float | None]
 @dataclass
 class Line:
     """One plotted line. A series with a geographic or categorical dimension
-    contributes several of these; a plain series contributes exactly one."""
+    contributes several of these; a plain series contributes exactly one.
+
+    The optional fields say more about individual points, for a line whose
+    points are things with names rather than readings on a calendar. Left
+    unset, nothing about them reaches the JSON.
+    """
 
     name: str
     points: list[Point]
+    # One per point: what the hover shows beside the value, such as the model
+    # that set a record. An empty label marks a point that is the line being
+    # carried forward, not an observation; it is drawn without a marker.
+    labels: list[str] | None = None
+    # One per point: True draws the marker hollow, for a point less certain
+    # than its neighbours.
+    hollow: list[bool] | None = None
 
     def sorted(self) -> Line:
-        return Line(self.name, sorted(self.points, key=lambda p: p[0]))
+        order = sorted(range(len(self.points)), key=lambda i: self.points[i][0])
+
+        def reorder(values: list | None) -> list | None:
+            return [values[i] for i in order] if values else values
+
+        return replace(
+            self,
+            points=reorder(self.points),
+            labels=reorder(self.labels),
+            hollow=reorder(self.hollow),
+        )
 
     def to_dict(self) -> dict:
-        return {"name": self.name, "points": [list(p) for p in self.points]}
+        out: dict = {"name": self.name, "points": [list(p) for p in self.points]}
+        if self.labels:
+            out["labels"] = self.labels
+        if self.hollow:
+            out["hollow"] = self.hollow
+        return out
 
 
 def running_max(
@@ -67,6 +94,8 @@ class Axis:
     # "G", whereas Plotly's own abbreviation, used when tickformat is unset,
     # writes "B".
     tickprefix: str | None = None
+    # Text put after every tick and hover value: a unit, with its leading space.
+    ticksuffix: str | None = None
     # "tozero" pins a linear axis at 0 so growth isn't visually exaggerated.
     rangemode: str | None = None
 

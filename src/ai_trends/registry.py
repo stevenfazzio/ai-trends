@@ -7,7 +7,18 @@ render it. Order within a group is the order on the page.
 from __future__ import annotations
 
 from .model import Axis, Group, SeriesSpec, Source
-from .sources import arxiv, census, epoch, indeed, manual, metr, openalex, openrouter, sec
+from .sources import (
+    arxiv,
+    census,
+    energy_per_task,
+    epoch,
+    indeed,
+    manual,
+    metr,
+    openalex,
+    openrouter,
+    sec,
+)
 
 EPOCH_MODELS = Source(
     "Epoch AI — Notable AI Models", "https://epoch.ai/data/ai-models", "CC BY 4.0"
@@ -29,6 +40,7 @@ EPOCH_BENCHMARKS = Source(
 SEC_EDGAR = Source(
     "SEC EDGAR XBRL company facts", "https://www.sec.gov/edgar/sec-api-documentation"
 )
+ENERGY_PER_TASK = Source("llm-energy-per-task", energy_per_task.REPO_URL, "MIT")
 
 GROUPS = [
     Group(
@@ -191,6 +203,31 @@ SERIES = [
             "Several of its records were set by small, low-power inference chips rather "
             "than training hardware. The gap between the lines is what lower precision "
             "buys, and only a workload that tolerates it gets that gain."
+        ),
+    ),
+    SeriesSpec(
+        id="energy-per-task",
+        title="Least energy for an open model to do a task",
+        description=(
+            "Least GPU energy per item among open-weight models released to date that get "
+            "a task right at least a set share of the time. A running minimum, so "
+            "each line steps down only when a more frugal model clears the bar."
+        ),
+        group="environment",
+        sources=[ENERGY_PER_TASK],
+        fetch=energy_per_task.least_energy_at_fixed_score,
+        y=Axis(title="GPU energy per item", log=True, tickformat=".3~r", ticksuffix=" J"),
+        annotations=False,
+        line_shape="hv",
+        notes=(
+            "Measured for this site, unlike everything else on it: nearly 80 open-weight "
+            "models of up to 15 billion parameters, run on one NVIDIA L40S and metered at "
+            "the card. Every model shares today's hardware, so the fall is models becoming "
+            "more capable for their size, not chips improving. GPU only and fully batched, "
+            "so a floor on what a real service draws. The tasks, from SQuAD, Banking77 and "
+            "the Berkeley Function-Calling Leaderboard, are not alike: compare the lines' "
+            "slopes, not their heights. A hollow circle is a step within sampling error of "
+            "its bar."
         ),
     ),
     SeriesSpec(

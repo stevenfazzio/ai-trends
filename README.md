@@ -5,8 +5,11 @@ daily from public sources and published to GitHub Pages.
 
 **→ https://stevenfazzio.com/ai-trends/**
 
-Nothing here is an original estimate. Every chart plots someone else's published
-numbers and links back to them.
+Every chart plots published numbers and links back to them. Almost all are
+someone else's. The exception is the energy-per-task chart: that was measured
+for this site, and is published with its method and raw data in
+[llm-energy-per-task](https://github.com/stevenfazzio/llm-energy-per-task),
+which the build reads like any other upstream.
 
 ## How it works
 
@@ -33,8 +36,8 @@ Sources differ in whether they hand you history, and the pipeline treats them
 differently:
 
 - **`recompute`** — the upstream holds the full history (Epoch, METR, SEC,
-  Census, OpenAlex, arXiv, Indeed). Every run rebuilds the series from scratch, so upstream
-  revisions flow through.
+  Census, OpenAlex, arXiv, Indeed, llm-energy-per-task). Every run rebuilds the
+  series from scratch, so upstream revisions flow through.
 - **`append`** — the upstream only exposes a current value (OpenRouter pricing).
   Each run records one observation. These series have no history before
   collection started and can never be backfilled, which is why the job runs
