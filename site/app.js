@@ -260,12 +260,48 @@ function provenance(meta, series) {
   return row;
 }
 
+/* A link to the card itself, as a small icon after its title. Following it
+ * puts the anchor in the address bar; it also copies the address, since
+ * wanting to paste it somewhere is the usual reason for clicking, and the icon
+ * turns to a tick for a moment to say so. */
+const ICON = (shape) =>
+  `<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" ` +
+  `stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${shape}</svg>`;
+const LINK_ICON = ICON(
+  '<path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>' +
+  '<path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>'
+);
+const TICK_ICON = ICON('<path d="M20 6 9 17l-5-5"/>');
+
+function anchorLink(id) {
+  const link = el('a', 'anchor');
+  link.href = `#${id}`;
+  link.title = 'Copy link to this chart';
+  link.setAttribute('aria-label', 'Copy link to this chart');
+  link.innerHTML = LINK_ICON;
+  link.addEventListener('click', () => {
+    if (!navigator.clipboard) return;
+    navigator.clipboard.writeText(link.href).then(() => {
+      link.innerHTML = TICK_ICON;
+      link.classList.add('copied');
+      setTimeout(() => {
+        link.innerHTML = LINK_ICON;
+        link.classList.remove('copied');
+      }, 1600);
+    }, () => {});
+  });
+  return link;
+}
+
 function buildCard(meta, series) {
   const card = el('section', 'card');
   card.id = meta.id;
 
   const head = el('div', 'card-head');
-  head.append(el('h3', null, meta.title));
+  const title = el('h3', null, meta.title);
+  /* Tied to the title's last word, so it never wraps onto a line of its own. */
+  title.append('\u00a0', anchorLink(meta.id));
+  head.append(title);
 
   const chart = { node: null, series, log: !!(meta.y && meta.y.log) };
 
@@ -350,6 +386,11 @@ async function main() {
   /* Re-render on theme flips so axis and grid colours follow the OS. */
   window.matchMedia('(prefers-color-scheme: dark)')
     .addEventListener('change', () => state.charts.forEach(renderChart));
+
+  /* The browser looks for the address's anchor as the page loads, before any
+   * card exists, so a link to a chart has to be followed again now. */
+  const target = document.getElementById(location.hash.slice(1));
+  if (target) target.scrollIntoView();
 }
 
 main().catch((error) => {

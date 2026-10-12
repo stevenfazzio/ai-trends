@@ -103,6 +103,9 @@ a { color: var(--accent); }
 
 .group { margin-bottom: 44px; }
 
+/* Where a link to a section or chart lands: a little clear of the window's edge. */
+.group, .card { scroll-margin-top: 14px; }
+
 .group > h2 {
   font-size: 13px;
   text-transform: uppercase;
@@ -139,6 +142,25 @@ a { color: var(--accent); }
   font-size: 18px;
   letter-spacing: -0.01em;
 }
+
+/* The link to a chart stays out of sight until the pointer is on its title,
+ * or the keyboard reaches it. */
+.card .anchor {
+  display: inline-flex;
+  margin-left: 4px;
+  vertical-align: -1px;
+  color: var(--ink-faint);
+  opacity: 0;
+  transition: opacity 0.12s, color 0.12s;
+}
+
+.card h3:hover .anchor,
+.card .anchor:focus-visible,
+.card .anchor.copied { opacity: 1; }
+
+.card .anchor:hover,
+.card .anchor:focus-visible,
+.card .anchor.copied { color: var(--accent); }
 
 .card .desc {
   margin: 6px 0 14px;
