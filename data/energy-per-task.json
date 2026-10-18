@@ -20,7 +20,7 @@
  "annotations": true,
  "line_shape": "hv",
  "notes": "Measured for this site, unlike everything else on it: nearly 80 open-weight models of up to 15 billion parameters, run on one NVIDIA L40S and metered at the card. Every model shares today's hardware, so the fall is models becoming more capable for their size, not chips improving. GPU only and fully batched, so a floor on what a real service draws. The tasks, from SQuAD, Banking77 and the Berkeley Function-Calling Leaderboard, are not alike: compare the lines' slopes, not their heights. A hollow circle is a step within sampling error of its bar.",
- "updated": "2026-10-17T10:54:00Z",
+ "updated": "2026-10-18T11:19:23Z",
  "lines": [
   {
    "name": "Answer from a passage (at least 90% right)",
