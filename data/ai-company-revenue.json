@@ -19,7 +19,7 @@
  "annotations": true,
  "line_shape": "linear",
  "notes": "Run rates, not booked revenue: a company growing fast will have earned far less over the past year than its run rate suggests. Most figures come from press reports rather than company disclosures, and companies do not define run rate or ARR the same way. Each marker is one report and the lines between them are interpolation. Companies with fewer than three reports are left out, as are figures covering a single product.",
- "updated": "2026-10-18T11:19:23Z",
+ "updated": "2026-10-19T13:32:54Z",
  "lines": [
   {
    "name": "Anthropic",
