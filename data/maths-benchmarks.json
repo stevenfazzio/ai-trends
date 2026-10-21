@@ -1,0 +1,257 @@
+{
+ "id": "maths-benchmarks",
+ "title": "Maths problems solved by the best model to date",
+ "description": "Share of each benchmark's problems solved by the best model or proving system to date, from competition problems to questions nobody had answered. A running maximum, so each line steps up only when a new record appears.",
+ "group": "capability",
+ "sources": [
+  {
+   "name": "Epoch AI \u2014 Capabilities & benchmarking",
+   "url": "https://epoch.ai/benchmarks",
+   "license": "CC BY 4.0"
+  },
+  {
+   "name": "PutnamBench leaderboard",
+   "url": "https://trishullab.github.io/PutnamBench/leaderboard.html"
+  }
+ ],
+ "y": {
+  "title": "Share of problems solved",
+  "tickformat": ".1~%",
+  "rangemode": "tozero"
+ },
+ "mode": "recompute",
+ "annotations": true,
+ "line_shape": "hv",
+ "notes": "PutnamBench is every problem from the Putnam undergraduate competition written as a Lean theorem, solved when Lean accepts the proof. FrontierMath asks for automatically checked answers to hard questions, up to research level, that Epoch keeps private; Tier 4 is the hardest few dozen. Epoch corrected 42% of its problems in June 2026 and re-ran every model, placing each at its release date, so the lines start before the benchmark existed. OpenAI funded FrontierMath and has exclusive access to part of it. The Erd\u0151s set is different in kind: problems posed by Paul Erd\u0151s that were still open in August 2026, so each solution, which must be a Lean proof, is new mathematics. PutnamBench lists results reported by each system's makers, dated to when they were added, on budgets from one attempt to over a thousand dollars a problem; the benchmark gains a competition each year, and counts are shown against today's size. Lines end at the newest system tested.",
+ "updated": "2026-10-21T19:12:15Z",
+ "lines": [
+  {
+   "name": "PutnamBench",
+   "points": [
+    [
+     "2024-07-17",
+     0.0015
+    ],
+    [
+     "2024-07-24",
+     0.006
+    ],
+    [
+     "2024-10-21",
+     0.0104
+    ],
+    [
+     "2025-02-12",
+     0.0119
+    ],
+    [
+     "2025-04-14",
+     0.0149
+    ],
+    [
+     "2025-06-03",
+     0.0699
+    ],
+    [
+     "2025-07-22",
+     0.128
+    ],
+    [
+     "2025-10-06",
+     0.6875
+    ],
+    [
+     "2025-12-23",
+     0.744
+    ],
+    [
+     "2025-12-26",
+     0.9479
+    ],
+    [
+     "2026-01-11",
+     0.994
+    ],
+    [
+     "2026-08-26",
+     1.0
+    ],
+    [
+     "2026-09-24",
+     1.0
+    ]
+   ],
+   "labels": [
+    "GPT-4o",
+    "InternLM 7B",
+    "ABEL",
+    "Self-play Theorem Prover",
+    "Kimina-Prover-7B-Distill",
+    "DeepSeek-Prover-V2",
+    "Goedel-Prover-V2",
+    "Hilbert",
+    "Aleph Prover (Logical Intelligence)",
+    "Aleph Prover (Logical Intelligence)",
+    "Aleph Prover (Logical Intelligence)",
+    "Aleph Prover (Logical Intelligence)",
+    ""
+   ]
+  },
+  {
+   "name": "FrontierMath Tiers 1\u20133",
+   "points": [
+    [
+     "2024-01-25",
+     0.0
+    ],
+    [
+     "2024-04-09",
+     0.007
+    ],
+    [
+     "2024-12-17",
+     0.1474
+    ],
+    [
+     "2025-01-31",
+     0.186
+    ],
+    [
+     "2025-04-16",
+     0.3614
+    ],
+    [
+     "2025-08-07",
+     0.5544
+    ],
+    [
+     "2025-10-07",
+     0.5579
+    ],
+    [
+     "2025-12-11",
+     0.74
+    ],
+    [
+     "2026-03-05",
+     0.8246
+    ],
+    [
+     "2026-04-23",
+     0.8772
+    ],
+    [
+     "2026-07-09",
+     0.8912
+    ],
+    [
+     "2026-09-01",
+     0.9018
+    ],
+    [
+     "2026-09-03",
+     0.9368
+    ],
+    [
+     "2026-10-15",
+     0.9368
+    ]
+   ],
+   "labels": [
+    "gpt-3.5-turbo-0125",
+    "gpt-4-turbo-2024-04-09",
+    "o1-2024-12-17 (high)",
+    "o3-mini-2025-01-31 (high)",
+    "o4-mini-2025-04-16 (high)",
+    "gpt-5-2025-08-07 (high)",
+    "gpt-5-pro-2025-10-06 (high)",
+    "gpt-5.2-pro-2025-12-11 (xhigh)",
+    "gpt-5.4-pro-2026-03-05 (xhigh)",
+    "gpt-5.5-pro (xhigh)",
+    "gpt-5.6-sol (max)",
+    "claude-fable-5-1 (max)",
+    "gpt-6-astra (max)",
+    ""
+   ]
+  },
+  {
+   "name": "FrontierMath Tier 4",
+   "points": [
+    [
+     "2025-01-31",
+     0.0
+    ],
+    [
+     "2025-04-16",
+     0.0488
+    ],
+    [
+     "2025-08-07",
+     0.2195
+    ],
+    [
+     "2025-12-11",
+     0.46
+    ],
+    [
+     "2026-03-05",
+     0.5854
+    ],
+    [
+     "2026-04-23",
+     0.7805
+    ],
+    [
+     "2026-06-09",
+     0.902
+    ],
+    [
+     "2026-09-03",
+     0.976
+    ],
+    [
+     "2026-09-29",
+     1.0
+    ],
+    [
+     "2026-10-15",
+     1.0
+    ]
+   ],
+   "labels": [
+    "o3-mini-2025-01-31 (high)",
+    "o4-mini-2025-04-16 (high)",
+    "gpt-5-2025-08-07 (high)",
+    "gpt-5.2-pro-2025-12-11 (xhigh)",
+    "gpt-5.4-pro-2026-03-05 (xhigh)",
+    "gpt-5.5-pro (xhigh)",
+    "claude-fable-5 (max)",
+    "gpt-6-astra (high)",
+    "gpt-6.1-sol (max)",
+    ""
+   ]
+  },
+  {
+   "name": "FrontierMath Erd\u0151s (open problems)",
+   "points": [
+    [
+     "2026-04-23",
+     0.0
+    ],
+    [
+     "2026-09-03",
+     0.0294
+    ],
+    [
+     "2026-09-29",
+     0.0441
+    ]
+   ],
+   "labels": [
+    "gpt-5.5 (xhigh)",
+    "gpt-6-astra (max)",
+    "gpt-6.1-sol (max)"
+   ]
+  }
+ ]
+}
