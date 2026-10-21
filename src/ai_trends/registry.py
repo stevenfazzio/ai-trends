@@ -441,6 +441,39 @@ SERIES = [
         ),
     ),
     SeriesSpec(
+        id="developer-ai-use",
+        title="Share of developers using AI tools",
+        description=(
+            "Percentage of respondents to three recurring developer surveys who say they "
+            "use AI tools in their work."
+        ),
+        group="adoption",
+        sources=[
+            Source("Stack Overflow Developer Survey", "https://survey.stackoverflow.co/"),
+            Source(
+                "JetBrains State of Developer Ecosystem",
+                "https://blog.jetbrains.com/research/2025/10/state-of-developer-ecosystem-2025/",
+            ),
+            Source("DORA", "https://dora.dev/research/"),
+        ],
+        fetch=manual.developer_ai_use,
+        y=Axis(title="% of respondents", tickformat=".3~r", rangemode="tozero"),
+        notes=(
+            "Each survey asks its own question of its own sample, so compare the lines' "
+            "direction more than their heights. Stack Overflow asked whether people use "
+            "AI tools in their development process the same way from 2023 to 2025; it "
+            "recruits through its own site, whose users are falling away, and its "
+            "respondents fell from 89,000 in 2023 to 31,000 in 2026. JetBrains reweights "
+            "its sample to correct for its own users. DORA, run by Google Cloud, surveys "
+            "a few thousand professionals. A hollow circle is a figure asked differently "
+            "from the rest of its line: Stack Overflow's 2026 question covers AI tools or "
+            "agents at work, JetBrains' 2026 figure counts professional developers using "
+            "coding agents at least weekly, and DORA's 2024 figure counts reliance on AI "
+            "for any of a list of daily tasks. Points sit at the middle of each survey's "
+            "fieldwork, and every figure's citation is in manual/developer-ai-use.csv."
+        ),
+    ),
+    SeriesSpec(
         id="proof-assistant-repos",
         title="New GitHub repositories written for a proof assistant",
         description=(

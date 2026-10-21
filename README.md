@@ -105,6 +105,7 @@ needed.
 | arXiv submissions | [arXiv API](https://info.arxiv.org/help/api/index.html) | — |
 | AI share of job postings | [Indeed Hiring Lab](https://github.com/hiring-lab/ai-tracker) | Hiring Lab terms |
 | Share of US businesses using AI | [Census Bureau — BTOS](https://www.census.gov/hfp/btos/data_downloads) | public domain |
+| Share of developers using AI tools | [Stack Overflow](https://survey.stackoverflow.co/), [JetBrains](https://blog.jetbrains.com/research/2025/10/state-of-developer-ecosystem-2025/), [DORA](https://dora.dev/research/) | hand-entered, cited per row |
 | New repos in proof-assistant languages | [GitHub repository search](https://docs.github.com/en/rest/search/search#search-repositories) | — |
 | American public opinion | [Pew](https://www.pewresearch.org/topic/internet-technology/emerging-technology/artificial-intelligence/), [Gallup](https://www.gallup.com/topic/artificial-intelligence.aspx) | hand-entered, cited per row |
 

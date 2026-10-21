@@ -7,7 +7,9 @@ this slowly, so each observation is recorded in a CSV with the citation that
 backs it.
 
 Every row carries its own source and URL. If a number here cannot be traced to
-a published release, it does not belong in the file.
+a published release, it does not belong in the file. An optional `hollow`
+column, set to yes, draws a point hollow: one that is less comparable with the
+rest of its line, which the chart's notes should explain.
 """
 
 from __future__ import annotations
@@ -35,7 +37,7 @@ def series(name: str) -> list[Line]:
         missing = REQUIRED_COLUMNS - set(rows[0])
         raise ValueError(f"{path.name} is missing column(s): {', '.join(sorted(missing))}")
 
-    grouped: dict[str, list[tuple[str, float]]] = {}
+    grouped: dict[str, list[tuple[str, float, bool]]] = {}
     order: list[str] = []
     for row in rows:
         label = (row.get("line") or "").strip()
@@ -47,10 +49,21 @@ def series(name: str) -> list[Line]:
         if label not in grouped:
             grouped[label] = []
             order.append(label)
-        grouped[label].append((when, float(row["value"])))
+        hollow = (row.get("hollow") or "").strip().lower() == "yes"
+        grouped[label].append((when, float(row["value"]), hollow))
 
-    return [Line(label, sorted(grouped[label])) for label in order]
+    lines = []
+    for label in order:
+        entries = sorted(grouped[label])
+        hollow = [flag for _, _, flag in entries]
+        points = [(when, value) for when, value, _ in entries]
+        lines.append(Line(label, points, hollow=hollow if any(hollow) else None))
+    return lines
 
 
 def us_ai_opinion() -> list[Line]:
     return series("us-ai-opinion")
+
+
+def developer_ai_use() -> list[Line]:
+    return series("developer-ai-use")
