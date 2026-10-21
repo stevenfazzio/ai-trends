@@ -39,6 +39,9 @@ jobs:
 
       - name: Fetch data and assemble site
         run: uv run python -m ai_trends.build
+        env:
+          # GitHub's search API allows three times the requests with a token.
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Commit today's snapshot
         run: |

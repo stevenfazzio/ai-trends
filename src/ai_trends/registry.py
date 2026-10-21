@@ -12,6 +12,7 @@ from .sources import (
     census,
     energy_per_task,
     epoch,
+    github,
     indeed,
     manual,
     metr,
@@ -437,6 +438,31 @@ SERIES = [
             "from November it asks about AI used in any business function, and the "
             "broader wording draws many more yeses. Read each pair of lines on its own. "
             "The gap between them is the federal shutdown, when nothing was collected."
+        ),
+    ),
+    SeriesSpec(
+        id="proof-assistant-repos",
+        title="New GitHub repositories written for a proof assistant",
+        description=(
+            "Public repositories whose main language is Lean, Rocq, Isabelle or Agda, per "
+            "million new public repositories, over the three months to each date. Lean is "
+            "the language AI theorem provers mostly write in; the others are there for "
+            "comparison."
+        ),
+        group="adoption",
+        sources=[Source("GitHub repository search", github.DOCS_URL)],
+        fetch=github.proof_assistant_repo_share,
+        y=Axis(title="Per million new repositories", log=True, tickformat=",.3~r"),
+        notes=(
+            "Dividing by every new public repository takes out GitHub's own growth: "
+            "half a million a month in 2016, more than eleven million by late 2026. A "
+            "repository counts only if most of its code is in the language, as GitHub "
+            "detects it, and forks are left out. GitHub does not tell Lean 3 from Lean 4, "
+            "and still calls Rocq by its old name, Coq. Many repositories are coursework "
+            "or experiments, and a class that gives every student a repository shows up "
+            "as a hump, as in Lean in early 2020. GitHub gives a repository a language "
+            "only once code is pushed to it, so the latest months can still rise. "
+            "Nothing here says who or what wrote the code."
         ),
     ),
     SeriesSpec(

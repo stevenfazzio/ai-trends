@@ -24,7 +24,7 @@ src/ai_trends/
   http.py         shared session, retries, local response cache
   sources/        one module per upstream provider
 data/             committed output, one JSON per series
-cache/            committed intermediate counts (arXiv), so CI stays cheap
+cache/            committed intermediate counts (arXiv, GitHub), so CI stays cheap
 manual/           hand-entered observations, one CSV per series, with citations
 site/             index.html, app.js, style.css -- rendered with Plotly
 events.toml       model-release markers drawn across the charts
@@ -36,8 +36,9 @@ Sources differ in whether they hand you history, and the pipeline treats them
 differently:
 
 - **`recompute`** — the upstream holds the full history (Epoch, METR, SEC,
-  Census, OpenAlex, arXiv, Indeed, PutnamBench, llm-energy-per-task). Every
-  run rebuilds the series from scratch, so upstream revisions flow through.
+  Census, OpenAlex, arXiv, GitHub, Indeed, PutnamBench, llm-energy-per-task).
+  Every run rebuilds the series from scratch, so upstream revisions flow
+  through.
 - **`append`** — the upstream only exposes a current value (OpenRouter pricing).
   Each run records one observation. These series have no history before
   collection started and can never be backfilled, which is why the job runs
@@ -72,6 +73,12 @@ one count per category per month, at their requested one-request-per-three-
 seconds. That takes roughly half an hour once; afterwards only the trailing two
 months are refetched.
 
+`cache/github_monthly_repo_counts.json` fills the same way, from one GitHub
+search per language per month: about 650 searches, another half hour at the 30
+a minute GitHub allows with a token, after which only the trailing three months
+are refetched. Set `GITHUB_TOKEN` (`GITHUB_TOKEN=$(gh auth token)` works);
+without one, GitHub allows 10 searches a minute.
+
 ## Adding a chart
 
 1. Write a function in `src/ai_trends/sources/` returning `list[Line]`.
@@ -98,6 +105,7 @@ needed.
 | arXiv submissions | [arXiv API](https://info.arxiv.org/help/api/index.html) | — |
 | AI share of job postings | [Indeed Hiring Lab](https://github.com/hiring-lab/ai-tracker) | Hiring Lab terms |
 | Share of US businesses using AI | [Census Bureau — BTOS](https://www.census.gov/hfp/btos/data_downloads) | public domain |
+| New repos in proof-assistant languages | [GitHub repository search](https://docs.github.com/en/rest/search/search#search-repositories) | — |
 | American public opinion | [Pew](https://www.pewresearch.org/topic/internet-technology/emerging-technology/artificial-intelligence/), [Gallup](https://www.gallup.com/topic/artificial-intelligence.aspx) | hand-entered, cited per row |
 
 ## Not here yet
