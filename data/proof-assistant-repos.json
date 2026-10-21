@@ -18,7 +18,7 @@
  "annotations": true,
  "line_shape": "linear",
  "notes": "Dividing by every new public repository takes out GitHub's own growth: half a million a month in 2016, more than eleven million by late 2026. A repository counts only if most of its code is in the language, as GitHub detects it, and forks are left out. GitHub does not tell Lean 3 from Lean 4, and still calls Rocq by its old name, Coq. Many repositories are coursework or experiments, and a class that gives every student a repository shows up as a hump, as in Lean in early 2020. GitHub gives a repository a language only once code is pushed to it, so the latest months can still rise. Nothing here says who or what wrote the code.",
- "updated": "2026-10-21T20:21:49Z",
+ "updated": "2026-10-21T20:23:22Z",
  "lines": [
   {
    "name": "Lean",
