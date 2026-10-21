@@ -68,6 +68,29 @@ def running_max(
     return points
 
 
+def record_line(
+    name: str, entries: list[tuple[str, float, str]], carry_to: str | None = None
+) -> Line:
+    """A running maximum that keeps the name of whatever set each record.
+
+    Entries are (date, value, label). Unlike running_max, the first entry opens
+    the line even at zero, so a benchmark nothing has solved yet still shows
+    when the attempts began. Of several entries on one date, only the best can
+    be a record.
+    """
+    points: list[Point] = []
+    labels: list[str] = []
+    for when, value, label in sorted(entries, key=lambda entry: (entry[0], -entry[1])):
+        if points and value <= points[-1][1]:
+            continue
+        points.append((when, value))
+        labels.append(label)
+    if points and carry_to and points[-1][0] != carry_to:
+        points.append((carry_to, points[-1][1]))
+        labels.append("")
+    return Line(name, points, labels=labels)
+
+
 def running_min(
     entries: list[tuple[str, float]], carry_to: str | None = None
 ) -> list[tuple[str, float]]:

@@ -6,7 +6,7 @@ render it. Order within a group is the order on the page.
 
 from __future__ import annotations
 
-from .model import Axis, Group, SeriesSpec, Source
+from .model import Axis, Group, Line, SeriesSpec, Source
 from .sources import (
     arxiv,
     census,
@@ -17,6 +17,7 @@ from .sources import (
     metr,
     openalex,
     openrouter,
+    putnambench,
     sec,
 )
 
@@ -41,6 +42,12 @@ SEC_EDGAR = Source(
     "SEC EDGAR XBRL company facts", "https://www.sec.gov/edgar/sec-api-documentation"
 )
 ENERGY_PER_TASK = Source("llm-energy-per-task", energy_per_task.REPO_URL, "MIT")
+
+
+def _maths_benchmarks() -> list[Line]:
+    """Two upstreams on one chart, ordered from competition problems to open ones."""
+    return putnambench.best_share_solved() + epoch.frontiermath_best_scores()
+
 
 GROUPS = [
     Group(
@@ -102,6 +109,38 @@ SERIES = [
             "interval is typically three or four times the bottom, and more for the "
             "latest record-holders. METR measures a selection of models, so the lines end "
             "at the last one measured rather than today."
+        ),
+    ),
+    SeriesSpec(
+        id="maths-benchmarks",
+        title="Maths problems solved by the best model to date",
+        description=(
+            "Share of each benchmark's problems solved by the best model or proving "
+            "system to date, from competition problems to questions nobody had answered. "
+            "A running maximum, so each line steps up only when a new record appears."
+        ),
+        group="capability",
+        sources=[
+            EPOCH_BENCHMARKS,
+            Source("PutnamBench leaderboard", putnambench.LEADERBOARD_URL),
+        ],
+        fetch=_maths_benchmarks,
+        y=Axis(title="Share of problems solved", tickformat=".1~%", rangemode="tozero"),
+        line_shape="hv",
+        notes=(
+            "PutnamBench is every problem from the Putnam undergraduate competition written "
+            "as a Lean theorem, solved when Lean accepts the proof. FrontierMath asks for "
+            "automatically checked answers to hard questions, up to research level, that "
+            "Epoch keeps private; Tier 4 is the hardest few dozen. Epoch corrected 42% of "
+            "its problems in June 2026 and re-ran every model, placing each at its release "
+            "date, so the lines start before the benchmark existed. OpenAI funded "
+            "FrontierMath and has exclusive access to part of it. The Erdős set is "
+            "different in kind: problems posed by Paul Erdős that were still open in "
+            "August 2026, so each solution, which must be a Lean proof, is new "
+            "mathematics. PutnamBench lists results reported by each system's makers, "
+            "dated to when they were added, on budgets from one attempt to over a "
+            "thousand dollars a problem; the benchmark gains a competition each year, and "
+            "counts are shown against today's size. Lines end at the newest system tested."
         ),
     ),
     SeriesSpec(

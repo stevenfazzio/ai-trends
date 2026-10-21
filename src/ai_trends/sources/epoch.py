@@ -12,7 +12,7 @@ from collections import defaultdict
 from datetime import date
 
 from ..http import get_csv, get_zipped_csv, parse_float
-from ..model import Line, running_max, running_min
+from ..model import Line, record_line, running_max, running_min
 
 NOTABLE_MODELS_CSV = "https://epoch.ai/data/notable_ai_models.csv"
 ML_HARDWARE_CSV = "https://epoch.ai/data/ml_hardware.csv"
@@ -186,6 +186,40 @@ def arc_agi_cost_at_score() -> list[Line]:
     for bar in _ARC_SCORE_BARS:
         cleared = [(when, cost) for when, score, cost in entries if score >= bar]
         lines.append(Line(f"At least {bar:.0%} solved", running_min(cleared, latest)))
+    return lines
+
+
+# Hardest last. The v2 files are Epoch's re-run of every model on the problem
+# set it corrected in June 2026. A later revision would arrive under a new file
+# name, after which these keep answering with numbers that have stopped moving.
+_FRONTIERMATH = {
+    "FrontierMath Tiers 1–3": "frontiermath_tiers_1_3_v2.csv",
+    "FrontierMath Tier 4": "frontiermath_tier_4_v2.csv",
+    "FrontierMath Erdős (open problems)": "frontiermath_erdos.csv",
+}
+
+
+def frontiermath_best_scores() -> list[Line]:
+    """Best share of each FrontierMath set solved by any model to date.
+
+    Each line holds out to the newest model Epoch has run on that set, not to
+    today: a flat stretch past that would claim measurements nobody has made.
+    """
+    lines = []
+    for name, member in _FRONTIERMATH.items():
+        entries = []
+        for row in get_zipped_csv(BENCHMARK_DATA_ZIP, member):
+            released = _iso_date(row.get("Release date"))
+            score = parse_float(row.get("Best score (across scorers)"))
+            model = (row.get("Model version") or "").strip()
+            if released and score is not None and model:
+                # "o3-2025-04-16_high" is o3 at its high reasoning setting.
+                base, _, setting = model.rpartition("_")
+                label = f"{base} ({setting})" if base else model
+                entries.append((released, round(score, 4), label))
+        if entries:
+            latest = max(when for when, _, _ in entries)
+            lines.append(record_line(name, entries, latest))
     return lines
 
 

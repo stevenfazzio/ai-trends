@@ -36,8 +36,8 @@ Sources differ in whether they hand you history, and the pipeline treats them
 differently:
 
 - **`recompute`** — the upstream holds the full history (Epoch, METR, SEC,
-  Census, OpenAlex, arXiv, Indeed, llm-energy-per-task). Every run rebuilds the
-  series from scratch, so upstream revisions flow through.
+  Census, OpenAlex, arXiv, Indeed, PutnamBench, llm-energy-per-task). Every
+  run rebuilds the series from scratch, so upstream revisions flow through.
 - **`append`** — the upstream only exposes a current value (OpenRouter pricing).
   Each run records one observation. These series have no history before
   collection started and can never be backfilled, which is why the job runs
@@ -86,6 +86,7 @@ needed.
 | Series | Source | Licence |
 |---|---|---|
 | Task time horizon | [METR](https://metr.org/time-horizons/) | — |
+| Maths problems solved | [Epoch AI — benchmarks](https://epoch.ai/benchmarks) (FrontierMath), [PutnamBench](https://trishullab.github.io/PutnamBench/leaderboard.html) | CC BY 4.0 (Epoch) |
 | Largest known training run, training power draw | [Epoch AI — models](https://epoch.ai/data/ai-models) | CC BY 4.0 |
 | Datacentre power capacity | [Epoch AI — data centers](https://epoch.ai/data/ai-data-centers) | CC BY 4.0 |
 | Compute per watt | [Epoch AI — hardware](https://epoch.ai/data/machine-learning-hardware) | CC BY 4.0 |
@@ -101,8 +102,8 @@ needed.
 
 ## Not here yet
 
-**More capability benchmarks.** The group holds one chart, METR's time
-horizons. LMArena's HuggingFace mirror carries dated leaderboard CSVs from May
+**More capability benchmarks.** The group holds two charts, METR's time
+horizons and the maths benchmarks. LMArena's HuggingFace mirror carries dated leaderboard CSVs from May
 2023 but stopped updating in August 2025, so Elo history is available but
 stale, and the live source needs work. SWE-bench Verified is reconstructable from per-submission metadata in
 [SWE-bench/experiments](https://github.com/SWE-bench/experiments). ARC-AGI has
