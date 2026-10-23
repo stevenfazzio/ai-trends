@@ -19,7 +19,7 @@
  "annotations": true,
  "line_shape": "linear",
  "notes": "A paper with authors in several countries counts once for each, so the lines are not a partition. 'Rest of world' excludes any paper with a US or Chinese author. Papers with no country recorded for any author appear in none of the lines; they are a fifth to two-fifths of the subfield, depending on the year. Recent years keep growing as indexing catches up. OpenAlex's Artificial Intelligence subfield is broader than its name: it takes in cryptography, quantum information, and logic and type systems alongside machine learning.",
- "updated": "2026-10-22T12:02:49Z",
+ "updated": "2026-10-23T11:48:10Z",
  "lines": [
   {
    "name": "United States",
@@ -42,7 +42,7 @@
     ],
     [
      "2014-01-01",
-     10805.0
+     10806.0
     ],
     [
      "2015-01-01",
@@ -54,7 +54,7 @@
     ],
     [
      "2017-01-01",
-     12883.0
+     12882.0
     ],
     [
      "2018-01-01",
@@ -62,7 +62,7 @@
     ],
     [
      "2019-01-01",
-     18114.0
+     18115.0
     ],
     [
      "2020-01-01",
@@ -82,11 +82,11 @@
     ],
     [
      "2024-01-01",
-     29765.0
+     29767.0
     ],
     [
      "2025-01-01",
-     32758.0
+     32762.0
     ]
    ]
   },
@@ -127,11 +127,11 @@
     ],
     [
      "2018-01-01",
-     14201.0
+     14202.0
     ],
     [
      "2019-01-01",
-     17953.0
+     17954.0
     ],
     [
      "2020-01-01",
@@ -147,7 +147,7 @@
     ],
     [
      "2023-01-01",
-     39443.0
+     39444.0
     ],
     [
      "2024-01-01",
@@ -155,7 +155,7 @@
     ],
     [
      "2025-01-01",
-     55432.0
+     55444.0
     ]
    ]
   },
@@ -168,7 +168,7 @@
     ],
     [
      "2011-01-01",
-     33552.0
+     33553.0
     ],
     [
      "2012-01-01",
@@ -176,19 +176,19 @@
     ],
     [
      "2013-01-01",
-     35956.0
+     35958.0
     ],
     [
      "2014-01-01",
-     38193.0
+     38192.0
     ],
     [
      "2015-01-01",
-     38107.0
+     38108.0
     ],
     [
      "2016-01-01",
-     40054.0
+     40056.0
     ],
     [
      "2017-01-01",
@@ -200,31 +200,31 @@
     ],
     [
      "2019-01-01",
-     50551.0
+     50550.0
     ],
     [
      "2020-01-01",
-     56343.0
+     56344.0
     ],
     [
      "2021-01-01",
-     62763.0
+     62765.0
     ],
     [
      "2022-01-01",
-     66061.0
+     66062.0
     ],
     [
      "2023-01-01",
-     77912.0
+     77919.0
     ],
     [
      "2024-01-01",
-     88577.0
+     88592.0
     ],
     [
      "2025-01-01",
-     104644.0
+     104696.0
     ]
    ]
   }
