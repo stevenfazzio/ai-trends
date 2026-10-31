@@ -23,7 +23,7 @@
  "annotations": true,
  "line_shape": "hv",
  "notes": "PutnamBench is every problem from the Putnam undergraduate competition written as a Lean theorem, solved when Lean accepts the proof. FrontierMath asks for automatically checked answers to hard questions, up to research level, that Epoch keeps private; Tier 4 is the hardest few dozen. Epoch corrected 42% of its problems in June 2026 and re-ran every model, placing each at its release date, so the lines start before the benchmark existed. OpenAI funded FrontierMath and has exclusive access to part of it. The Erd\u0151s set is different in kind: problems posed by Paul Erd\u0151s that were still open in August 2026, so each solution, which must be a Lean proof, is new mathematics. PutnamBench lists results reported by each system's makers, dated to when they were added, on budgets from one attempt to over a thousand dollars a problem; the benchmark gains a competition each year, and counts are shown against today's size. Lines end at the newest system tested.",
- "updated": "2026-10-30T13:07:54Z",
+ "updated": "2026-10-31T12:44:42Z",
  "lines": [
   {
    "name": "PutnamBench",
