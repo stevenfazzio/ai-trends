@@ -19,7 +19,7 @@
  "annotations": true,
  "line_shape": "linear",
  "notes": "A paper with authors in several countries counts once for each, so the lines are not a partition. 'Rest of world' excludes any paper with a US or Chinese author. Papers with no country recorded for any author appear in none of the lines; they are a fifth to two-fifths of the subfield, depending on the year. Recent years keep growing as indexing catches up. OpenAlex's Artificial Intelligence subfield is broader than its name: it takes in cryptography, quantum information, and logic and type systems alongside machine learning.",
- "updated": "2026-11-09T16:35:12Z",
+ "updated": "2026-11-10T15:00:12Z",
  "lines": [
   {
    "name": "United States",
@@ -74,19 +74,19 @@
     ],
     [
      "2022-01-01",
-     20302.0
+     20301.0
     ],
     [
      "2023-01-01",
-     23291.0
+     23290.0
     ],
     [
      "2024-01-01",
-     27651.0
+     27650.0
     ],
     [
      "2025-01-01",
-     35675.0
+     35671.0
     ]
    ]
   },
@@ -139,15 +139,15 @@
     ],
     [
      "2021-01-01",
-     22779.0
+     22778.0
     ],
     [
      "2022-01-01",
-     27606.0
+     27604.0
     ],
     [
      "2023-01-01",
-     33700.0
+     33698.0
     ],
     [
      "2024-01-01",
@@ -155,7 +155,7 @@
     ],
     [
      "2025-01-01",
-     52320.0
+     52317.0
     ]
    ]
   },
@@ -176,7 +176,7 @@
     ],
     [
      "2013-01-01",
-     27462.0
+     27463.0
     ],
     [
      "2014-01-01",
@@ -196,15 +196,15 @@
     ],
     [
      "2018-01-01",
-     38091.0
+     38093.0
     ],
     [
      "2019-01-01",
-     41418.0
+     41419.0
     ],
     [
      "2020-01-01",
-     47418.0
+     47415.0
     ],
     [
      "2021-01-01",
@@ -212,19 +212,19 @@
     ],
     [
      "2022-01-01",
-     57861.0
+     57863.0
     ],
     [
      "2023-01-01",
-     69109.0
+     69108.0
     ],
     [
      "2024-01-01",
-     81355.0
+     81353.0
     ],
     [
      "2025-01-01",
-     102748.0
+     102745.0
     ]
    ]
   }
