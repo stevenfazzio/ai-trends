@@ -523,4 +523,42 @@ SERIES = [
             "gaps between them. Each question is asked about once a year."
         ),
     ),
+    SeriesSpec(
+        id="us-data-center-opinion",
+        title="Americans opposed to a data center near them",
+        description=(
+            "Share of US respondents who would oppose a data center being built near "
+            "where they live. One pollster has asked the same question repeatedly since "
+            "the summer of 2025; two others have asked once."
+        ),
+        group="opinion",
+        sources=[
+            Source("Heatmap Pro / Embold Research", "https://heatmap.news/tag/data-centers"),
+            Source(
+                "Gallup",
+                "https://news.gallup.com/poll/709772/americans-oppose-data-centers-area.aspx",
+            ),
+            Source(
+                "Reuters/Ipsos",
+                "https://whbl.com/2026/06/11/americans-wary-of-ai-driven-data-center-boom-reuters-ipsos-poll-shows/",
+            ),
+        ],
+        fetch=manual.us_data_center_opinion,
+        y=Axis(title="% of respondents", tickformat=".0f", rangemode="tozero"),
+        notes=(
+            "Embold Research, polling for Heatmap Pro, has asked registered voters "
+            "'Would you support or oppose a data center being built near where you "
+            "live?' five times since August 2025, by text-to-web, with the wording "
+            "unchanged. The share in favour fell from 44% to 21% over the first three "
+            "waves; Heatmap did not publish it for the last two. Heatmap Pro is a paid "
+            "product, so only the headline figures in Heatmap's articles are recorded "
+            "here, and the February 2026 fieldwork dates were not published. The hollow "
+            "circles are other pollsters' single readings, each with its own wording "
+            "and sample: Gallup asked 1,000 adults by telephone whether they would "
+            "oppose an AI data center in their area, and Reuters/Ipsos asked 4,531 "
+            "people about one in their community. Points sit at the middle of each "
+            "poll's fieldwork, and every figure's citation is in "
+            "manual/us-data-center-opinion.csv."
+        ),
+    ),
 ]

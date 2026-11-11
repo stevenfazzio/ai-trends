@@ -108,6 +108,7 @@ needed.
 | Share of developers using AI tools | [Stack Overflow](https://survey.stackoverflow.co/), [JetBrains](https://blog.jetbrains.com/research/2025/10/state-of-developer-ecosystem-2025/), [DORA](https://dora.dev/research/) | hand-entered, cited per row |
 | New repos in proof-assistant languages | [GitHub repository search](https://docs.github.com/en/rest/search/search#search-repositories) | — |
 | American public opinion | [Pew](https://www.pewresearch.org/topic/internet-technology/emerging-technology/artificial-intelligence/), [Gallup](https://www.gallup.com/topic/artificial-intelligence.aspx) | hand-entered, cited per row |
+| Opposition to a nearby data center | [Heatmap Pro / Embold](https://heatmap.news/tag/data-centers), [Gallup](https://news.gallup.com/poll/709772/americans-oppose-data-centers-area.aspx), [Reuters/Ipsos](https://whbl.com/2026/06/11/americans-wary-of-ai-driven-data-center-boom-reuters-ipsos-poll-shows/) | hand-entered, cited per row |
 
 ## Not here yet
 

@@ -67,3 +67,7 @@ def us_ai_opinion() -> list[Line]:
 
 def developer_ai_use() -> list[Line]:
     return series("developer-ai-use")
+
+
+def us_data_center_opinion() -> list[Line]:
+    return series("us-data-center-opinion")
