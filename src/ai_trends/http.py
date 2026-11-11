@@ -62,13 +62,21 @@ def get_text(
     use_cache: bool = True,
     headers: dict | None = None,
 ) -> str:
-    """GET a URL as text, with a short-lived on-disk cache."""
+    """GET a URL as text, with a short-lived on-disk cache.
+
+    A response that declares no charset is decoded as UTF-8. requests would
+    fall back to ISO-8859-1 for it, which turns every non-ASCII character into
+    mojibake: Epoch's pages and CSVs arrive that way, and every text source
+    read here is UTF-8.
+    """
     path = _cache_path(url, params)
     if use_cache and path.exists() and time.time() - path.stat().st_mtime < CACHE_TTL_SECONDS:
         return path.read_text()
 
     resp = session().get(url, params=params, timeout=60, headers=headers)
     resp.raise_for_status()
+    if "charset" not in resp.headers.get("Content-Type", "").lower():
+        resp.encoding = "utf-8"
     text = resp.text
 
     if use_cache:

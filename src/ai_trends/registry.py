@@ -12,6 +12,7 @@ from .sources import (
     census,
     energy_per_task,
     epoch,
+    epoch_polling,
     github,
     indeed,
     manual,
@@ -39,6 +40,7 @@ EPOCH_COMPANIES = Source(
 EPOCH_BENCHMARKS = Source(
     "Epoch AI — Capabilities & benchmarking", "https://epoch.ai/benchmarks", "CC BY 4.0"
 )
+EPOCH_POLLING = Source("Epoch AI — Polling on AI usage", epoch_polling.INDEX_URL, "CC BY 4.0")
 SEC_EDGAR = Source(
     "SEC EDGAR XBRL company facts", "https://www.sec.gov/edgar/sec-api-documentation"
 )
@@ -48,6 +50,11 @@ ENERGY_PER_TASK = Source("llm-energy-per-task", energy_per_task.REPO_URL, "MIT")
 def _maths_benchmarks() -> list[Line]:
     """Two upstreams on one chart, ordered from competition problems to open ones."""
     return putnambench.best_share_solved() + epoch.frontiermath_best_scores()
+
+
+def _us_ai_opinion() -> list[Line]:
+    """The hand-entered annual polls, then Epoch's monthly tracker."""
+    return manual.us_ai_opinion() + epoch_polling.more_concerned_than_excited()
 
 
 GROUPS = [
@@ -502,8 +509,9 @@ SERIES = [
         id="us-ai-opinion",
         title="American public opinion on AI",
         description=(
-            "Long-running poll questions on how the US public feels about AI, from the "
-            "two organisations that have asked the same thing repeatedly."
+            "Repeated poll questions on how the US public feels about AI: Pew's and "
+            "Gallup's, asked about once a year, and the monthly tracker Epoch AI began "
+            "with Ipsos in October 2026."
         ),
         group="opinion",
         sources=[
@@ -512,15 +520,23 @@ SERIES = [
                 "https://www.pewresearch.org/topic/internet-technology/emerging-technology/artificial-intelligence/",
             ),
             Source("Gallup", "https://www.gallup.com/topic/artificial-intelligence.aspx"),
+            EPOCH_POLLING,
         ],
-        fetch=manual.us_ai_opinion,
+        fetch=_us_ai_opinion,
         y=Axis(title="% of US adults", tickformat=".0f", rangemode="tozero"),
         notes=(
-            "Hand-entered from published releases — no pollster offers a machine-readable "
-            "feed — with every figure's citation recorded alongside it in "
-            "manual/us-ai-opinion.csv. The lines come from different surveys with different "
-            "question wording and sampling, so read the movement within a line and not the "
-            "gaps between them. Each question is asked about once a year."
+            "The Pew and Gallup figures are hand-entered from published releases — neither "
+            "offers a machine-readable feed — with every figure's citation recorded "
+            "alongside it in manual/us-ai-opinion.csv. The Epoch AI line is read from the "
+            "CSV Epoch publishes for each wave of its tracker: about 2,000 US adults from "
+            "Ipsos' KnowledgePanel, fielded over a few days each month since October 2026, "
+            "with each point at the middle of the fieldwork. Epoch asks Pew's question word "
+            "for word but adds a 'Not sure' answer, which about one respondent in five took "
+            "in the first wave, where Pew offers only more excited, more concerned and "
+            "equally both. That is why the Epoch line runs several points below Pew's, and "
+            "why the two are never joined up. The lines come from different surveys with "
+            "different question wording and sampling, so read the movement within a line "
+            "and not the gaps between them."
         ),
     ),
     SeriesSpec(
