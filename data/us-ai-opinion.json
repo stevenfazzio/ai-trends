@@ -1,7 +1,7 @@
 {
  "id": "us-ai-opinion",
  "title": "American public opinion on AI",
- "description": "Long-running poll questions on how the US public feels about AI, from the two organisations that have asked the same thing repeatedly.",
+ "description": "Repeated poll questions on how the US public feels about AI: Pew's and Gallup's, asked about once a year, and the monthly tracker Epoch AI began with Ipsos in October 2026.",
  "group": "opinion",
  "sources": [
   {
@@ -11,6 +11,11 @@
   {
    "name": "Gallup",
    "url": "https://www.gallup.com/topic/artificial-intelligence.aspx"
+  },
+  {
+   "name": "Epoch AI \u2014 Polling on AI usage",
+   "url": "https://epoch.ai/data/polling",
+   "license": "CC BY 4.0"
   }
  ],
  "y": {
@@ -21,8 +26,8 @@
  "mode": "recompute",
  "annotations": true,
  "line_shape": "linear",
- "notes": "Hand-entered from published releases \u2014 no pollster offers a machine-readable feed \u2014 with every figure's citation recorded alongside it in manual/us-ai-opinion.csv. The lines come from different surveys with different question wording and sampling, so read the movement within a line and not the gaps between them. Each question is asked about once a year.",
- "updated": "2026-11-11T04:33:20Z",
+ "notes": "The Pew and Gallup figures are hand-entered from published releases \u2014 neither offers a machine-readable feed \u2014 with every figure's citation recorded alongside it in manual/us-ai-opinion.csv. The Epoch AI line is read from the CSV Epoch publishes for each wave of its tracker: about 2,000 US adults from Ipsos' KnowledgePanel, fielded over a few days each month since October 2026, with each point at the middle of the fieldwork. Epoch asks Pew's question word for word but adds a 'Not sure' answer, which about one respondent in five took in the first wave, where Pew offers only more excited, more concerned and equally both. That is why the Epoch line runs several points below Pew's, and why the two are never joined up. The lines come from different surveys with different question wording and sampling, so read the movement within a line and not the gaps between them.",
+ "updated": "2026-11-11T04:33:39Z",
  "lines": [
   {
    "name": "More concerned than excited about AI (Pew)",
@@ -92,6 +97,15 @@
     [
      "2026-05-01",
      79.0
+    ]
+   ]
+  },
+  {
+   "name": "More concerned than excited about AI (Epoch/Ipsos, monthly)",
+   "points": [
+    [
+     "2026-10-10",
+     46.0
     ]
    ]
   }
