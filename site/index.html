@@ -22,7 +22,6 @@
     <h1>AI&nbsp;Trends</h1>
     <p class="tagline">Time series on AI compute, economics, research and adoption &mdash; rebuilt daily from public sources.</p>
     <div class="controls">
-      <nav id="nav" aria-label="Sections"></nav>
       <label class="toggle">
         <input type="checkbox" id="events-toggle">
         <span>Model release markers</span>
@@ -31,27 +30,37 @@
   </div>
 </header>
 
-<main id="charts" class="wrap">
-  <p class="loading">Loading charts&hellip;</p>
-</main>
+<!-- Narrow screens: a bar of section links that stays at the top. -->
+<nav id="nav" class="sections" aria-label="Sections"></nav>
 
-<footer class="wrap">
-  <p id="generated"></p>
-  <p>
-    Each chart names its own source. Data is fetched by
-    <a href="https://github.com/stevenfazzio/ai-trends">this repository</a>, which rebuilds
-    the page every day. Almost all of it is other people's published numbers,
-    plotted. The exception is the energy-per-task chart, which was measured for
-    this site and is published, with its method, in
-    <a href="https://github.com/stevenfazzio/llm-energy-per-task">its own repository</a>.
-  </p>
-  <p class="elsewhere">
-    Fuller treatments of the same territory:
-    <a href="https://epoch.ai/trends" rel="noopener">Epoch AI &mdash; Trends</a>
-    and
-    <a href="https://ourworldindata.org/artificial-intelligence" rel="noopener">Our World in Data &mdash; Artificial Intelligence</a>.
-  </p>
-</footer>
+<div class="wrap layout">
+  <!-- Wide screens: every chart, with how long since it last gained data. -->
+  <nav id="toc" class="toc" aria-label="Charts"></nav>
+
+  <div class="column">
+    <main id="charts">
+      <p class="loading">Loading charts&hellip;</p>
+    </main>
+
+    <footer>
+      <p id="generated"></p>
+      <p>
+        Each chart names its own source. Data is fetched by
+        <a href="https://github.com/stevenfazzio/ai-trends">this repository</a>, which rebuilds
+        the page every day. Almost all of it is other people's published numbers,
+        plotted. The exception is the energy-per-task chart, which was measured for
+        this site and is published, with its method, in
+        <a href="https://github.com/stevenfazzio/llm-energy-per-task">its own repository</a>.
+      </p>
+      <p class="elsewhere">
+        Fuller treatments of the same territory:
+        <a href="https://epoch.ai/trends" rel="noopener">Epoch AI &mdash; Trends</a>
+        and
+        <a href="https://ourworldindata.org/artificial-intelligence" rel="noopener">Our World in Data &mdash; Artificial Intelligence</a>.
+      </p>
+    </footer>
+  </div>
+</div>
 
 <script src="app.js"></script>
 </body>

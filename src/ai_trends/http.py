@@ -43,6 +43,8 @@ def session() -> requests.Session:
             status_forcelist=(429, 500, 502, 503, 504),
             allowed_methods=("GET",),
             respect_retry_after_header=True,
+            # urllib3 would otherwise wait up to six hours if a server asked it to.
+            retry_after_max=120,
         )
         s.mount("https://", HTTPAdapter(max_retries=retry))
         s.mount("http://", HTTPAdapter(max_retries=retry))

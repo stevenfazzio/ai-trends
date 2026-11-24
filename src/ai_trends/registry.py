@@ -99,6 +99,7 @@ SERIES = [
     SeriesSpec(
         id="task-time-horizon",
         title="Longest task a frontier model can complete",
+        short_title="Task time horizon",
         description=(
             "Length of software task, measured by how long it takes a skilled human, that "
             "the best model to date completes at a given success rate. A running maximum "
@@ -122,6 +123,7 @@ SERIES = [
     SeriesSpec(
         id="maths-benchmarks",
         title="Maths problems solved by the best model to date",
+        short_title="Maths problems solved",
         description=(
             "Share of each benchmark's problems solved by the best model or proving "
             "system to date, from competition problems to questions nobody had answered. "
@@ -154,6 +156,7 @@ SERIES = [
     SeriesSpec(
         id="frontier-training-compute",
         title="Largest known training run, by country",
+        short_title="Largest training run",
         description=(
             "Training compute of the largest model published to date, in floating-point "
             "operations. A running maximum, so the line steps up only when a bigger "
@@ -173,6 +176,7 @@ SERIES = [
     SeriesSpec(
         id="hyperscaler-capex",
         title="Quarterly capital expenditure at the big four cloud buyers",
+        short_title="Hyperscaler capex",
         description=(
             "Cash spent on property, plant and equipment each quarter by Microsoft, "
             "Alphabet, Amazon and Meta — the closest public proxy for AI datacentre "
@@ -191,6 +195,7 @@ SERIES = [
     SeriesSpec(
         id="datacenter-power",
         title="Power capacity of tracked AI datacentres",
+        short_title="Datacentre capacity",
         description=(
             "Combined nameplate power of the AI datacentres Epoch tracks, taking each "
             "site's most recent recorded capacity."
@@ -211,6 +216,7 @@ SERIES = [
     SeriesSpec(
         id="training-power-draw",
         title="Power drawn by the largest training runs",
+        short_title="Training power draw",
         description=(
             "Estimated power pulled by the hardware running the largest training run "
             "published to date."
@@ -230,6 +236,7 @@ SERIES = [
     SeriesSpec(
         id="chip-energy-efficiency",
         title="Compute per watt of the best AI accelerator",
+        short_title="Compute per watt",
         description=(
             "Peak throughput divided by rated power, for the most efficient accelerator "
             "released to date: once counting only tensor FP16/BF16 arithmetic, and once "
@@ -255,6 +262,7 @@ SERIES = [
     SeriesSpec(
         id="energy-per-task",
         title="Least energy for an open model to do a task",
+        short_title="Energy per task",
         description=(
             "Least GPU energy per item among open-weight models released to date that get "
             "a task right at least a set share of the time. A running minimum, so "
@@ -279,6 +287,7 @@ SERIES = [
     SeriesSpec(
         id="nvidia-revenue",
         title="NVIDIA quarterly revenue",
+        short_title="NVIDIA revenue",
         description="Total revenue per fiscal quarter, as filed.",
         group="economics",
         sources=[SEC_EDGAR],
@@ -289,6 +298,7 @@ SERIES = [
     SeriesSpec(
         id="ai-funding",
         title="Cumulative equity raised by the largest AI companies",
+        short_title="AI company funding",
         description="Running total of disclosed equity funding, by company.",
         group="economics",
         sources=[EPOCH_COMPANIES],
@@ -304,6 +314,7 @@ SERIES = [
     SeriesSpec(
         id="ai-company-revenue",
         title="Annualised revenue of AI companies",
+        short_title="AI company revenue",
         description=(
             "Reported revenue run rate, by company: a recent month or quarter scaled up "
             "to a full year."
@@ -324,6 +335,7 @@ SERIES = [
     SeriesSpec(
         id="token-price-index",
         title="Price of a million input tokens",
+        short_title="Token prices",
         description=(
             "Percentiles of prompt pricing across every text model listed on OpenRouter, "
             "tracking the market rather than any single model."
@@ -347,6 +359,7 @@ SERIES = [
     SeriesSpec(
         id="arc-agi-cost-at-score",
         title="Cheapest model to reach a fixed ARC-AGI score",
+        short_title="ARC-AGI cost",
         description=(
             "Lowest cost per task among models released to date that solve at least a "
             "given share of ARC-AGI-1. A running minimum, so each line steps down only "
@@ -374,6 +387,7 @@ SERIES = [
     SeriesSpec(
         id="ai-publications-by-country",
         title="AI papers published per year, by country",
+        short_title="AI papers by country",
         description=(
             "Works whose primary topic falls in the Artificial Intelligence subfield, "
             "counted by the countries of their authors' institutions."
@@ -396,6 +410,7 @@ SERIES = [
     SeriesSpec(
         id="arxiv-submissions",
         title="arXiv submissions per month, by category",
+        short_title="arXiv submissions",
         description="New submissions to the main AI-adjacent arXiv categories each month.",
         group="research",
         sources=[Source("arXiv API", "https://info.arxiv.org/help/api/index.html")],
@@ -410,6 +425,7 @@ SERIES = [
     SeriesSpec(
         id="ai-job-postings",
         title="Share of job postings mentioning AI",
+        short_title="AI job postings",
         description=(
             "Percentage of postings on Indeed containing AI or generative-AI terms, "
             "averaged by month."
@@ -429,6 +445,7 @@ SERIES = [
     SeriesSpec(
         id="business-ai-use",
         title="Share of US businesses using AI",
+        short_title="Business AI use",
         description=(
             "Percentage of firms telling the Census Bureau they used AI in the last two "
             "weeks, and the percentage expecting to within six months."
@@ -450,6 +467,7 @@ SERIES = [
     SeriesSpec(
         id="developer-ai-use",
         title="Share of developers using AI tools",
+        short_title="Developer AI use",
         description=(
             "Percentage of respondents to three recurring developer surveys who say they "
             "use AI tools in their work."
@@ -483,6 +501,7 @@ SERIES = [
     SeriesSpec(
         id="proof-assistant-repos",
         title="New GitHub repositories written for a proof assistant",
+        short_title="Proof-assistant repos",
         description=(
             "Public repositories whose main language is Lean, Rocq, Isabelle or Agda, per "
             "million new public repositories, over the three months to each date. Lean is "
@@ -508,6 +527,7 @@ SERIES = [
     SeriesSpec(
         id="us-ai-opinion",
         title="American public opinion on AI",
+        short_title="US opinion on AI",
         description=(
             "Repeated poll questions on how the US public feels about AI: Pew's and "
             "Gallup's, asked about once a year, and the monthly tracker Epoch AI began "
@@ -542,6 +562,7 @@ SERIES = [
     SeriesSpec(
         id="us-data-center-opinion",
         title="Americans opposed to a data center near them",
+        short_title="Data center opposition",
         description=(
             "Share of US respondents who would oppose a data center being built near "
             "where they live. One pollster has asked the same question repeatedly since "

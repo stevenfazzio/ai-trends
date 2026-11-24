@@ -58,6 +58,33 @@ def _merge_append(existing: dict | None, fresh: list[Line]) -> list[Line]:
     return [Line(name, sorted(recorded[name].items())) for name in order]
 
 
+def _readings(lines: list[dict]) -> set[tuple[str, str]]:
+    """Every (line, date) a series has a value for.
+
+    A held last point is left out: it is the build's own date, standing in for
+    "still the latest", and would otherwise look new every day.
+    """
+    found: set[tuple[str, str]] = set()
+    for line in lines:
+        points = line["points"][:-1] if line.get("held") else line["points"]
+        found.update((line["name"], when) for when, value in points if value is not None)
+    return found
+
+
+def _new_data_date(existing: dict | None, lines: list[dict], today: str) -> str | None:
+    """The day the series last gained a reading at a date it had none for.
+
+    Revised values don't count. OpenAlex, arXiv and GitHub restate some of
+    their counts on most days, and counting that would mark those charts new
+    daily.
+    """
+    if existing is None:
+        return today
+    if _readings(lines) - _readings(existing.get("lines", [])):
+        return today
+    return existing.get("new_data")
+
+
 def build_series(spec: SeriesSpec, *, fail_fast: bool) -> dict:
     """Fetch one series and write its JSON. Returns the manifest entry."""
     meta = spec.meta()
@@ -75,6 +102,7 @@ def build_series(spec: SeriesSpec, *, fail_fast: bool) -> dict:
                 "ok": False,
                 "error": f"{type(exc).__name__}: {exc}",
                 "updated": (existing or {}).get("updated"),
+                "new_data": (existing or {}).get("new_data"),
                 "stale": existing is not None,
             }
         )
@@ -83,15 +111,26 @@ def build_series(spec: SeriesSpec, *, fail_fast: bool) -> dict:
     lines = _merge_append(existing, fetched) if spec.mode == "append" else fetched
     lines = [line.sorted() for line in lines if line.points]
 
+    # `updated` is when the series was last fetched, which is every run;
+    # `new_data` is when that last turned up something new to plot.
     updated = datetime.now(UTC).strftime("%Y-%m-%dT%H:%M:%SZ")
-    payload = {**meta, "updated": updated, "lines": [line.to_dict() for line in lines]}
+    serialised = [line.to_dict() for line in lines]
+    new_data = _new_data_date(existing, serialised, updated[:10])
+    payload = {**meta, "updated": updated, "new_data": new_data, "lines": serialised}
 
     DATA_DIR.mkdir(parents=True, exist_ok=True)
     (DATA_DIR / f"{spec.id}.json").write_text(json.dumps(payload, indent=1) + "\n")
 
     total = sum(len(line.points) for line in lines)
-    print(f"  ok {spec.id}: {len(lines)} line(s), {total} points")
-    return {**meta, "ok": True, "updated": updated, "lines": len(lines), "points": total}
+    print(f"  ok {spec.id}: {len(lines)} line(s), {total} points, new data {new_data}")
+    return {
+        **meta,
+        "ok": True,
+        "updated": updated,
+        "new_data": new_data,
+        "lines": len(lines),
+        "points": total,
+    }
 
 
 def load_events() -> list[dict]:
@@ -149,6 +188,7 @@ def main(argv: list[str] | None = None) -> int:
                 **spec.meta(),
                 "ok": bool(existing),
                 "updated": existing.get("updated"),
+                "new_data": existing.get("new_data"),
                 "lines": len(existing.get("lines", [])),
             }
 

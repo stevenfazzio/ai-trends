@@ -30,6 +30,22 @@ class Line:
     # One per point: True draws the marker hollow, for a point less certain
     # than its neighbours.
     hollow: list[bool] | None = None
+    # True when the last point is not a reading but the line held level to the
+    # day of the build, to say the latest value still stands. Set by
+    # hold_until. That point moves every day, so it never counts as new data.
+    held: bool = False
+
+    def hold_until(self, when: str) -> Line:
+        """Carry the last value forward to `when`, marked as a hold rather than a reading."""
+        if not self.points or self.points[-1][0] >= when:
+            return self
+        return replace(
+            self,
+            points=[*self.points, (when, self.points[-1][1])],
+            labels=[*self.labels, ""] if self.labels else self.labels,
+            hollow=[*self.hollow, False] if self.hollow else self.hollow,
+            held=True,
+        )
 
     def sorted(self) -> Line:
         order = sorted(range(len(self.points)), key=lambda i: self.points[i][0])
@@ -50,6 +66,8 @@ class Line:
             out["labels"] = self.labels
         if self.hollow:
             out["hollow"] = self.hollow
+        if self.held:
+            out["held"] = True
         return out
 
 
@@ -153,6 +171,9 @@ class SeriesSpec:
     fetch: Callable[[], list[Line]]
     y: Axis = field(default_factory=Axis)
 
+    # A few words for the page's contents list, where the full title won't fit.
+    short_title: str = ""
+
     # "recompute": the upstream source holds full history, so every run rebuilds
     #   the series from scratch and picks up any upstream revisions.
     # "append":    the upstream source only exposes a current value, so each run
@@ -174,6 +195,7 @@ class SeriesSpec:
         return {
             "id": self.id,
             "title": self.title,
+            "short_title": self.short_title or self.title,
             "description": self.description,
             "group": self.group,
             "sources": [source.to_dict() for source in self.sources],
