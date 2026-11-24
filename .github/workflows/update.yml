@@ -27,6 +27,10 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    # A normal run takes about two minutes. Without a limit, a hung fetch holds
+    # the `pages` queue for GitHub's six-hour default, and the day's scheduled
+    # run waits behind it (as on 2026-11-24).
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v7
 
@@ -40,6 +44,9 @@ jobs:
       - name: Fetch data and assemble site
         run: uv run python -m ai_trends.build
         env:
+          # Print each series as it lands, so a run that hangs shows which
+          # source it stopped on. Python buffers its output in CI otherwise.
+          PYTHONUNBUFFERED: "1"
           # GitHub's search API allows three times the requests with a token.
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
