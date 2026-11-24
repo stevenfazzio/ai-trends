@@ -1,6 +1,7 @@
 {
  "id": "ai-company-revenue",
  "title": "Annualised revenue of AI companies",
+ "short_title": "AI company revenue",
  "description": "Reported revenue run rate, by company: a recent month or quarter scaled up to a full year.",
  "group": "economics",
  "sources": [
@@ -19,7 +20,7 @@
  "annotations": true,
  "line_shape": "linear",
  "notes": "Run rates, not booked revenue: a company growing fast will have earned far less over the past year than its run rate suggests. Most figures come from press reports rather than company disclosures, and companies do not define run rate or ARR the same way. Each marker is one report and the lines between them are interpolation. Companies with fewer than three reports are left out, as are figures covering a single product.",
- "updated": "2026-11-24T19:55:33Z",
+ "updated": "2026-11-24T20:29:13Z",
  "new_data": "2026-11-11",
  "lines": [
   {

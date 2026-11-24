@@ -1,6 +1,7 @@
 {
  "id": "frontier-training-compute",
  "title": "Largest known training run, by country",
+ "short_title": "Largest training run",
  "description": "Training compute of the largest model published to date, in floating-point operations. A running maximum, so the line steps up only when a bigger training run appears.",
  "group": "compute",
  "sources": [
@@ -19,7 +20,7 @@
  "annotations": true,
  "line_shape": "hv",
  "notes": "Models are attributed to the country of the first-listed organisation. Compute figures are Epoch's estimates and are frequently revised; only about half of the catalogued models carry a compute estimate at all.",
- "updated": "2026-11-24T19:55:31Z",
+ "updated": "2026-11-24T20:29:12Z",
  "new_data": "2026-11-18",
  "lines": [
   {

@@ -1,6 +1,7 @@
 {
  "id": "hyperscaler-capex",
  "title": "Quarterly capital expenditure at the big four cloud buyers",
+ "short_title": "Hyperscaler capex",
  "description": "Cash spent on property, plant and equipment each quarter by Microsoft, Alphabet, Amazon and Meta \u2014 the closest public proxy for AI datacentre buildout.",
  "group": "compute",
  "sources": [
@@ -18,7 +19,7 @@
  "annotations": true,
  "line_shape": "linear",
  "notes": "Capex covers all property and equipment, not only AI hardware. Companies that file year-to-date cumulatives have their quarters recovered by differencing, and fiscal quarters do not align across companies.",
- "updated": "2026-11-24T19:55:32Z",
+ "updated": "2026-11-24T20:29:12Z",
  "new_data": "2026-10-30",
  "lines": [
   {

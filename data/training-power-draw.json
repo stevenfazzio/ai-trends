@@ -1,6 +1,7 @@
 {
  "id": "training-power-draw",
  "title": "Power drawn by the largest training runs",
+ "short_title": "Training power draw",
  "description": "Estimated power pulled by the hardware running the largest training run published to date.",
  "group": "environment",
  "sources": [
@@ -19,7 +20,7 @@
  "annotations": true,
  "line_shape": "hv",
  "notes": "A running maximum over the models Epoch has power estimates for, which is roughly a fifth of the catalogue. This is instantaneous draw during training, not total energy consumed, and says nothing about inference \u2014 which is now the larger share of the industry's electricity use.",
- "updated": "2026-11-24T19:55:32Z",
+ "updated": "2026-11-24T20:29:12Z",
  "new_data": "2026-09-24",
  "lines": [
   {
@@ -77,7 +78,8 @@
      "2026-11-24",
      232668778.57984325
     ]
-   ]
+   ],
+   "held": true
   }
  ]
 }

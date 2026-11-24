@@ -1,6 +1,7 @@
 {
  "id": "ai-job-postings",
  "title": "Share of job postings mentioning AI",
+ "short_title": "AI job postings",
  "description": "Percentage of postings on Indeed containing AI or generative-AI terms, averaged by month.",
  "group": "adoption",
  "sources": [
@@ -19,7 +20,7 @@
  "annotations": true,
  "line_shape": "linear",
  "notes": "Indeed's country coverage does not include China. The measure is keyword based, so it tracks how often employers mention AI, not how many jobs actually involve it.",
- "updated": "2026-11-24T19:55:57Z",
+ "updated": "2026-11-24T20:29:36Z",
  "new_data": "2026-11-18",
  "lines": [
   {

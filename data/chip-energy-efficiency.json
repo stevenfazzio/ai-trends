@@ -1,6 +1,7 @@
 {
  "id": "chip-energy-efficiency",
  "title": "Compute per watt of the best AI accelerator",
+ "short_title": "Compute per watt",
  "description": "Peak throughput divided by rated power, for the most efficient accelerator released to date: once counting only tensor FP16/BF16 arithmetic, and once at whichever precision each chip is fastest.",
  "group": "environment",
  "sources": [
@@ -19,7 +20,7 @@
  "annotations": true,
  "line_shape": "hv",
  "notes": "Vendor-quoted peak throughput over rated TDP, so both lines are spec-sheet ceilings rather than efficiency on a real workload. The FP16 line holds precision fixed to keep the comparison like for like, which leaves out whatever newer chips gain by computing at 8 or 4 bits. The any-precision line is Epoch's own efficiency figure: each chip's highest quoted throughput in any number format, counting a 4-bit operation the same as a 16-bit one. Several of its records were set by small, low-power inference chips rather than training hardware. The gap between the lines is what lower precision buys, and only a workload that tolerates it gets that gain.",
- "updated": "2026-11-24T19:55:32Z",
+ "updated": "2026-11-24T20:29:12Z",
  "new_data": "2026-11-20",
  "lines": [
   {
@@ -69,7 +70,8 @@
      "2026-11-24",
      2415789473684.2104
     ]
-   ]
+   ],
+   "held": true
   },
   {
    "name": "Any precision",
@@ -122,7 +124,8 @@
      "2026-11-24",
      15217391304347.826
     ]
-   ]
+   ],
+   "held": true
   }
  ]
 }

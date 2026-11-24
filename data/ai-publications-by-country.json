@@ -1,6 +1,7 @@
 {
  "id": "ai-publications-by-country",
  "title": "AI papers published per year, by country",
+ "short_title": "AI papers by country",
  "description": "Works whose primary topic falls in the Artificial Intelligence subfield, counted by the countries of their authors' institutions.",
  "group": "research",
  "sources": [
@@ -19,7 +20,7 @@
  "annotations": true,
  "line_shape": "linear",
  "notes": "A paper with authors in several countries counts once for each, so the lines are not a partition. 'Rest of world' excludes any paper with a US or Chinese author. Papers with no country recorded for any author appear in none of the lines; they are a fifth to two-fifths of the subfield, depending on the year. Recent years keep growing as indexing catches up. OpenAlex's Artificial Intelligence subfield is broader than its name: it takes in cryptography, quantum information, and logic and type systems alongside machine learning.",
- "updated": "2026-11-24T19:55:34Z",
+ "updated": "2026-11-24T20:29:14Z",
  "new_data": "2026-08-06",
  "lines": [
   {

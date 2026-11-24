@@ -1,6 +1,7 @@
 {
  "id": "business-ai-use",
  "title": "Share of US businesses using AI",
+ "short_title": "Business AI use",
  "description": "Percentage of firms telling the Census Bureau they used AI in the last two weeks, and the percentage expecting to within six months.",
  "group": "adoption",
  "sources": [
@@ -18,7 +19,7 @@
  "annotations": true,
  "line_shape": "linear",
  "notes": "The jump in late 2025 is a change of question, not of behaviour. Until October 2025 the survey asked about AI used in producing goods or services; from November it asks about AI used in any business function, and the broader wording draws many more yeses. Read each pair of lines on its own. The gap between them is the federal shutdown, when nothing was collected.",
- "updated": "2026-11-24T19:55:59Z",
+ "updated": "2026-11-24T20:29:38Z",
  "new_data": "2026-11-24",
  "lines": [
   {

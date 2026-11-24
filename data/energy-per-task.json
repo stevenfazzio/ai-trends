@@ -1,6 +1,7 @@
 {
  "id": "energy-per-task",
  "title": "Least energy for an open model to do a task",
+ "short_title": "Energy per task",
  "description": "Least GPU energy per item among open-weight models released to date that get a task right at least a set share of the time. A running minimum, so each line steps down only when a more frugal model clears the bar.",
  "group": "environment",
  "sources": [
@@ -20,7 +21,7 @@
  "annotations": true,
  "line_shape": "hv",
  "notes": "Measured for this site, unlike everything else on it: nearly 80 open-weight models of up to 15 billion parameters, run on one NVIDIA L40S and metered at the card. Every model shares today's hardware, so the fall is models becoming more capable for their size, not chips improving. GPU only and fully batched, so a floor on what a real service draws. The tasks, from SQuAD, Banking77 and the Berkeley Function-Calling Leaderboard, are not alike: compare the lines' slopes, not their heights. A hollow circle is a step within sampling error of its bar.",
- "updated": "2026-11-24T19:55:33Z",
+ "updated": "2026-11-24T20:29:13Z",
  "new_data": "2026-10-12",
  "lines": [
   {

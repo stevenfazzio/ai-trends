@@ -1,6 +1,7 @@
 {
  "id": "nvidia-revenue",
  "title": "NVIDIA quarterly revenue",
+ "short_title": "NVIDIA revenue",
  "description": "Total revenue per fiscal quarter, as filed.",
  "group": "economics",
  "sources": [
@@ -18,7 +19,7 @@
  "annotations": true,
  "line_shape": "linear",
  "notes": "Total company revenue; NVIDIA's datacentre segment is not broken out in XBRL.",
- "updated": "2026-11-24T19:55:33Z",
+ "updated": "2026-11-24T20:29:13Z",
  "new_data": "2026-08-27",
  "lines": [
   {
