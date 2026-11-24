@@ -44,6 +44,16 @@ differently:
   collection started and can never be backfilled, which is why the job runs
   daily rather than on demand.
 
+### The date on each chart
+
+Every series is fetched every day, so the date a chart shows is not when it was
+last fetched but when that last turned up something new: a reading at a date the
+series had none for. The build keeps it in each series' JSON as `new_data`, and
+the page's contents list shows how long ago it was. Revised values don't count,
+because OpenAlex, arXiv and GitHub restate some of their counts on most days. Nor
+does the point a few charts hold out to today to say a record still stands:
+`Line.hold_until` marks that point, so the build can leave it out.
+
 ### Hand-entered series
 
 Some numbers have no feed at all. Public opinion polling is the case in point:
@@ -87,7 +97,8 @@ without one, GitHub allows 10 searches a minute.
 ## Adding a chart
 
 1. Write a function in `src/ai_trends/sources/` returning `list[Line]`.
-2. Add a `SeriesSpec` to `SERIES` in `registry.py`.
+2. Add a `SeriesSpec` to `SERIES` in `registry.py`, with a `short_title` for
+   the page's contents list.
 3. `uv run python -m ai_trends.build --only your-new-id --fail-fast`
 
 The page is driven entirely by `data/manifest.json`; no front-end changes are

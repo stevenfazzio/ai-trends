@@ -112,7 +112,8 @@ def frontier_training_power() -> list[Line]:
             entries.append((published, watts))
     if not entries:
         return []
-    return [Line("Largest known training run", running_max(entries, date.today().isoformat()))]
+    today = date.today().isoformat()
+    return [Line("Largest known training run", running_max(entries)).hold_until(today)]
 
 
 def chip_energy_efficiency() -> list[Line]:
@@ -139,9 +140,8 @@ def chip_energy_efficiency() -> list[Line]:
         if efficiency and efficiency > 0:
             any_precision.append((released, efficiency))
 
-    today = date.today().isoformat()
-    like_for_like = running_max(fp16, today)
-    overall = running_max(any_precision, today)
+    like_for_like = running_max(fp16)
+    overall = running_max(any_precision)
 
     # Epoch's column reaches back to 2008 and jumps fortyfold in 2015, when the
     # record passes from FP32 graphics cards to an INT8 inference chip. Open it
@@ -154,7 +154,11 @@ def chip_energy_efficiency() -> list[Line]:
         if standing:
             overall.insert(0, (start, standing[-1][1]))
 
-    return [Line("FP16 only", like_for_like), Line("Any precision", overall)]
+    today = date.today().isoformat()
+    return [
+        Line("FP16 only", like_for_like).hold_until(today),
+        Line("Any precision", overall).hold_until(today),
+    ]
 
 
 # Shares of ARC-AGI-1 solved. The lower bars were cleared first and so show the
@@ -251,10 +255,7 @@ def datacenter_power_capacity() -> list[Line]:
         current[name] = megawatts
         totals[when] = sum(current.values())  # last write per date wins
 
-    points = sorted(totals.items())
-    if points[-1][0] != today:
-        points.append((today, points[-1][1]))
-    return [Line("Tracked AI datacentres", points)]
+    return [Line("Tracked AI datacentres", sorted(totals.items())).hold_until(today)]
 
 
 # Enough companies to show the shape of the race without crowding the legend.
@@ -284,9 +285,7 @@ def cumulative_ai_funding() -> list[Line]:
         for when, amount in sorted(by_company[company]):
             running += amount
             points.append((when, running))
-        if points[-1][0] != today:
-            points.append((today, running))
-        lines.append(Line(company, points))
+        lines.append(Line(company, points).hold_until(today))
     return lines
 
 

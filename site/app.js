@@ -251,8 +251,15 @@ function provenance(meta, series) {
     row.append(span);
   });
 
-  const updated = (series && series.updated) || meta.updated;
-  if (updated) row.append(el('span', null, `Updated ${updated.slice(0, 10)}`));
+  /* Every series is fetched daily, so the date worth showing is the last time
+   * that turned up a new point, not the last time it ran. */
+  const newData = (series && series.new_data) || meta.new_data;
+  const checked = (series && series.updated) || meta.updated;
+  if (newData) {
+    const span = el('span', null, `New data ${newData}`);
+    if (checked) span.title = `Last checked ${checked.slice(0, 10)}`;
+    row.append(span);
+  }
   if (meta.mode === 'append') row.append(el('span', null, 'Recorded daily; no history before collection began'));
   if (!meta.ok) {
     row.append(el('span', 'badge', series ? 'Last refresh failed — showing previous data' : 'Refresh failed'));
@@ -335,6 +342,98 @@ function buildCard(meta, series) {
   return card;
 }
 
+/* ---- contents ---------------------------------------------------------- */
+
+/* A chart that gained a point within this many days is picked out. */
+const FRESH_DAYS = 7;
+
+function daysSince(isoDate) {
+  return Math.max(0, Math.floor((Date.now() - Date.parse(isoDate)) / DAY_MS));
+}
+
+/* As few characters as still say it, so the ages line up in a narrow column. */
+function shortAge(days) {
+  if (days < 1) return 'today';
+  if (days < 14) return `${days}d`;
+  if (days < 61) return `${Math.floor(days / 7)}w`;
+  if (days < 365) return `${Math.floor(days / 30.44)}mo`;
+  return `${Math.floor(days / 365.25)}y`;
+}
+
+function contentsEntry(meta) {
+  const name = meta.short_title || meta.title;
+  const link = el('a');
+  link.href = `#${meta.id}`;
+  link.append(el('span', 'toc-title', name));
+  link.title = meta.title;
+  if (meta.new_data) {
+    const days = daysSince(meta.new_data);
+    link.append(el('span', days <= FRESH_DAYS ? 'age fresh' : 'age', shortAge(days)));
+    link.title += `\nNew data ${meta.new_data}`;
+    link.setAttribute('aria-label', `${name}, new data ${meta.new_data}`);
+  }
+  const item = el('li');
+  item.append(link);
+  return { item, link };
+}
+
+/* Scrolls a list just far enough to show its current entry. scrollIntoView
+ * would also move the page, which is the thing being followed. */
+function reveal(container, item, axis) {
+  const box = container.getBoundingClientRect();
+  const at = item.getBoundingClientRect();
+  const [start, end, scroll] = axis === 'x'
+    ? ['left', 'right', 'scrollLeft']
+    : ['top', 'bottom', 'scrollTop'];
+  const margin = 24;
+  if (at[start] < box[start]) container[scroll] -= box[start] - at[start] + margin;
+  else if (at[end] > box[end]) container[scroll] += at[end] - box[end] + margin;
+}
+
+/* Marks where the reader is: the chart in the contents, its section in the bar
+ * of section links. A chart is current once its top passes a third of the way
+ * up the window, and the last one is current at the foot of the page, which
+ * may never let it get that far. */
+function followScroll(entries) {
+  const toc = document.getElementById('toc');
+  const bar = document.getElementById('nav');
+  let current = null;
+  let frame = 0;
+
+  const update = () => {
+    frame = 0;
+    const line = window.innerHeight / 3;
+    const atFoot =
+      window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2;
+    let next = entries[0];
+    for (const entry of entries) {
+      if (entry.card.getBoundingClientRect().top > line) break;
+      next = entry;
+    }
+    if (atFoot) next = entries[entries.length - 1];
+    if (next === current) return;
+
+    if (current) {
+      current.link.classList.remove('active');
+      current.link.removeAttribute('aria-current');
+      current.pill.classList.remove('active');
+    }
+    next.link.classList.add('active');
+    next.link.setAttribute('aria-current', 'location');
+    next.pill.classList.add('active');
+    reveal(toc, next.link, 'y');
+    reveal(bar, next.pill, 'x');
+    current = next;
+  };
+
+  const schedule = () => {
+    if (!frame) frame = requestAnimationFrame(update);
+  };
+  window.addEventListener('scroll', schedule, { passive: true });
+  window.addEventListener('resize', schedule);
+  update();
+}
+
 /* ---- page -------------------------------------------------------------- */
 
 async function fetchSeries(id, version) {
@@ -357,11 +456,21 @@ async function main() {
   const charts = document.getElementById('charts');
   charts.innerHTML = '';
   const nav = document.getElementById('nav');
+  const toc = document.getElementById('toc');
+  const caption = el('div', 'toc-caption');
+  caption.append(el('span', null, 'Contents'), el('span', null, 'New data'));
+  toc.append(caption);
+  const positions = [];
 
   for (const group of manifest.groups) {
-    const link = el('a', null, group.title);
-    link.href = `#group-${group.id}`;
-    nav.append(link);
+    const pill = el('a', null, group.title);
+    pill.href = `#group-${group.id}`;
+    nav.append(pill);
+
+    const heading = el('a', 'toc-heading', group.title);
+    heading.href = `#group-${group.id}`;
+    const list = el('ul');
+    toc.append(heading, list);
 
     const section = el('section', 'group');
     section.id = `group-${group.id}`;
@@ -371,7 +480,12 @@ async function main() {
     const cards = await Promise.all(
       group.series.map(async (meta) => buildCard(meta, await fetchSeries(meta.id, manifest.generated)))
     );
-    cards.forEach((card) => section.append(card));
+    cards.forEach((card, i) => {
+      section.append(card);
+      const { item, link } = contentsEntry(group.series[i]);
+      list.append(item);
+      positions.push({ card, link, pill });
+    });
     charts.append(section);
   }
 
@@ -394,6 +508,8 @@ async function main() {
    * card exists, so a link to a chart has to be followed again now. */
   const target = document.getElementById(location.hash.slice(1));
   if (target) target.scrollIntoView();
+
+  if (positions.length) followScroll(positions);
 }
 
 main().catch((error) => {

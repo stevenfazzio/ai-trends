@@ -35,8 +35,9 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* Wide enough for the contents column beside charts about as wide as before. */
 .wrap {
-  max-width: 1060px;
+  max-width: 1320px;
   margin: 0 auto;
   padding: 0 24px;
 }
@@ -72,23 +73,6 @@ a { color: var(--accent); }
   padding-bottom: 14px;
 }
 
-#nav {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 4px;
-}
-
-#nav a {
-  padding: 6px 12px;
-  border-radius: 999px;
-  font-size: 14px;
-  font-weight: 500;
-  text-decoration: none;
-  color: var(--ink-soft);
-}
-
-#nav a:hover { background: var(--rule); color: var(--ink); }
-
 .toggle {
   display: inline-flex;
   align-items: center;
@@ -98,6 +82,107 @@ a { color: var(--accent); }
   cursor: pointer;
   user-select: none;
 }
+
+/* ---- contents ---------------------------------------------------------- */
+
+.layout {
+  display: grid;
+  grid-template-columns: 196px minmax(0, 1fr);
+  column-gap: 44px;
+  align-items: start;
+}
+
+.toc {
+  position: sticky;
+  top: 0;
+  max-height: 100vh;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  padding: 10px 0 28px;
+  font-size: 13.5px;
+}
+
+.toc-caption {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 0 6px 12px;
+  border-bottom: 1px solid var(--rule);
+  font-size: 11.5px;
+  color: var(--ink-faint);
+}
+
+.toc-heading {
+  display: block;
+  margin: 14px 0 3px;
+  padding-left: 12px;
+  font-size: 11.5px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  color: var(--ink-faint);
+  text-decoration: none;
+}
+
+.toc-heading:hover { color: var(--ink); }
+
+.toc ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.toc li a {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 10px;
+  padding: 3px 0 3px 10px;
+  border-left: 2px solid transparent;
+  line-height: 1.35;
+  color: var(--ink-soft);
+  text-decoration: none;
+}
+
+.toc li a:hover { color: var(--ink); }
+.toc li a.active { color: var(--ink); border-left-color: var(--accent); }
+
+.toc .age {
+  flex: none;
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-faint);
+}
+
+/* New data within the last week: a dot, and the accent colour. */
+.toc .age.fresh { color: var(--accent); font-weight: 600; }
+
+.toc .age.fresh::before {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  margin-right: 5px;
+  border-radius: 50%;
+  background: currentColor;
+  vertical-align: 1px;
+}
+
+/* The bar of section links stands in for the contents on narrow screens. */
+.sections { display: none; }
+
+.sections a {
+  flex: none;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 500;
+  white-space: nowrap;
+  text-decoration: none;
+  color: var(--ink-soft);
+}
+
+.sections a:hover,
+.sections a.active { background: var(--rule); color: var(--ink); }
 
 /* ---- sections and charts ----------------------------------------------- */
 
@@ -221,14 +306,42 @@ a { color: var(--accent); }
 footer {
   border-top: 1px solid var(--rule);
   margin-top: 20px;
-  padding: 22px 24px 60px;
+  padding: 22px 0 60px;
   color: var(--ink-faint);
   font-size: 13px;
 }
 
 footer p { max-width: 74ch; }
 
+@media (max-width: 960px) {
+  .layout { display: block; }
+  .toc { display: none; }
+
+  /* The bar takes over the masthead's rule and the gap beneath it. */
+  .masthead { margin-bottom: 0; border-bottom: 0; }
+
+  .sections {
+    display: flex;
+    gap: 4px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    overflow-x: auto;
+    scrollbar-width: none;
+    margin-bottom: 28px;
+    /* Pill text lines up with the page's left edge. */
+    padding: 7px 12px;
+    background: var(--bg);
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+  }
+
+  /* Clear of the bar when a link lands on a section or chart. */
+  .group, .card { scroll-margin-top: 62px; }
+}
+
 @media (max-width: 640px) {
+  .sections { padding: 7px 4px; }
   .wrap { padding: 0 16px; }
   .plot { height: 320px; }
   .card { padding: 16px 14px 10px; }
