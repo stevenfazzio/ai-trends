@@ -20,7 +20,7 @@
  "annotations": true,
  "line_shape": "hv",
  "notes": "Equity only \u2014 debt financing, which has become a large part of how datacentre buildout is paid for, is excluded. Epoch tracks disclosed rounds at major companies rather than the whole market, and rounds are dated to close.",
- "updated": "2026-11-24T20:29:13Z",
+ "updated": "2026-11-25T17:22:59Z",
  "new_data": "2026-11-24",
  "lines": [
   {
@@ -87,7 +87,7 @@
      230982162382.0
     ],
     [
-     "2026-11-24",
+     "2026-11-25",
      230982162382.0
     ]
    ],
@@ -145,7 +145,7 @@
      197750000000.0
     ],
     [
-     "2026-11-24",
+     "2026-11-25",
      197750000000.0
     ]
    ],
@@ -171,7 +171,7 @@
      37000000000.0
     ],
     [
-     "2026-11-24",
+     "2026-11-25",
      37000000000.0
     ]
    ],
@@ -189,7 +189,7 @@
      23400000000.0
     ],
     [
-     "2026-11-24",
+     "2026-11-25",
      23400000000.0
     ]
    ],
@@ -231,7 +231,7 @@
      8900000000.0
     ],
     [
-     "2026-11-24",
+     "2026-11-25",
      8900000000.0
     ]
    ],

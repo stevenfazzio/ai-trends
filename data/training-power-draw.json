@@ -20,7 +20,7 @@
  "annotations": true,
  "line_shape": "hv",
  "notes": "A running maximum over the models Epoch has power estimates for, which is roughly a fifth of the catalogue. This is instantaneous draw during training, not total energy consumed, and says nothing about inference \u2014 which is now the larger share of the industry's electricity use.",
- "updated": "2026-11-24T20:29:12Z",
+ "updated": "2026-11-25T17:22:59Z",
  "new_data": "2026-09-24",
  "lines": [
   {
@@ -75,7 +75,7 @@
      232668778.57984325
     ],
     [
-     "2026-11-24",
+     "2026-11-25",
      232668778.57984325
     ]
    ],
