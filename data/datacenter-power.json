@@ -20,7 +20,7 @@
  "annotations": true,
  "line_shape": "linear",
  "notes": "Capacity the sites can draw, not the electricity they actually consume. Epoch tracks roughly eighty sites and the coverage is overwhelmingly American, so this is a floor on the global total rather than a measurement of it. Their timelines extend to 2030 because they include announced build schedules; everything after today is excluded here. As Epoch adds sites, earlier totals rise too.",
- "updated": "2026-11-25T17:22:59Z",
+ "updated": "2026-11-26T17:03:03Z",
  "new_data": "2026-11-20",
  "lines": [
   {
@@ -1387,7 +1387,7 @@
      19467.2083296
     ],
     [
-     "2026-11-25",
+     "2026-11-26",
      19467.2083296
     ]
    ],

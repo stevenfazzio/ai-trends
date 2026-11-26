@@ -19,7 +19,7 @@
  "annotations": true,
  "line_shape": "linear",
  "notes": "Counted by submission date and primary-or-cross-listed category, so a paper in both cs.LG and cs.CL appears in both lines. The newest month is dropped because cross-lists keep landing for weeks after a month closes.",
- "updated": "2026-11-25T17:23:23Z",
+ "updated": "2026-11-26T17:11:26Z",
  "new_data": "2026-11-01",
  "lines": [
   {
@@ -587,7 +587,7 @@
     ],
     [
      "2026-09-01",
-     6068.0
+     6070.0
     ]
    ]
   },
@@ -1156,7 +1156,7 @@
     ],
     [
      "2026-09-01",
-     5774.0
+     5776.0
     ]
    ]
   },
@@ -2294,7 +2294,7 @@
     ],
     [
      "2026-09-01",
-     3660.0
+     3662.0
     ]
    ]
   }
